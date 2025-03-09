@@ -20,12 +20,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
             inputs.home-manager.follows = "home-manager";
         };
-
-        sops-nix = {
-            url = "github:Mic92/sops-nix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
     };
 
     outputs = inputs:
@@ -47,7 +41,6 @@
 
             homes.modules = with inputs; [
                 plasma-manager.homeManagerModules.plasma-manager
-                sops-nix.homeManagerModules.sops
             ];
 
             systems.hosts.TKF13.modules = with inputs; [ 
