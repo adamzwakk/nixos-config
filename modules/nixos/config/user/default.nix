@@ -29,6 +29,7 @@ in
 
     users.users.${cfg.name} = {
       isNormalUser = true;
+      description = cfg.fullName;
 
       inherit (cfg) name initialPassword;
 
