@@ -56,7 +56,7 @@
 
             systems.hosts.ZwakkTower.modules = with inputs; [ 
                 nixos-hardware.nixosModules.common-cpu-amd
-                common-gpu-amd
+                nixos-hardware.nixosModules.common-gpu-amd
             ];
 
         };

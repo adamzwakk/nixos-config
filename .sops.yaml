@@ -1,5 +1,6 @@
 keys:
   - &TKF13 age1zn2kuxhq7rjdr4xfp7tfdet2wfhkw6zhvn0xccularg2238w5q0q52jgvr
+  - &ZwakkTower age1avx4w3gg77cvym3sj0arpm6cgd4xjthv2a8fgs0enhvahvxyzfsqkylkna
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:

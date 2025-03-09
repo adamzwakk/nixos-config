@@ -19,7 +19,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       distrobox
-      bottles
+      # bottles
       docker-compose
     ];
 

@@ -15,6 +15,7 @@ with lib.${namespace};
       emulators = enabled;
       doom = enabled;
       quake = enabled;
+      lutris = enabled;
     };
 
     apps = {

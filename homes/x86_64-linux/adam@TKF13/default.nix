@@ -10,6 +10,7 @@ with lib;
 with lib.${namespace};
 {
   lv426 = {
+    desktop.kde = enabled;
 
     gaming = {
       emulators = enabled;

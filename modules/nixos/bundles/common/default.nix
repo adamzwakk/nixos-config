@@ -28,10 +28,6 @@ in
         networking = enabled;
       };
 
-      tools = {
-        sops = enabled;
-      };
-
       # services = {
       #   tailscale = enabled;
       # };

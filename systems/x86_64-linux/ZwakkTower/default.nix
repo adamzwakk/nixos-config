@@ -16,7 +16,7 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "TKF13";
+  networking.hostName = "ZwakkTower";
 
   services.tlp = { enable = mkForce false; };
   lv426 = {
@@ -42,11 +42,12 @@ in {
     services = {
       syncthing = enabled;
       virtualization = enabled;
+      ollama = enabled;
     };
 
   };
 
-  services.udev.packages = [ lv426.vuescan ];
+  services.udev.packages = [ pkgs.lv426.vuescan ];
 
   # NFS Shares
   fileSystems."/mnt/Projects" = {
