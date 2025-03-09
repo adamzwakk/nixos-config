@@ -35,6 +35,7 @@ in
       system = {
         # fonts = enabled;
         locale = enabled;
+        env = enabled;
       };
     };
 
