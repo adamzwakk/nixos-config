@@ -1,0 +1,20 @@
+{
+  options,
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
+with lib;
+with lib.${namespace};
+let
+  cfg = config.${namespace}.apps.vscode;
+in
+{
+  options.${namespace}.apps.vscode = with types; {
+    enable = mkBoolOpt false "Enable VSCode";
+  };
+
+  config = mkIf cfg.enable { home.packages = with pkgs; [ vscodium ]; };
+}
