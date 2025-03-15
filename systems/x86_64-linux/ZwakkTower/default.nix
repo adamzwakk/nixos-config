@@ -43,6 +43,7 @@ in {
       syncthing = enabled;
       virtualization = enabled;
       ollama = enabled;
+      # flatpak = enabled;
     };
 
   };
