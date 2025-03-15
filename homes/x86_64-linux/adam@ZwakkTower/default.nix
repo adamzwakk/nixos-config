@@ -43,6 +43,7 @@ with lib.${namespace};
     tools = {
       git = enabled;
       yt-dlp = enabled;
+      direnv = enabled;
     };
   };
 
