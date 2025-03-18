@@ -44,6 +44,7 @@ with lib.${namespace};
                 [
                   auto-tab-discard
                   clearurls
+                  localcdn
                   react-devtools
                   remove-youtube-s-suggestions
                   sponsorblock
