@@ -20,6 +20,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
             inputs.home-manager.follows = "home-manager";
         };
+
+        nur = {
+            url = "github:nix-community/NUR";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = inputs:
@@ -38,6 +43,10 @@
             channels-config = {
               allowUnfree = true;
             };
+
+            overlays = with inputs; [
+                nur.overlays.default
+            ];
 
             homes.modules = with inputs; [
                 plasma-manager.homeManagerModules.plasma-manager

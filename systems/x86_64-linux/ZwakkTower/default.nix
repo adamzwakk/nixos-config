@@ -40,11 +40,11 @@ in {
     };
 
     services = {
-      syncthing = enabled;
-      virtualization = enabled;
+      flatpak = enabled;
       ollama = enabled;
       # sunshine = enabled;
-      # flatpak = enabled;
+      syncthing = enabled;
+      virtualization = enabled;
     };
 
   };
