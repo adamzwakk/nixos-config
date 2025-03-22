@@ -25,7 +25,8 @@ in {
         name = "adam";
         fullName = "Adam Zwakenberg";
         email = "adam@adamzwakk.com";
-        extraGroups = [ "wheel" "docker" "networkmanager" "kvm" ];
+        extraGroups = [ "wheel" "docker" "networkmanager" "kvm" "input" ];
+        ## Needed input for keychron flashing reasons https://www.reddit.com/r/Keychron/comments/1e5um1u/a_linux_user_psa/
       };
       nix = enabled;
     };

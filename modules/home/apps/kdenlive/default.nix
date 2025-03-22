@@ -16,5 +16,5 @@ in
     enable = mkBoolOpt false "Enable Kdenlive";
   };
 
-  config = mkIf cfg.enable { home.packages = with pkgs; [ kdenlive ]; };
+  config = mkIf cfg.enable { home.packages = with pkgs; [ kdePackages.kdenlive ]; };
 }
