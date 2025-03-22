@@ -36,12 +36,13 @@ with lib.${namespace};
           enable = true;
 
           profiles = {
-            default = {
+            "default" = {
               id = 0;
+              isDefault = true;
 
-              extensions.packages =
-                with pkgs.nur.repos.rycee.firefox-addons; ### https://nur.nix-community.org/repos/rycee/
-                [
+              extensions = {
+                force = true;
+                packages = with pkgs.nur.repos.rycee.firefox-addons; [ ### https://nur.nix-community.org/repos/rycee/                  
                   auto-tab-discard
                   clearurls
                   localcdn
@@ -52,6 +53,32 @@ with lib.${namespace};
                   umatrix
                   youtube-high-definition
                 ];
+                settings = {
+                  "uBlock0@raymondhill.net".settings = {
+                    importedLists = [
+                      "https://big.oisd.nl"
+                    ];
+                    externalLists = lib.concatStringsSep "\n" importedLists;
+                    selectedFilterLists = [
+                      "adguard-generic"
+                      "adguard-annoyance"
+                      "adguard-social"
+                      "adguard-spyware-url"
+                      "easylist"
+                      "easyprivacy"
+                      "https://big.oisd.nl"
+                      "plowe-0"
+                      "ublock-abuse"
+                      "ublock-badware"
+                      "ublock-filters"
+                      "ublock-privacy"
+                      "ublock-quick-fixes"
+                      "ublock-unbreak"
+                      "urlhaus-1"
+                    ];
+                  };
+                };
+              };
               settings = {
                 "app.normandy.enabled" = false;
                 "app.shield.optoutstudies.enabled" = false;
