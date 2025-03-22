@@ -45,7 +45,6 @@ with lib.${namespace};
                 packages = with pkgs.nur.repos.rycee.firefox-addons; [ ### https://nur.nix-community.org/repos/rycee/                  
                   auto-tab-discard
                   clearurls
-                  localcdn
                   react-devtools
                   remove-youtube-s-suggestions
                   sponsorblock
@@ -54,9 +53,10 @@ with lib.${namespace};
                   youtube-high-definition
                 ];
                 settings = {
-                  "uBlock0@raymondhill.net".settings = {
+                  "uBlock0@raymondhill.net".settings = rec {
                     importedLists = [
                       "https://big.oisd.nl"
+                      "https://github.com/DandelionSprout/adfilt/raw/master/LegitimateURLShortener.txt"
                     ];
                     externalLists = lib.concatStringsSep "\n" importedLists;
                     selectedFilterLists = [
@@ -66,7 +66,6 @@ with lib.${namespace};
                       "adguard-spyware-url"
                       "easylist"
                       "easyprivacy"
-                      "https://big.oisd.nl"
                       "plowe-0"
                       "ublock-abuse"
                       "ublock-badware"
@@ -75,7 +74,7 @@ with lib.${namespace};
                       "ublock-quick-fixes"
                       "ublock-unbreak"
                       "urlhaus-1"
-                    ];
+                    ] ++ importedLists;
                   };
                 };
               };
