@@ -39,7 +39,7 @@ with lib.${namespace};
             default = {
               id = 0;
 
-              extensions =
+              extensions.packages =
                 with pkgs.nur.repos.rycee.firefox-addons; ### https://nur.nix-community.org/repos/rycee/
                 [
                   auto-tab-discard

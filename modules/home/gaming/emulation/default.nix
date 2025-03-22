@@ -19,12 +19,10 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       flips
-      (retroarch.override {
-        cores = with libretro; [
+      (retroarch.withCores (cores: with cores; [ ## https://github.com/NixOS/nixpkgs/tree/master/pkgs/applications/emulators/libretro/cores
           parallel-n64
           snes9x
-        ];
-      })
+      ]))
     ];
   };
 }
