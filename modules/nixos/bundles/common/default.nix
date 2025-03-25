@@ -47,6 +47,7 @@ in
       nh
       wget
       rar
+      bat
 
       htop
       fastfetch
