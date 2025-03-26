@@ -58,10 +58,11 @@ in
       usbutils # lsusb
     ];
 
-    programs.bash.interactiveShellInit = ''
-      switch () {
-        nh os switch --update ~/pj/nixos-config ;
-      }
-    '';
+    ## Add something to ALL envs
+    # programs.bash.interactiveShellInit = ''
+    #   switch () {
+    #     nh os switch --update ~/pj/nixos-config ;
+    #   }
+    # '';
   };
 }

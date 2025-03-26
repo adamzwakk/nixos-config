@@ -66,6 +66,10 @@ in
 
           MANPAGER = "sh -c 'col -bx | bat -l man -p'";
         };
+
+        shellAliases = {
+          switch = "nh os switch --update ~/pj/nixos-config";
+        };
       };
     }
   ]);
