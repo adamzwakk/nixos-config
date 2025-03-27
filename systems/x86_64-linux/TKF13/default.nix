@@ -17,6 +17,7 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "TKF13";
+  networking.firewall.enable = true;
 
   services.tlp = { enable = mkForce false; };
   lv426 = {
