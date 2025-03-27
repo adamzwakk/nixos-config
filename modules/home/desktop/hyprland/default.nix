@@ -26,6 +26,12 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.sessionVariables = {
+      QT_QPA_PLATFORM = "wayland";
+      SDL_VIDEODRIVER = "wayland";
+      XDG_SESSION_TYPE = "wayland";
+    };
+
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
@@ -33,29 +39,42 @@ in
 
         "$mod" = "SUPER";
         "$terminal" = "alacritty";
-        "$menu" = "rofi --show drun";
+        "$menu" = "rofi -show drun";
 
         bind = [
-	  # main hotkeys
-	  "$mod SHIFT, E, exit,"
+          # main hotkeys
+          "$mod SHIFT, E, exit,"
+          "$mod SHIFT, Q, killactive,"
+
+          # Move Focus
+          "$mod, left, movefocus, l"
+          "$mod, right, movefocus, r"
+          "$mod, up, movefocus, u"
+          "$mod, down, movefocus, d"
+
+          # Move window to workspace
+          "$mod SHIFT, 1, movetoworkspace, 1"
+          "$mod SHIFT, 2, movetoworkspace, 2"
+          "$mod SHIFT, 3, movetoworkspace, 3"
+          "$mod SHIFT, 4, movetoworkspace, 4"
 
           # app hotkeys
           "$mod, Return, exec, $terminal"
           "$mod, S, exec, $menu"
 
-	  # Workspace
-	  "$mod, 1, workspace, 1"
-	  "$mod, 1, workspace, 2"
-	  "$mod, 1, workspace, 3"
-	  "$mod, 1, workspace, 4"
+          # Workspace
+          "$mod, 1, workspace, 1"
+          "$mod, 2, workspace, 2"
+          "$mod, 3, workspace, 3"
+          "$mod, 4, workspace, 4"
         ];
 
-	bindm = [
-	   # mouse movements
-         "$mod, mouse:272, movewindow"
-         "$mod, mouse:273, resizewindow"
-         "$mod ALT, mouse:272, resizewindow"
-	];
+        bindm = [
+          # mouse movements
+          "$mod, mouse:272, movewindow"
+          "$mod, mouse:273, resizewindow"
+          "$mod ALT, mouse:272, resizewindow"
+        ];
 	
       };
     };
