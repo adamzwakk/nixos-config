@@ -29,6 +29,8 @@ in
         EDITOR = "nvim";
         BROWSER = "firefox";
         TERMINAL = "alacritty";
+
+        NIXOS_OZONE_WL = "1";
       };
       variables = {
         # Make some programs "XDG" compliant.

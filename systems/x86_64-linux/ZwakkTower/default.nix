@@ -35,6 +35,7 @@ in {
     };
 
     desktop.kde = enabled;
+    desktop.hyprland = enabled;
 
     gaming = {
       steam = enabled;

@@ -10,6 +10,10 @@ with lib;
 with lib.${namespace};
 {
   lv426 = {
+    desktop = {
+      kde = enabled;
+      hyprland = enabled;
+    };
 
     gaming = {
       emulators = enabled;

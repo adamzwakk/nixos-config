@@ -18,8 +18,8 @@ in
 
   config = mkIf cfg.enable {
     services = {
-      xserver.enable = false;
       displayManager.sddm.enable = true;
+      displayManager.sddm.wayland.enable = true;
       desktopManager.plasma6.enable = true;
     };
  
