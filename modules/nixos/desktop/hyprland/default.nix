@@ -34,6 +34,7 @@ in
       pkgs.libnotify
       pkgs.swww
       pkgs.waybar
+      pkgs.networkmanagerapplet
     ];
 
     xdg.portal.enable = true;

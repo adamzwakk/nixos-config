@@ -58,6 +58,24 @@ in
       usbutils # lsusb
     ];
 
+    fonts = {
+      enableDefaultPackages = true;
+      fontDir = {
+        enable = true;
+      };
+      fontconfig = {
+        enable = true;
+        defaultFonts = {
+          # monospace = [ "0xProto Nerd Font" ];
+          # sansSerif = [ "0xProto Nerd Font" ];
+          # serif = [ "0xProto Nerd Font" ];
+        };
+      };
+      packages = with pkgs; [
+        nerd-fonts._0xproto
+      ];
+    };
+
     ## Add something to ALL envs
     # programs.bash.interactiveShellInit = ''
     #   switch () {
