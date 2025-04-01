@@ -87,6 +87,8 @@ in
           "$mod, up, movefocus, u"
           "$mod, down, movefocus, d"
 
+          "$mod, V, togglefloating,"
+
           # Move window to workspace
           "$mod SHIFT, 1, movetoworkspace, 1"
           "$mod SHIFT, 2, movetoworkspace, 2"
@@ -110,7 +112,12 @@ in
           "$mod, mouse:273, resizewindow"
           "$mod ALT, mouse:272, resizewindow"
         ];
-	
+
+        windowrule = [
+          "float,class:^(steam)$,title:^(steam)$"
+          "suppressevent maximize, class:.*"
+          "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        ];
       };
     };
 

@@ -22,5 +22,7 @@ with lib.${namespace};
         acceleration = "rocm";
         rocmOverrideGfx = "11.0.0"; ## For the Radeon 7900 XTX
       };
+
+      services.open-webui.enable = true;
     };
 }

@@ -51,6 +51,7 @@ with lib.${namespace};
                   ublock-origin
                   umatrix
                   youtube-high-definition
+                  bitwarden
                 ];
                 settings = {
                   "uBlock0@raymondhill.net".settings = rec {
