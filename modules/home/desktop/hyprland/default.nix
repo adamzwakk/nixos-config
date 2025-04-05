@@ -15,7 +15,8 @@ let
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.hypridle}/bin/hypridle &
     ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
-    gnome-keyring-daemon --start --components=secrets &
+    gnome-keyring-daemon --start --daemonize &
+    export SSH_AUTH_SOCK
 
     ${pkgs.swww}/bin/swww init &
     sleep 1
