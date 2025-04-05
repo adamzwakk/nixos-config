@@ -55,6 +55,7 @@ in
       wget
       rar
       bat
+      brightnessctl
 
       htop
       fastfetch
