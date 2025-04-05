@@ -10,7 +10,8 @@ with lib;
 with lib.${namespace};
 {
   lv426 = {
-    desktop.kde = enabled;
+    # desktop.kde = enabled;
+    desktop.hyprland = enabled;
 
     gaming = {
       emulators = enabled;
@@ -35,6 +36,7 @@ with lib.${namespace};
     tools = {
       git = enabled;
       yt-dlp = enabled;
+      direnv = enabled;
     };
   };
 

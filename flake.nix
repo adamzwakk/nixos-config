@@ -50,6 +50,10 @@
                 nur.overlays.default
             ];
 
+            systems.modules.nixos = with inputs; [
+                stylix.nixosModules.stylix
+            ];
+
             homes.modules = with inputs; [
                 plasma-manager.homeManagerModules.plasma-manager
             ];
@@ -61,7 +65,6 @@
             systems.hosts.ZwakkTower.modules = with inputs; [ 
                 nixos-hardware.nixosModules.common-cpu-amd
                 nixos-hardware.nixosModules.common-gpu-amd
-                stylix.nixosModules.stylix
             ];
 
         };

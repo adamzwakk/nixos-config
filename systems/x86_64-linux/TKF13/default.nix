@@ -34,7 +34,8 @@ in {
       common = enabled;
     };
 
-    desktop.kde = enabled;
+    # desktop.kde = enabled;
+    desktop.hyprland = enabled;
 
     gaming = {
       steam = enabled;

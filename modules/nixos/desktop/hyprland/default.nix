@@ -29,10 +29,6 @@ in
       hyprlock = {};
     };
 
-    services = {
-      displayManager.sddm.enable = true;
-    };
-
     environment.systemPackages = [
       # ... other packages
       # pkgs.kitty # required for the default Hyprland config

@@ -28,9 +28,9 @@ in
         networking = enabled;
       };
 
-      # services = {
-      #   tailscale = enabled;
-      # };
+      services = {
+        sddm = enabled;
+      };
 
       system = {
         # fonts = enabled;
@@ -39,7 +39,6 @@ in
       };
     };
 
-    security.pam.services.sddm.enableKwallet = true;
     stylix = {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
