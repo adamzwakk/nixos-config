@@ -14,6 +14,7 @@ let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww init &
+    ${pkgs.hypridle}/bin/hypridle &
     ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
 
     sleep 1
@@ -32,6 +33,10 @@ in
       SDL_VIDEODRIVER = "wayland";
       XDG_SESSION_TYPE = "wayland";
     };
+
+    home.packages = with pkgs; [
+      hyprprop
+    ];
 
     ## sorta basing off https://github.com/dc-tec/nixos-config/blob/main/modules/graphical/desktop/hyprland/default.nix
     wayland.windowManager.hyprland = {
@@ -80,6 +85,8 @@ in
           # main hotkeys
           "$mod SHIFT, E, exit,"
           "$mod SHIFT, Q, killactive,"
+          "$mod, l, exec, hyprlock"
+          "$mod, J, layoutmsg, orientationnext"
 
           # Move Focus
           "$mod, left, movefocus, l"
@@ -94,6 +101,8 @@ in
           "$mod SHIFT, 2, movetoworkspace, 2"
           "$mod SHIFT, 3, movetoworkspace, 3"
           "$mod SHIFT, 4, movetoworkspace, 4"
+          "$mod SHIFT, 5, movetoworkspace, 5"
+          "$mod SHIFT, 6, movetoworkspace, 6"
 
           # app hotkeys
           "$mod, Return, exec, $terminal"
@@ -104,6 +113,8 @@ in
           "$mod, 2, workspace, 2"
           "$mod, 3, workspace, 3"
           "$mod, 4, workspace, 4"
+          "$mod, 5, workspace, 5"
+          "$mod, 6, workspace, 6"
         ];
 
         bindm = [
@@ -114,9 +125,33 @@ in
         ];
 
         windowrule = [
-          "float,class:^(steam)$,title:^(steam)$"
+          "float,class:^(Steam)$,title:^(Steam)$"
           "suppressevent maximize, class:.*"
           "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        ];
+      };
+    };
+
+    # https://mynixos.com/home-manager/option/services.hypridle.settings
+    # https://0xda.de/blog/2024/07/framework-and-nixos-locking-customization/
+    services.hypridle = {
+      enable = true;
+      settings = {
+        general = {
+            lock_cmd = "pidof hyprlock || hyprlock";       # avoid starting multiple hyprlock instances.
+            before_sleep_cmd = "loginctl lock-session";    # lock before suspend.
+            after_sleep_cmd = "hyprctl dispatch dpms on";  # to avoid having to press a key twice to turn on the display.
+        };
+
+        listener = [
+          {
+            timeout = 300;                                 # 5min
+            on-timeout = "loginctl lock-session";          # lock screen when timeout has passed
+          }
+          {
+            timeout = 1800;                              # 30min
+            on-timeout = "systemctl suspend";            # suspend pc
+          }
         ];
       };
     };

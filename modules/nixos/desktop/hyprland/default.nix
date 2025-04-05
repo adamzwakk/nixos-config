@@ -17,17 +17,23 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.hyprland = {
-      enable = true;
-      xwayland.enable = true;
+    programs = {
+      hyprland = {
+        enable = true;
+        xwayland.enable = true;
+      };
+      hyprlock.enable = true;
     };
+
+    security.pam.services.hyprlock = {};
+
     services = {
       displayManager.sddm.enable = true;
     };
 
     environment.systemPackages = [
       # ... other packages
-      pkgs.kitty # required for the default Hyprland config
+      # pkgs.kitty # required for the default Hyprland config
 
       pkgs.rofi-wayland
       pkgs.mako
