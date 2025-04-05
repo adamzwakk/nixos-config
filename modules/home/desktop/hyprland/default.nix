@@ -13,12 +13,12 @@ let
   cfg = config.${namespace}.desktop.hyprland;
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
-    ${pkgs.swww}/bin/swww init &
     ${pkgs.hypridle}/bin/hypridle &
     ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
+    gnome-keyring-daemon --start --components=secrets &
 
+    ${pkgs.swww}/bin/swww init &
     sleep 1
-
     ${pkgs.swww}/bin/swww img ${../_wallpapers/wallhaven-0p69qe.png} &
   '';
 in

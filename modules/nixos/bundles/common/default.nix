@@ -43,6 +43,7 @@ in
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
       opacity.terminal = 0.9;
+      opacity.desktop = 0.5;
     };
 
     environment.systemPackages = with pkgs; [
@@ -81,6 +82,8 @@ in
         nerd-fonts._0xproto
       ];
     };
+
+    services.gnome.gnome-keyring.enable = true;
 
     ## Add something to ALL envs
     # programs.bash.interactiveShellInit = ''
