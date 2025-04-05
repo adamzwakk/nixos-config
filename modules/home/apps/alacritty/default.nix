@@ -25,7 +25,7 @@ in
       enable = true;
       settings = {
         window = {
-          opacity = 0.9;
+          #opacity = 0.9;
           dynamic_padding = true;
           decorations = "None";
           padding.x = 5;

@@ -36,6 +36,7 @@ in
 
     home.packages = with pkgs; [
       hyprprop
+      yazi
     ];
 
     ## sorta basing off https://github.com/dc-tec/nixos-config/blob/main/modules/graphical/desktop/hyprland/default.nix
@@ -125,7 +126,8 @@ in
         ];
 
         windowrule = [
-          "float,class:^(Steam)$,title:^(Steam)$"
+          "float,class:^(steam)$"
+          "float,class:^(discord)$"
           "suppressevent maximize, class:.*"
           "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
         ];

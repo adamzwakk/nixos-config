@@ -25,6 +25,8 @@
             url = "github:nix-community/NUR";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        stylix.url = "github:danth/stylix";
     };
 
     outputs = inputs:
@@ -59,6 +61,7 @@
             systems.hosts.ZwakkTower.modules = with inputs; [ 
                 nixos-hardware.nixosModules.common-cpu-amd
                 nixos-hardware.nixosModules.common-gpu-amd
+                stylix.nixosModules.stylix
             ];
 
         };

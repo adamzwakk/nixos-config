@@ -39,6 +39,13 @@ in
       };
     };
 
+    security.pam.services.sddm.enableKwallet = true;
+    stylix = {
+      enable = true;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
+      opacity.terminal = 0.9;
+    };
+
     environment.systemPackages = with pkgs; [
       neovim
       git

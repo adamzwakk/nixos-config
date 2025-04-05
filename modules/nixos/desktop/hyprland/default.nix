@@ -25,7 +25,9 @@ in
       hyprlock.enable = true;
     };
 
-    security.pam.services.hyprlock = {};
+    security.pam.services = { 
+      hyprlock = {};
+    };
 
     services = {
       displayManager.sddm.enable = true;
