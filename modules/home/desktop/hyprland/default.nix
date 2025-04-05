@@ -19,7 +19,7 @@ let
 
     sleep 1
 
-    ${pkgs.swww}/bin/swww img ${../_wallpapers} &
+    ${pkgs.swww}/bin/swww img ${../_wallpapers/wallhaven-0p69qe.png} &
   '';
 in
 {

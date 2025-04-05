@@ -29,6 +29,8 @@ in
       hyprlock = {};
     };
 
+    services.gnome.gnome-keyring.enable = true;
+
     environment.systemPackages = [
       # ... other packages
       # pkgs.kitty # required for the default Hyprland config
@@ -41,7 +43,9 @@ in
       pkgs.networkmanagerapplet
     ];
 
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
   };
 }

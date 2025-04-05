@@ -10,9 +10,11 @@ with lib;
 with lib.${namespace};
   let
     cfg = config.${namespace}.services.sddm;
-    theme = builtins.fromTOML(builtins.readFile "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme/Themes/pixel_sakura.conf");
+    vanilla_theme = builtins.fromTOML(builtins.readFile "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme/Themes/black_hole.conf");
+    theme = vanilla_theme.General;
+
     sddm-astronaut = pkgs.sddm-astronaut.override {
-      themeConfig = theme.General;
+      themeConfig = theme;
     };
   in
   {
@@ -24,12 +26,14 @@ with lib.${namespace};
       services.displayManager.sddm = {
         enable = true;
         wayland.enable = true;
+        enableHidpi = true;
         package = pkgs.kdePackages.sddm; # qt6 sddm version
         extraPackages = [pkgs.sddm-astronaut];
         theme = "sddm-astronaut-theme";
       };
 
-      security.pam.services.sddm.enableKwallet = true; ## For keyring hopefully? if no kde maybe I should use GNOME one tho
+      #security.pam.services.sddm.enableKwallet = true; ## For keyring hopefully? if no kde maybe I should use GNOME one tho
+      security.pam.services.sddm.enableGnomeKeyring = true;
 
       environment.systemPackages = with pkgs; [
         sddm-astronaut

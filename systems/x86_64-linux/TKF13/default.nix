@@ -48,6 +48,8 @@ in {
 
   };
 
+  services.fwupd.enable = true;
+
   # NFS Shares
   fileSystems."/mnt/Projects" = {
     device = "10.100.1.12:/mnt/Hudson/Adam/Projects";
