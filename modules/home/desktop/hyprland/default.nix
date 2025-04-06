@@ -153,7 +153,7 @@ in
           ", XF86AudioPrev, exec, playerctl previous"
         ];
 
-        windowrule = [ ## Use hyprprop to find window names/classes to target
+        windowrule = [ ## Use hyprprop to find window names/classes to targets
           "float,class:^(steam)$"
           "float,class:^(discord)$"
           "float,class:^(com.saivert.pwvucontrol)$"
@@ -192,10 +192,22 @@ in
       };
     };
 
-    stylix.targets.mako.enable = true;
+    # Extra stuff not really needed for its own modules (for now...)
+
     services.mako = {
       enable = true;
       defaultTimeout = 5000;
     };
+
+    programs.rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+    };
+
+    stylix.targets = {
+      rofi.enable = true;
+      mako.enable = true;
+    };
+
   };
 }

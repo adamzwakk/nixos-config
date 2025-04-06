@@ -33,7 +33,6 @@ in
       # ... other packages
       # pkgs.kitty # required for the default Hyprland config
 
-      pkgs.rofi-wayland
       pkgs.mako
       pkgs.libnotify
       pkgs.swww
