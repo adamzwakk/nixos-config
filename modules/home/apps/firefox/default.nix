@@ -52,6 +52,7 @@ with lib.${namespace};
                   umatrix
                   youtube-high-definition
                   bitwarden
+                  firefox-color
                 ];
                 settings = {
                   "uBlock0@raymondhill.net".settings = rec {
@@ -218,5 +219,18 @@ with lib.${namespace};
           };
         };
       };
+
+      xdg.mimeApps.defaultApplications = {
+        "text/html" = ["firefox.desktop"];
+        "text/xml" = ["firefox.desktop"];
+        "x-scheme-handler/http" = ["firefox.desktop"];
+        "x-scheme-handler/https" = ["firefox.desktop"];
+      };
+
+      stylix.targets.firefox = {
+        enable = true;
+        colorTheme.enable = true;
+        profileNames = [ "default" ];
+      };
     };
-}
+  }

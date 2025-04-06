@@ -11,7 +11,7 @@ with lib.${namespace};
 {
   lv426 = {
     desktop = {
-      kde = enabled;
+      #kde = enabled;
       hyprland = enabled;
     };
 

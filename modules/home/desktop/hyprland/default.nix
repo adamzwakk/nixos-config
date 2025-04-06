@@ -11,17 +11,6 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.desktop.hyprland;
-  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    ${pkgs.waybar}/bin/waybar &
-    ${pkgs.hypridle}/bin/hypridle &
-    ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
-    gnome-keyring-daemon --start --daemonize &
-    export SSH_AUTH_SOCK
-
-    ${pkgs.swww}/bin/swww init &
-    sleep 1
-    ${pkgs.swww}/bin/swww img ${../_wallpapers/wallhaven-0p69qe.png} &
-  '';
 in
 {
   options.${namespace}.desktop.hyprland = with types; {
@@ -44,7 +33,16 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
-        exec-once = ''${startupScript}/bin/start'';
+        exec-once = [
+          "killall -q waybar;sleep .5 && ${pkgs.waybar}/bin/waybar"
+          "${pkgs.hypridle}/bin/hypridle"
+          "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
+          "gnome-keyring-daemon --start --daemonize"
+          "export SSH_AUTH_SOCK"
+          "killall -q swww;sleep .5 && ${pkgs.swww}/bin/swww init"
+          "sleep 1 && ${pkgs.swww}/bin/swww img ${../_wallpapers/wallhaven-0p69qe.png}"
+
+        ];
 
         "$mod" = "SUPER";
         "$terminal" = "alacritty";
@@ -187,8 +185,8 @@ in
               "2" = [];
               "3" = [];
               "4" = [];
-              # "5" = [];
-              # "6" = [];
+              "5" = [];
+              "6" = [];
               # "7" = [];
               # "8" = [];
               # "9" = [];
