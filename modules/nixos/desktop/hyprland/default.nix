@@ -37,8 +37,6 @@ in
       pkgs.mako
       pkgs.libnotify
       pkgs.swww
-      pkgs.waybar
-      pkgs.networkmanagerapplet
     ];
 
     xdg.portal = {

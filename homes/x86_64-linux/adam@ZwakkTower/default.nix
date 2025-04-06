@@ -13,6 +13,8 @@ with lib.${namespace};
     desktop = {
       #kde = enabled;
       hyprland = enabled;
+
+      bars.waybar = enabled;
     };
 
     gaming = {
