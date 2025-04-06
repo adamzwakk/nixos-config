@@ -153,9 +153,10 @@ in
           ", XF86AudioPrev, exec, playerctl previous"
         ];
 
-        windowrule = [
+        windowrule = [ ## Use hyprprop to find window names/classes to target
           "float,class:^(steam)$"
           "float,class:^(discord)$"
+          "float,class:^(com.saivert.pwvucontrol)$"
           "suppressevent maximize, class:.*"
           "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
         ];

@@ -37,6 +37,7 @@ in
       pkgs.mako
       pkgs.libnotify
       pkgs.swww
+      pkgs.pwvucontrol
     ];
 
     xdg.portal = {
