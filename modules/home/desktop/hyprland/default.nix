@@ -54,7 +54,7 @@ in
           "export SSH_AUTH_SOCK"
           "killall -q swww;sleep .5 && ${pkgs.swww}/bin/swww init"
           "sleep 1 && ${pkgs.swww}/bin/swww img ${../_wallpapers/wallhaven-0p69qe.png}"
-
+          "discord --start-minimized"
         ];
 
         "$mod" = "SUPER";
@@ -189,6 +189,12 @@ in
           }
         ];
       };
+    };
+
+    stylix.targets.mako.enable = true;
+    services.mako = {
+      enable = true;
+      defaultTimeout = 5000;
     };
 
     programs.waybar = {
