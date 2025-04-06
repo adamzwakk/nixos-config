@@ -133,6 +133,13 @@ in
           ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
         ];
 
+        bindl = [
+          ", XF86AudioNext, exec, playerctl next"
+          ", XF86AudioPause, exec, playerctl play-pause"
+          ", XF86AudioPlay, exec, playerctl play-pause"
+          ", XF86AudioPrev, exec, playerctl previous"
+        ];
+
         windowrule = [
           "float,class:^(steam)$"
           "float,class:^(discord)$"

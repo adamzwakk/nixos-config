@@ -56,6 +56,7 @@ in
       rar
       bat
       brightnessctl
+      playerctl
 
       htop
       fastfetch
