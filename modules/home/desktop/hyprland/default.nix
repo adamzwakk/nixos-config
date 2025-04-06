@@ -18,22 +18,35 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.sessionVariables = {
-      QT_QPA_PLATFORM = "wayland";
-      SDL_VIDEODRIVER = "wayland";
-      XDG_SESSION_TYPE = "wayland";
-    };
+    home = {
+      sessionVariables = {
+        QT_QPA_PLATFORM = "wayland";
+        SDL_VIDEODRIVER = "wayland";
+        XDG_SESSION_TYPE = "wayland";
+      };
 
-    home.packages = with pkgs; [
-      hyprprop
-      yazi
-    ];
+      packages = with pkgs; [
+        hyprcursor
+        hyprprop
+        yazi
+      ];
+
+      pointerCursor = {
+        gtk.enable = true;
+        hyprcursor.enable = true;
+        # x11.enable = true;
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+        size = 20;
+      };
+    };
 
     ## sorta basing off https://github.com/dc-tec/nixos-config/blob/main/modules/graphical/desktop/hyprland/default.nix
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
         exec-once = [
+          "hyprctl setcursor Bibata-Modern-Classic 20"
           "killall -q waybar;sleep .5 && ${pkgs.waybar}/bin/waybar"
           "${pkgs.hypridle}/bin/hypridle"
           "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
@@ -161,6 +174,11 @@ in
         };
 
         listener = [
+          {
+            timeout = 120;                           # 2min
+            on-timeout = "hyprctl dispatch dpms off";  # command to run when timeout has passed
+            on-resume = "hyprctl dispatch dpms on";   # command to run when activity is detected after timeout has fired.
+          }
           {
             timeout = 300;                                 # 5min
             on-timeout = "loginctl lock-session";          # lock screen when timeout has passed
