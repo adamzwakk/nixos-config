@@ -9,7 +9,7 @@
 with lib;
 with lib.${namespace};
 let
-  cfg = config.${namespace}.apps.gimp;
+  cfg = config.${namespace}.apps.flameshot;
 in
 {
   options.${namespace}.apps.flameshot = with types; {
