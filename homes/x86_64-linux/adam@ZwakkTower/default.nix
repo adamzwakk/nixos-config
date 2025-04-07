@@ -8,6 +8,9 @@
 }:
 with lib;
 with lib.${namespace};
+#let
+  #wps = lib.filesystem.listFilesRecursive("${../../../_wallpapers/ultrawide_21x9}");
+#in
 {
   lv426 = {
     desktop = {
@@ -56,6 +59,15 @@ with lib.${namespace};
   home.packages = with pkgs; [
     pkgs.lv426.sm64coopdx
   ];
+
+  stylix = {
+    enable = true;
+    image = "${../../../_wallpapers/ultrawide_21x9/wallhaven-m9qj1m.jpg}";
+    polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/brewer.yaml"; #https://tinted-theming.github.io/tinted-gallery/
+    opacity.terminal = 0.8;
+    opacity.desktop = 0.5;
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

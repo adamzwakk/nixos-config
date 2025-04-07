@@ -16,5 +16,5 @@ in
     enable = mkBoolOpt false "Enable Spotify";
   };
 
-  config = mkIf cfg.enable { home.packages = with pkgs; [ spotify ]; };
+  config = mkIf cfg.enable { home.packages = with pkgs; [ spotify spotify-player ]; };
 }

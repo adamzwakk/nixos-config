@@ -39,13 +39,6 @@ in
       };
     };
 
-    stylix = {
-      enable = true;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/brewer.yaml"; #https://tinted-theming.github.io/tinted-gallery/
-      opacity.terminal = 0.9;
-      opacity.desktop = 0.5;
-    };
-
     environment.systemPackages = with pkgs; [
       neovim
       git
@@ -57,6 +50,7 @@ in
       bat
       brightnessctl
       playerctl
+      killall
 
       htop
       fastfetch
