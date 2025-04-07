@@ -10,16 +10,32 @@ let
   };
 in {
   imports = [ ./hardware.nix ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
 
-  networking.hostName = "ZwakkTower";
-  networking.firewall.enable = true;
+    # Bootloader.
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
 
-  services.tlp = { enable = mkForce false; };
+    initrd = {
+      availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" "sr_mod" ];
+      kernelModules = [ ];
+    };
+
+    extraModulePackages = [];
+    kernelModules = [ "kvm-amd" "sg"];
+    kernel.sysctl = { "vm.swappiness" = 20; };
+  };
+
+  networking = {
+    hostName = "ZwakkTower";
+    firewall.enable = true;
+    useDHCP = lib.mkDefault true;
+  };
+
   lv426 = {
     config = {
       user = {
@@ -51,46 +67,53 @@ in {
       syncthing = enabled;
       virtualization = enabled;
     };
-
   };
 
-  services.udev.packages = [ pkgs.lv426.vuescan ];
+  services = {
+    udev = {
+      packages = [ pkgs.lv426.vuescan ];
+    };
+    tlp = { enable = mkForce false; };
+  };
 
   # NFS Shares
-  fileSystems."/mnt/Projects" = {
-    device = "10.100.1.12:/mnt/Hudson/Adam/Projects";
-    fsType = "nfs";
-    options = [ "x-systemd.automount" "noauto" ];
-  };
-  fileSystems."/mnt/Adam" = {
-    device = "10.100.1.12:/mnt/Hudson/Adam";
-    fsType = "nfs";
-    options = [ "x-systemd.automount" "noauto" ];
-  };
-  fileSystems."/mnt/Torrents" = {
-    device = "10.100.1.12:/mnt/Hudson/Downloads/Torrents";
-    fsType = "nfs";
-    options = [ "x-systemd.automount" "noauto" ];
-  };
+  fileSystems = {
+    "/mnt/Projects" = {
+      device = "10.100.1.12:/mnt/Hudson/Adam/Projects";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" ];
+    };
+    "/mnt/Adam" = {
+      device = "10.100.1.12:/mnt/Hudson/Adam";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" ];
+    };
+    "/mnt/Torrents" = {
+      device = "10.100.1.12:/mnt/Hudson/Downloads/Torrents";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" ];
+    };
 
-  fileSystems."/mnt/Media" = {
-    device = "//10.100.1.12/Media";
-    fsType = "cifs";
-    options = let
-      # this line prevents hanging on network split
-      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+    ## SMB Shares
+    "/mnt/Media" = {
+      device = "//10.100.1.12/Media";
+      fsType = "cifs";
+      options = let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
-    in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
-  };
+      in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
+    };
+    "/mnt/Games" = {
+      device = "//10.100.1.12/Games";
+      fsType = "cifs";
+      options = let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
-  fileSystems."/mnt/Games" = {
-    device = "//10.100.1.12/Games";
-    fsType = "cifs";
-    options = let
-      # this line prevents hanging on network split
-      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+      in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
+    };
 
-    in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
   };
 
   # This value determines the NixOS release from which the default

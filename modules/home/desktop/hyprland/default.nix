@@ -49,7 +49,6 @@ in
         exec-once = [
           "hyprctl setcursor Bibata-Modern-Classic 20"
           "killall -q waybar;sleep .5 && ${pkgs.waybar}/bin/waybar"
-          "${pkgs.hypridle}/bin/hypridle"
           "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
           "gnome-keyring-daemon --start --daemonize"
           "export SSH_AUTH_SOCK"
@@ -161,6 +160,7 @@ in
           "float,class:^(com.saivert.pwvucontrol)$"
           "suppressevent maximize, class:.*"
           "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+          "idleinhibit fullscreen, class:.*"
         ];
       };
     };
