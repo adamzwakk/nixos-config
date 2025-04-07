@@ -34,6 +34,7 @@ with lib.${namespace};
       feh = enabled;
       filezilla = enabled;
       firefox = enabled;
+      flameshot = enabled;
       gimp = enabled;
       handbrake = enabled;
       hugin = enabled;

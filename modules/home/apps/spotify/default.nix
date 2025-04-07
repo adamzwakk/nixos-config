@@ -16,5 +16,6 @@ in
     enable = mkBoolOpt false "Enable Spotify";
   };
 
+  # https://github.com/aome510/spotify-player
   config = mkIf cfg.enable { home.packages = with pkgs; [ spotify spotify-player ]; };
 }

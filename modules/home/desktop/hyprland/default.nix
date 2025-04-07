@@ -29,6 +29,7 @@ in
         hyprcursor
         hyprprop
         yazi
+        wl-clipboard
       ];
 
       pointerCursor = {
@@ -120,6 +121,7 @@ in
           # app hotkeys
           "$mod, Return, exec, $terminal"
           "$mod, D, exec, $menu"
+          "$mod SHIFT, S, exec, flameshot gui"
 
           # Workspace
           "$mod, 1, workspace, 1"
