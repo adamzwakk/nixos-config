@@ -10,14 +10,29 @@ let
   };
 in {
   imports = [ ./hardware.nix ];
-  boot.kernelPackages = pkgs.linuxPackages_zen;
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
 
-  networking.hostName = "TKF13";
-  networking.firewall.enable = true;
+    # bootloader
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
+    initrd = {
+      availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
+      kernelModules = [ ];
+    };
+  };
+
+  networking = {
+    hostName = "TKF13";
+    useDHCP = lib.mkDefault true;
+    firewall.enable = true;
+  };
 
   services.tlp = { enable = mkForce false; };
   lv426 = {
@@ -52,15 +67,17 @@ in {
   services.fwupd.enable = true;
 
   # NFS Shares
-  fileSystems."/mnt/Projects" = {
-    device = "10.100.1.12:/mnt/Hudson/Adam/Projects";
-    fsType = "nfs";
-    options = [ "x-systemd.automount" "noauto" ];
-  };
-  fileSystems."/mnt/Adam" = {
-    device = "10.100.1.12:/mnt/Hudson/Adam";
-    fsType = "nfs";
-    options = [ "x-systemd.automount" "noauto" ];
+  fileSystems = {
+    "/mnt/Projects" = {
+      device = "10.100.1.12:/mnt/Hudson/Adam/Projects";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" ];
+    };
+    "/mnt/Adam" = {
+      device = "10.100.1.12:/mnt/Hudson/Adam";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" ];
+    };
   };
 
   # This value determines the NixOS release from which the default

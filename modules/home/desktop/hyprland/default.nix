@@ -197,6 +197,9 @@ in
 
     # Extra stuff not really needed for its own modules (for now...)
 
+    # We dont need flameshot everywhere, so lets just include it where we need it (hyprland)
+    lv426.apps.flameshot = enabled;
+
     services.mako = {
       enable = true;
       defaultTimeout = 5000;

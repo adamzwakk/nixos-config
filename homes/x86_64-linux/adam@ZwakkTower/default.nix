@@ -14,7 +14,7 @@ with lib.${namespace};
 {
   lv426 = {
     desktop = {
-      #kde = enabled;
+      # kde = enabled;
       hyprland = enabled;
 
       bars.waybar = enabled;
@@ -34,7 +34,6 @@ with lib.${namespace};
       feh = enabled;
       filezilla = enabled;
       firefox = enabled;
-      flameshot = enabled;
       gimp = enabled;
       handbrake = enabled;
       hugin = enabled;
@@ -69,6 +68,9 @@ with lib.${namespace};
     opacity.terminal = 0.8;
     opacity.desktop = 0.5;
   };
+
+  # https://wiki.hyprland.org/Configuring/Monitors/
+  wayland.windowManager.hyprland.settings.monitor = ", highrr, auto, 1";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

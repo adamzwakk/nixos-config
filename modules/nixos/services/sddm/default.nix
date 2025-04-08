@@ -27,12 +27,11 @@ with lib.${namespace};
         enable = true;
         wayland.enable = true;
         enableHidpi = true;
-        package = pkgs.kdePackages.sddm; # qt6 sddm version
+        package = lib.mkForce pkgs.kdePackages.sddm; # qt6 sddm version
         extraPackages = [pkgs.sddm-astronaut];
         theme = "sddm-astronaut-theme";
       };
 
-      #security.pam.services.sddm.enableKwallet = true; ## For keyring hopefully? if no kde maybe I should use GNOME one tho
       security.pam.services.sddm.enableGnomeKeyring = true;
 
       environment.systemPackages = with pkgs; [

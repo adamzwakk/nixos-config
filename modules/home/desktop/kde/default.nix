@@ -36,7 +36,7 @@ in
         };
         iconTheme = "breeze";
         wallpaperSlideShow = {
-          path = "/home/adam/Pictures/Wallpapers";
+          path = "${../../../../_wallpapers/ultrawide_21x9}";
           interval = 1800;
         };
       };

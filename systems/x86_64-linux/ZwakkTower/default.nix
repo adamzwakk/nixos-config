@@ -52,7 +52,7 @@ in {
     };
 
     desktop = {
-      #kde = enabled;
+      # kde = enabled;
       hyprland = enabled;
     };
 
