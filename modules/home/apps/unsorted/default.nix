@@ -18,7 +18,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      keepassxc
+      bitwarden-desktop
       obsidian
       discord
       ventoy-full

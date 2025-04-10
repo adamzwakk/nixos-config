@@ -157,6 +157,7 @@ in
         windowrule = [ ## Use hyprprop to find window names/classes to targets
           "float,class:^(steam)$"
           "float,class:^(discord)$"
+          "float,class:^(Bitwarden)$"
           "float,class:^(com.saivert.pwvucontrol)$"
           "suppressevent maximize, class:.*"
           "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
@@ -199,6 +200,8 @@ in
 
     # We dont need flameshot everywhere, so lets just include it where we need it (hyprland)
     lv426.apps.flameshot = enabled;
+
+    lv426.apps.wlsunset = enabled;
 
     services.mako = {
       enable = true;
