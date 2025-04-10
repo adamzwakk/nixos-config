@@ -1,0 +1,11 @@
+keys:
+  - &users:
+    - &adam age1ngkg3msxp8l39mz8vczwrk4qunedqls89dq6q7xqdt0xnxev236qddfgh7
+  - &hosts:
+    - &ZwakkTower age1eg76zcp35leluz5e7vmnyaym32tdn7ltkmsfnkz8h3tsutqdmdls3qvvpg
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+    - age:
+      - *adam
+      - *ZwakkTower
