@@ -37,6 +37,8 @@ in
         locale = enabled;
         env = enabled;
       };
+
+      security.sops = enabled;
     };
 
     environment.systemPackages = with pkgs; [

@@ -54,6 +54,8 @@ with lib.${namespace};
       yt-dlp = enabled;
       direnv = enabled;
     };
+
+    services.sops = enabled;
   };
 
   home.packages = with pkgs; [

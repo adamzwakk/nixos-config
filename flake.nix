@@ -26,6 +26,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        sops-nix = {
+            url = "github:Mic92/sops-nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         stylix.url = "github:danth/stylix";
     };
 
@@ -52,10 +57,12 @@
 
             systems.modules.nixos = with inputs; [
                 stylix.nixosModules.stylix
+                sops-nix.nixosModules.sops
             ];
 
             homes.modules = with inputs; [
                 plasma-manager.homeManagerModules.plasma-manager
+                sops-nix.homeManagerModules.sops
             ];
 
             systems.hosts.TKF13.modules = with inputs; [ 
