@@ -41,6 +41,10 @@ in
       uid = 1000;
 
       extraGroups = cfg.extraGroups;
+
+      openssh.authorizedKeys.keys = [
+        lib.snowfall.fs.get-file "keys/id_zwakktower.pub"
+      ];
     };
   };
 }

@@ -71,7 +71,7 @@ in
         shellAliases = {
           switch = "nh os switch --update ~/pj/nixos-config";
         };
-      };
+      }; 
     }
   ]);
 }

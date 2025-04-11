@@ -26,7 +26,7 @@ with lib.${namespace};
     ];
 
     sops = {
-      inherit (cfg) defaultSopsFile;
+      defaultSopsFile = lib.snowfall.fs.get-file "secrets/secrets.yaml";
       defaultSopsFormat = "yaml";
 
       age = {
@@ -35,7 +35,11 @@ with lib.${namespace};
         sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
       };
 
-      secrets = {};
+      secrets = {
+        "private_keys/adam" = {
+          path = "${config.home.homeDirectory}/.ssh/id_ed25519";
+        };
+      };
     };
   };
 }
