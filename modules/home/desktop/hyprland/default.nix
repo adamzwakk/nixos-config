@@ -122,7 +122,7 @@ in
           "$mod, Return, exec, $terminal"
           "$mod, D, exec, $menu"
           "$mod SHIFT, S, exec, flameshot gui"
-          "$mod E, exec, thunar"
+          "$mod, E, exec, thunar"
 
           # Workspace
           "$mod, 1, workspace, 1"
