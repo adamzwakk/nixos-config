@@ -36,6 +36,8 @@ in
       pkgs.mako
       pkgs.libnotify
       pkgs.pwvucontrol
+      pkgs.udiskie
+      pkgs.xfce.thunar
     ];
 
     xdg.portal = {

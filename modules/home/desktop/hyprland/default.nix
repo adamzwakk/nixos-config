@@ -55,6 +55,7 @@ in
           # "killall -q swww;sleep .5 && ${pkgs.swww}/bin/swww init"
           # "sleep 1 && ${pkgs.swww}/bin/swww img ${../_wallpapers/wallhaven-5d5eg3.jpg}"
           "discord --start-minimized"
+          "udiskie"
         ];
 
         "$mod" = "SUPER";
@@ -121,6 +122,7 @@ in
           "$mod, Return, exec, $terminal"
           "$mod, D, exec, $menu"
           "$mod SHIFT, S, exec, flameshot gui"
+          "$mod E, exec, thunar"
 
           # Workspace
           "$mod, 1, workspace, 1"
