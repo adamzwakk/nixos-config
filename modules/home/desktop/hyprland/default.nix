@@ -217,10 +217,16 @@ in
       package = pkgs.rofi-wayland;
     };
 
-    stylix.targets = {
-      rofi.enable = true;
-      mako.enable = true;
+    stylix = {
+      iconTheme = {
+        enable = true;
+        dark = "Dracula";
+        package = pkgs.dracula-icon-theme;
+      };
+      targets = {
+        rofi.enable = true;
+        mako.enable = true;
+      };
     };
-
   };
 }
