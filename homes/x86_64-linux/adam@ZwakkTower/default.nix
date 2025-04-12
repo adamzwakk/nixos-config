@@ -59,7 +59,8 @@ with lib.${namespace};
   };
 
   home.packages = with pkgs; [
-    pkgs.lv426.sm64coopdx
+    lv426.sm64coopdx
+    lv426.sm64ex
   ];
 
   stylix = {
