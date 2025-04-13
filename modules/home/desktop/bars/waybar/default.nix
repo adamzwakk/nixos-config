@@ -32,7 +32,7 @@ in
           position = "top";
           modules-left = ["hyprland/workspaces"];
           modules-center = ["hyprland/window"];
-          modules-right = ["network" "battery" "clock" "tray"];
+          modules-right = ["memory" "network" "battery" "clock" "tray"];
 
           "hyprland/workspaces" = {
             disable-scroll = true;
@@ -50,6 +50,11 @@ in
               # "9" = [];
               # "0" = [];
             };
+          };
+
+          "memory" = {
+              interval = 30;
+              format = "{used:0.1f}G/{total:0.1f}G ";
           };
 
           "tray" = {
@@ -128,14 +133,12 @@ in
           border-radius: 1rem;
         }
 
-        #custom-music,
         #tray,
         #backlight,
         #network,
         #clock,
+        #memory,
         #battery,
-        #custom-lock,
-        #custom-notifications,
         #custom-power {
           background-color: @surface0;
           padding: 0.5rem 1rem;
@@ -164,31 +167,12 @@ in
           color: @yellow;
         }
 
-        #custom-notifications {
-          border-radius: 1rem;
-          margin-right: 1rem;
-          color: @peach;
+        #memory {
+          border-radius: 1rem 0px 0px 1rem;
         }
 
         #network {
-          border-radius: 1rem 0px 0px 1rem;
           color: @sky;
-        }
-
-        #custom-music {
-          color: @mauve;
-          border-radius: 1rem;
-        }
-
-        #custom-lock {
-            border-radius: 1rem 0px 0px 1rem;
-            color: @lavender;
-        }
-
-        #custom-power {
-            margin-right: 1rem;
-            border-radius: 0px 1rem 1rem 0px;
-            color: @red;
         }
 
         #tray {

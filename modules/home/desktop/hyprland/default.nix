@@ -37,7 +37,6 @@ in
       pointerCursor = {
         gtk.enable = true;
         hyprcursor.enable = true;
-        # x11.enable = true;
         package = pkgs.bibata-cursors;
         name = "Bibata-Modern-Classic";
         size = 20;
@@ -164,6 +163,7 @@ in
           "float,class:^(Bitwarden)$"
           "float,class:^(sm64ex)$"
           "float,class:^(sm64coopdx)$"
+          "float,class:^(filezilla)$"
           "float,class:^(com.saivert.pwvucontrol)$"
           "suppressevent maximize, class:.*"
           "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"

@@ -27,6 +27,8 @@ Ctrl-s      ToggleShuffle
 
 ## Inspiration/credit
 
+- https://wearewaylandnow.com/
+
 - https://github.com/wueestry/nixos-config
 - https://github.com/TLATER/dotfiles/
 - https://github.com/xhos/nixdots/
