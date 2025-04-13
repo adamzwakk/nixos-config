@@ -21,16 +21,19 @@
             inputs.home-manager.follows = "home-manager";
         };
 
+        # Mostly used for FF extensions
         nur = {
             url = "github:nix-community/NUR";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        # Secret keeping
         sops-nix = {
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        # Styling rules at a global level
         stylix.url = "github:danth/stylix";
     };
 
