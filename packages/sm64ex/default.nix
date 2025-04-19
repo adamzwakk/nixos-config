@@ -8,6 +8,7 @@
   audiofile,
   SDL2,
   hexdump,
+  libGL,
   requireFile,
   makeDesktopItem,
   baseRom ? requireFile {
@@ -69,6 +70,7 @@ stdenv.mkDerivation (finalAttrs: {
     python3
     pkg-config
     hexdump
+    libGL
   ];
 
   buildInputs = [

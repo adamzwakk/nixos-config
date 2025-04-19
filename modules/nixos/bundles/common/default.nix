@@ -55,6 +55,7 @@ in
       killall
 
       htop
+      nvtopPackages.amd
       fastfetch
       sysstat
       lm_sensors # for `sensors` command

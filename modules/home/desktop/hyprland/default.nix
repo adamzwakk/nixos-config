@@ -30,6 +30,8 @@ in
         hyprprop
         yazi
         wl-clipboard
+        
+        kdePackages.kate
       ];
 
       pointerCursor = {

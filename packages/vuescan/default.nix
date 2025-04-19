@@ -21,7 +21,7 @@ in stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://www.hamrick.com/files/vuex6498.tgz";
-    hash = "sha256-/Q6aJoqVjK3mEEjv6JpZcax7pfxriT6QSbZM0xaaciI=";
+    hash = "sha256-twkbxdFvBP2BT79u33cIKbscxlaSsdYa9H3fLZMcnXg=";
   };
 
   ## From: https://www.hamrick.com/alternate-versions.html

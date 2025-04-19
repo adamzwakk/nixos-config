@@ -28,6 +28,7 @@ in {
     extraModulePackages = [];
     kernelModules = [ "kvm-amd" "sg"];
     kernel.sysctl = { "vm.swappiness" = 20; };
+    tmp.cleanOnBoot = true;
   };
 
   networking = {
