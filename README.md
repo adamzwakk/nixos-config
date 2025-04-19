@@ -6,7 +6,11 @@ Start by doing the initial flake with
 
 then from then on you can just run `switch` to update the system config
 
-Inspiration/credit
+## SOPS notes
+
+To add a new key to the existing sops-setup, add or copy a user one and add the new system one to the `.sops.yaml` file and then run `sops --config .sops.yaml updatekeys secrets/secrets.yaml`
+
+## Inspiration/credit
 
 https://github.com/wueestry/nixos-config
 https://github.com/TLATER/dotfiles/

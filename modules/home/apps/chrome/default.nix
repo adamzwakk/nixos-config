@@ -20,7 +20,6 @@ with lib.${namespace};
       programs = {
         chromium = {
           enable = true;
-          package = pkgs.brave;
           extensions = [
             # {id = "";}  // extension id, query from chrome web store
           ];

@@ -11,7 +11,12 @@ with lib.${namespace};
 {
   lv426 = {
     # desktop.kde = enabled;
-    desktop.hyprland = enabled;
+    desktop = {
+      # kde = enabled;
+      hyprland = enabled;
+
+      bars.waybar = enabled;
+    };
 
     gaming = {
       emulators = enabled;
