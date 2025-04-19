@@ -35,3 +35,7 @@ Ctrl-s      ToggleShuffle
 - https://github.com/dc-tec/nixos-config/
 - https://github.com/khaneliman/khanelinix
 - https://0xda.de/blog/2024/07/framework-and-nixos-sops-nix-secrets-management/
+
+## Dockers I should try and replicate somehow but they work anyway more or less
+
+- https://github.com/YanWenKun/ComfyUI-Docker/tree/main/rocm

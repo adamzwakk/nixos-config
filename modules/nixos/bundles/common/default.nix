@@ -53,6 +53,7 @@ in
       brightnessctl
       playerctl
       killall
+      p7zip
 
       htop
       nvtopPackages.amd
