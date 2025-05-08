@@ -34,7 +34,7 @@ in
 
       opts =
         let
-          indentsize = 2;
+          indentsize = 4;
       in {
         number = true;
         relativenumber = true;

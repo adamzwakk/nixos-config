@@ -68,6 +68,8 @@ in {
       syncthing = enabled;
       virtualization = enabled;
     };
+
+    rust = enabled;
   };
 
   services = {

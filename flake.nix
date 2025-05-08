@@ -36,9 +36,14 @@
         # Styling rules at a global level
         stylix.url = "github:danth/stylix";
 
-				# An easier way to config nvim
-				nixvim = {
+        # An easier way to config nvim
+        nixvim = {
             url = "github:nix-community/nixvim";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        rust-overlay = {
+            url = "github:oxalica/rust-overlay";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
@@ -62,6 +67,7 @@
 
             overlays = with inputs; [
                 nur.overlays.default
+                rust-overlay.overlays.default
             ];
 
             systems.modules.nixos = with inputs; [
