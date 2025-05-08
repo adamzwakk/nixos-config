@@ -26,7 +26,7 @@ in
         XDG_BIN_HOME = "$HOME/.local/bin";
         # To prevent firefox from creating ~/Desktop.
         XDG_DESKTOP_DIR = "$HOME";
-        EDITOR = "nvim";
+        EDITOR = "nano";
         BROWSER = "firefox";
         TERMINAL = "alacritty";
 

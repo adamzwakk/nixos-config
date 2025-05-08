@@ -57,7 +57,7 @@ in
           WINEPREFIX = d + "/wine";
 
           # set default applications
-          EDITOR = "nvim";
+          EDITOR = "nano";
           BROWSER = "firefox";
           TERMINAL = "alacritty";
 

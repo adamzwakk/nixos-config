@@ -40,6 +40,7 @@ with lib.${namespace};
       kdenlive = enabled;
       makemkv = enabled;
       mpv = enabled;
+      neovim = enabled;
       obs = enabled;
       spotify = enabled;
       transmission-remote = enabled;

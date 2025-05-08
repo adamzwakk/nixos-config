@@ -32,6 +32,7 @@ in
         wl-clipboard
         
         kdePackages.kate
+        kdePackages.ark
       ];
 
       pointerCursor = {
@@ -211,7 +212,9 @@ in
 
     services.mako = {
       enable = true;
-      defaultTimeout = 5000;
+      settings = {
+        defaultTimeout = 5000;
+      };
     };
 
     programs.rofi = {

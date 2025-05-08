@@ -35,6 +35,12 @@
 
         # Styling rules at a global level
         stylix.url = "github:danth/stylix";
+
+				# An easier way to config nvim
+				nixvim = {
+            url = "github:nix-community/nixvim";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = inputs:
@@ -66,6 +72,7 @@
             homes.modules = with inputs; [
                 plasma-manager.homeManagerModules.plasma-manager
                 sops-nix.homeManagerModules.sops
+                nixvim.homeManagerModules.nixvim
             ];
 
             systems.hosts.TKF13.modules = with inputs; [ 

@@ -42,7 +42,7 @@ in
     };
 
     environment.systemPackages = with pkgs; [
-      neovim
+      nano
       git
       gnumake
       openssl

@@ -31,6 +31,7 @@ with lib.${namespace};
       firefox = enabled;
       gimp = enabled;
       mpv = enabled;
+      neovim = enabled;
       spotify = enabled;
       vscode = enabled;
 
