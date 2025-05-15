@@ -212,9 +212,7 @@ in
 
     services.mako = {
       enable = true;
-      settings = {
-        defaultTimeout = 5000;
-      };
+      defaultTimeout = 5000;
     };
 
     programs.rofi = {
