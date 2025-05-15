@@ -29,7 +29,8 @@ in
       };
 
       services = {
-        sddm = enabled;
+        #sddm = enabled;
+        greetd = enabled;
       };
 
       system = {

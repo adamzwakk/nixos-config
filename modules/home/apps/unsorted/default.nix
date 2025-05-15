@@ -21,7 +21,7 @@ in
       bitwarden-desktop
       obsidian
       discord
-      ventoy-full
+      # ventoy-full
     ];
   };
 }
