@@ -79,10 +79,6 @@ in {
     tlp = { enable = mkForce false; };
   };
 
-  environment.systemPackages = [
-    pkgs.lv426.dwl
-  ];
-
   # NFS Shares
   fileSystems = {
     "/mnt/Projects" = {

@@ -26,24 +26,34 @@ in
       };
       
       plugins = {
-        lualine.enable = true;
-        telescope.enable = true;
-        web-devicons.enable = true;
-        neo-tree.enable = true;
+        barbar.enable = true; # top bar
+        comment.enable = true; # Commenting
+        colorizer.enable = true; # Automatic bg colors on hex/color strings
+        gitsigns.enable = true;
+        lint.enable = true;
+        lualine.enable = true; # Fancier status line
+        neo-tree.enable = true; # File tree
+        nvim-autopairs.enable = true;
+        telescope.enable = true; # Fuzzy finder
+        toggleterm.enable = true; # Terminal access
+        transparent.enable = true;
+        treesitter.enable = true;
+        web-devicons.enable = true; # Fun icons
+        which-key.enable = true;
       };
 
       opts =
         let
           indentsize = 4;
-      in {
-        number = true;
-        relativenumber = true;
+        in {
+          number = true;
+          relativenumber = true;
 
-        shiftwidth = indentsize;
-        softtabstop = indentsize;
-        tabstop = indentsize;
+          shiftwidth = indentsize;
+          softtabstop = indentsize;
+          tabstop = indentsize;
 
-        wrap = false;
+          wrap = false;
       };
 
       keymaps =
