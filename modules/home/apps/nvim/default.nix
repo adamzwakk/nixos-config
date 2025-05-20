@@ -35,7 +35,12 @@ in
         neo-tree.enable = true; # File tree
         nvim-autopairs.enable = true;
         telescope.enable = true; # Fuzzy finder
-        toggleterm.enable = true; # Terminal access
+        toggleterm = { # Terminal access
+          enable = true;
+          settings = {
+            direction = "horizontal";
+          };
+		    };
         transparent.enable = true;
         treesitter.enable = true;
         web-devicons.enable = true; # Fun icons
@@ -102,10 +107,9 @@ in
               "<M-k>" = ":move-2<CR>";
               "<M-j>" = ":move+<CR>";
 
-              "<leader>rp" = ":!remi push<CR>";
-
               "<leader><leader>" = ":Telescope buffers<CR>";
               "<leader>n" = ":Neotree action=focus reveal toggle<CR>";
+			  "<leader>t" = ":ToggleTerm<CR>";
             };
         visual =
           lib.mapAttrsToList
@@ -116,12 +120,12 @@ in
             {
               # better indenting
               ">" = ">gv";
-              "<" = "<gv";
-              "<TAB>" = ">gv";
+			  "<" = "<gv";
+			  "<TAB>" = ">gv";
               "<S-TAB>" = "<gv";
 
               # move selected line / block of text in visual mode
-              "K" = ":m '<-2<CR>gv=gv";
+			  "K" = ":m '<-2<CR>gv=gv";
               "J" = ":m '>+1<CR>gv=gv";
 
               # sort

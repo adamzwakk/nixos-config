@@ -101,7 +101,7 @@ in
           # main hotkeys
           "$mod SHIFT, E, exit,"
           "$mod SHIFT, Q, killactive,"
-          "$mod, l, exec, hyprlock"
+          "$mod SHIFT, l, exec, hyprlock"
           "$mod, J, layoutmsg, orientationnext"
 
           # Move Focus
