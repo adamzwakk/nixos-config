@@ -213,7 +213,7 @@ in
     services.mako = {
       enable = true;
       settings = {
-        defaul-timeout = 5000;
+        default-timeout = 5000;
       };
     };
 

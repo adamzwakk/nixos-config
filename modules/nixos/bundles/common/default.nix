@@ -55,6 +55,7 @@ in
       playerctl
       killall
       p7zip
+      fzf
 
       htop
       nvtopPackages.amd
