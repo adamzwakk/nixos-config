@@ -57,8 +57,10 @@ with lib.${namespace};
     image = "${../../../_wallpapers/ultrawide_21x9/wallhaven-m9qj1m.jpg}";
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/brewer.yaml"; #https://tinted-theming.github.io/tinted-gallery/
-    opacity.terminal = 0.8;
-    opacity.desktop = 0.5;
+    opacity = {
+      terminal = 0.8;
+      desktop = 0.5;
+    };
   };
 
   # This value determines the Home Manager release that your

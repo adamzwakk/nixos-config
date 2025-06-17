@@ -62,7 +62,7 @@ in {
     };
 
     services = {
-      flatpak = enabled;
+      #flatpak = enabled;
       #ollama = enabled;
       # sunshine = enabled;
       syncthing = enabled;

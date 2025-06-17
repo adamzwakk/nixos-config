@@ -34,7 +34,10 @@
         };
 
         # Styling rules at a global level
-        stylix.url = "github:danth/stylix";
+        stylix = {
+            url = "github:danth/stylix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         # An easier way to config nvim
         nixvim = {
@@ -71,7 +74,6 @@
             ];
 
             systems.modules.nixos = with inputs; [
-                stylix.nixosModules.stylix
                 sops-nix.nixosModules.sops
             ];
 
@@ -79,6 +81,7 @@
                 plasma-manager.homeManagerModules.plasma-manager
                 sops-nix.homeManagerModules.sops
                 nixvim.homeManagerModules.nixvim
+                stylix.homeModules.stylix
             ];
 
             systems.hosts.TKF13.modules = with inputs; [ 
