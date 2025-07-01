@@ -18,7 +18,9 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ 
-        rust-bin.stable.latest.default 
+        (rust-bin.stable.latest.default.override {
+          extensions = ["rust-src"];
+        })
         rustup 
         gcc
       ];

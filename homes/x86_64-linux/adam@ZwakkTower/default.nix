@@ -30,6 +30,8 @@ with lib.${namespace};
     apps = {
       alacritty = enabled;
       audacity = enabled;
+      bittorrent = enabled;
+      bottles = enabled;
       chrome = enabled;
       feh = enabled;
       filezilla = enabled;
@@ -43,6 +45,7 @@ with lib.${namespace};
       neovim = enabled;
       obs = enabled;
       spotify = enabled;
+      tor = enabled;
       transmission-remote = enabled;
       vscode = enabled;
 

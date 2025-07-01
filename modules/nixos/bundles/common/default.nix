@@ -85,7 +85,7 @@ in
       ];
     };
 
-    services.gnome.gnome-keyring.enable = true;
+    #services.gnome.gnome-keyring.enable = true;
     programs.ssh.startAgent = true;
 
     ## Needed to use android adb stuff

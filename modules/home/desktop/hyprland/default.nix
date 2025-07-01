@@ -52,7 +52,7 @@ in
           "hyprctl setcursor Bibata-Modern-Classic 20"
           "killall -q waybar;sleep .5 && ${pkgs.waybar}/bin/waybar"
           "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
-          "gnome-keyring-daemon --start --daemonize"
+          #"gnome-keyring-daemon --start --daemonize"
           "export SSH_AUTH_SOCK"
           # "killall -q swww;sleep .5 && ${pkgs.swww}/bin/swww init"
           # "sleep 1 && ${pkgs.swww}/bin/swww img ${../_wallpapers/wallhaven-5d5eg3.jpg}"
