@@ -73,9 +73,6 @@ in {
   };
 
   services = {
-    udev = {
-      packages = [ pkgs.lv426.vuescan ];
-    };
     tlp = { enable = mkForce false; };
   };
 
@@ -118,6 +115,20 @@ in {
     };
 
   };
+
+  hardware.sane.enable = true;
+  hardware.sane.extraBackends = [ pkgs.epkowa ];
+  services.udev.packages = [ pkgs.lv426.vuescan ];
+  environment.systemPackages = [ 
+    pkgs.lv426.vuescan
+    pkgs.lv426.epson-v600-plugin 
+  ];
+  system.activationScripts.iscanPluginLibraries = ''
+    mkdir -p /usr/share/iscan
+    mkdir -p /usr/lib/iscan
+    ln -sf ${pkgs.lv426.epson-v600-plugin}/share/iscan/* /usr/share/iscan
+    ln -sf ${pkgs.lv426.epson-v600-plugin}/lib/iscan/* /usr/lib/iscan
+  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

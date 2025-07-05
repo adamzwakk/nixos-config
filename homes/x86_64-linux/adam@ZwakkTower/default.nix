@@ -45,7 +45,7 @@ with lib.${namespace};
       neovim = enabled;
       obs = enabled;
       spotify = enabled;
-      tor = enabled;
+      tor = enabled; 
       transmission-remote = enabled;
       vscode = enabled;
 
