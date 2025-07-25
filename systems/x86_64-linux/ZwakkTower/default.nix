@@ -67,6 +67,9 @@ in {
       # sunshine = enabled;
       syncthing = enabled;
       virtualization = enabled;
+
+      # sddm = enabled; ## Use for KDE
+      greetd = enabled; ## Use for hyprland
     };
 
     rust = enabled;

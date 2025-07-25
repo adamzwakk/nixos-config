@@ -28,11 +28,6 @@ in
         networking = enabled;
       };
 
-      services = {
-        #sddm = enabled;
-        greetd = enabled;
-      };
-
       system = {
         # fonts = enabled;
         locale = enabled;

@@ -18,6 +18,7 @@ with lib.${namespace};
       hyprland = enabled;
 
       bars.waybar = enabled;
+      #bars.eww = enabled;
     };
 
     gaming = {

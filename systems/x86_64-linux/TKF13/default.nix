@@ -61,6 +61,9 @@ in {
     services = {
       syncthing = enabled;
       #virtualization = enabled;
+
+      #sddm = enabled;
+      greetd = enabled;
     };
 
   };
