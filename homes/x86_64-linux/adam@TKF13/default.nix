@@ -32,6 +32,7 @@ with lib.${namespace};
       gimp = enabled;
       mpv = enabled;
       neovim = enabled;
+      obs = enabled;
       spotify = enabled;
       vscode = enabled;
 
@@ -48,9 +49,9 @@ with lib.${namespace};
     services.sops = enabled;
   };
 
-  home.packages = with pkgs; [
-    pkgs.lv426.sm64coopdx
-  ];
+  # home.packages = with pkgs; [
+  #   pkgs.lv426.sm64coopdx
+  # ];
 
   stylix = {
     enable = true;
