@@ -14,14 +14,16 @@ To add a new key to the existing sops-setup, add or copy a user one and add the 
 
 ### Nix
 ```
-switch      update system config
+nr      update system config
 ```
 
 ### spotify_player
 ```
+a           Actions on current track
 g           Global Shortcuts
 g+b         Browse/Homepage
-a           Actions on current track
+n           Next Track
+p           Previous Track
 Ctrl-s      ToggleShuffle
 ```
 

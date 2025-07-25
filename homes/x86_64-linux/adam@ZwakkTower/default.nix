@@ -37,6 +37,7 @@ with lib.${namespace};
       feh = enabled;
       filezilla = enabled;
       firefox = enabled;
+      freetube = enabled;
       gimp = enabled;
       handbrake = enabled;
       hugin = enabled;

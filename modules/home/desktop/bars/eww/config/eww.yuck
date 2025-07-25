@@ -9,14 +9,15 @@
     (metric :label "🔊"
             :value volume
             :onchange "pamixer --set-volume {}")
-    (metric :label ""
+    (metric :label ""
             :value {EWW_RAM.used_mem_perc}
             :onchange "")
-    (metric :label "💾"
+    (metric :label ""
             :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
             :onchange "")
     time
-    (systray)
+    (systray :class "systray"
+        :spacing 5)
     ))
 
 (defwidget workspaces []
@@ -37,14 +38,7 @@
        :orientation "h"
        :space-evenly false
        :halign "center"
-    {music != "" ? "🎵${music}" : ""}))
-
-(defwidget tray []
-  (box :class "systray"
-       :orientation "h"
-       :space-evenly false
-       :halign "center"))
-
+    {music != "" ? "🎵 ${music}" : ""}))
 
 (defwidget metric [label value onchange]
   (box :orientation "h"

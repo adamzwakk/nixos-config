@@ -28,7 +28,6 @@ in
       packages = with pkgs; [
         hyprcursor
         hyprprop
-        yazi
         wl-clipboard
         
         kdePackages.kate

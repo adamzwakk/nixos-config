@@ -22,7 +22,9 @@ in
     home = {
       packages = with pkgs; [
         eww
-        networkmanagerapplet
+
+        ## These are mostly just here to make sure they are installed since common bar things
+        networkmanagerapplet 
         pamixer
       ];
 

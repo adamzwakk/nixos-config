@@ -18,7 +18,7 @@ in
 
   config = mkIf cfg.enable {
     services = {
-      udisks2.enable = true;
+      udisks2.enable = true;      # Automounting USB drives
     };
     lv426 = {
       config.nix = enabled;
@@ -45,16 +45,19 @@ in
       nh
       wget
       rar
-      bat
-      brightnessctl
-      playerctl
+      bat                  # A better cat
+      bat-extras.batman    # bat but for man pages
+      brightnessctl        # Screen/laptop brightness
+      playerctl            # Get music metadata from media players
       killall
       p7zip
-      fzf
+      fzf                  # Fuzzy Finder
+      yazi                 # File Manager
+      eza                  # A 'better' ls
 
       htop
-      nvtopPackages.amd
-      fastfetch
+      nvtopPackages.amd    # GPU Top for AMD
+      fastfetch            # System stats fetching
       sysstat
       lm_sensors # for `sensors` command
       ethtool
