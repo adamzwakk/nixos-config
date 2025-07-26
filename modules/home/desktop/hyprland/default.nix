@@ -29,6 +29,7 @@ in
         hyprcursor
         #wpaperd
         hyprprop
+        hyprshot
         wl-clipboard
         
         kdePackages.kate
@@ -122,7 +123,7 @@ in
           # app hotkeys
           "$mod, Return, exec, $terminal"
           "$mod, D, exec, $menu"
-          "$mod SHIFT, S, exec, flameshot gui"
+          "$mod SHIFT, S, exec, hyprshot -m region --clipboard-only" ## Screenshot util
           "$mod, E, exec, thunar"
 
           # Workspace
@@ -214,9 +215,7 @@ in
 
     # Extra stuff not really needed for its own modules (for now...)
 
-    # We dont need flameshot everywhere, so lets just include it where we need it (hyprland)
-    lv426.apps.flameshot = enabled;
-
+    # Blue light filter
     lv426.apps.wlsunset = enabled;
 
     services.mako = {
