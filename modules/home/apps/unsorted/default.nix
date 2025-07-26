@@ -21,7 +21,7 @@ in
       bitwarden-desktop
       obsidian
       discord
-      # ventoy-full
+      # ventoy-full # Jank because of https://github.com/NixOS/nixpkgs/issues/404663
     ];
   };
 }
