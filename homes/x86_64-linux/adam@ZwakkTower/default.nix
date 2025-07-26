@@ -80,6 +80,12 @@ with lib.${namespace};
     };
   };
 
+  services.wpaperd.settings = {
+    DP-2 = {
+      path = "${../../../_wallpapers/ultrawide_21x9}";
+    };
+  };
+
   # https://wiki.hyprland.org/Configuring/Monitors/
   wayland.windowManager.hyprland.settings.monitor = ", highrr, auto, 1";
 

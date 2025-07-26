@@ -27,6 +27,7 @@ in
 
       packages = with pkgs; [
         hyprcursor
+        #wpaperd
         hyprprop
         wl-clipboard
         
@@ -53,8 +54,7 @@ in
           "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
           #"gnome-keyring-daemon --start --daemonize"
           "export SSH_AUTH_SOCK"
-          # "killall -q swww;sleep .5 && ${pkgs.swww}/bin/swww init"
-          # "sleep 1 && ${pkgs.swww}/bin/swww img ${../_wallpapers/wallhaven-5d5eg3.jpg}"
+          #"${pkgs.wpaperd}/bin/wpaperd -d"
           "discord --start-minimized"
           "udiskie"
         ];
@@ -132,6 +132,8 @@ in
           "$mod, 4, workspace, 4"
           "$mod, 5, workspace, 5"
           "$mod, 6, workspace, 6"
+
+          #"$mod SHIFT, Z, exec, ${pkgs.wpaperd}/bin/wpaperctl next" # Cycle Wallpaper
         ];
 
         bindm = [
@@ -199,6 +201,14 @@ in
             on-timeout = "systemctl suspend";            # suspend pc
           }
         ];
+      };
+    };
+
+    services.wpaperd = {
+      enable = false;
+      settings.default = {
+        duration = "30m";
+        mode = "fit";
       };
     };
 
