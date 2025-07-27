@@ -29,14 +29,23 @@ with lib.${namespace};
     };
 
     apps = {
+      _browsers = {
+        chrome = enabled;
+        firefox = enabled;
+        tor = enabled;
+      };
+      _tui = {
+        bat = enabled;
+        eza = enabled;
+        reddit = enabled;
+        spotify_player = enabled;
+        yazi = enabled;
+      };
       alacritty = enabled;
       audacity = enabled;
       bittorrent = enabled;
       bottles = enabled;
-      chrome = enabled;
-      #feh = enabled;
       filezilla = enabled;
-      firefox = enabled;
       freetube = enabled;
       gimp = enabled;
       handbrake = enabled;
@@ -47,8 +56,6 @@ with lib.${namespace};
       mpv = enabled;
       neovim = enabled;
       obs = enabled;
-      spotify = enabled;
-      tor = enabled; 
       transmission-remote = enabled;
       vscode = enabled;
 

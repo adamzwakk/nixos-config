@@ -9,10 +9,10 @@
 with lib;
 with lib.${namespace};
   let
-    cfg = config.${namespace}.apps.tor;
+    cfg = config.${namespace}.apps._browsers.tor;
   in
   {
-    options.${namespace}.apps.tor = with types; {
+    options.${namespace}.apps._browsers.tor = with types; {
       enable = mkBoolOpt false "Enable Tor";
     };
 

@@ -10,7 +10,6 @@ with lib;
 with lib.${namespace};
 {
   lv426 = {
-    # desktop.kde = enabled;
     desktop = {
       # kde = enabled;
       hyprland = enabled;
@@ -24,16 +23,24 @@ with lib.${namespace};
     };
 
     apps = {
+      _browsers = {
+        chrome = enabled;
+        firefox = enabled;
+      };
+      _tui = {
+        bat = enabled;
+        eza = enabled;
+        reddit = enabled;
+        spotify_player = enabled;
+        yazi = enabled;
+      };
       alacritty = enabled;
-      chrome = enabled;
-      feh = enabled;
       filezilla = enabled;
-      firefox = enabled;
       gimp = enabled;
+      imv = enabled;
       mpv = enabled;
       neovim = enabled;
       obs = enabled;
-      spotify = enabled;
       vscode = enabled;
 
       ## Sort this later, maybe

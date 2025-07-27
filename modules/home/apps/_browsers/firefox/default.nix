@@ -23,10 +23,10 @@ with lib.${namespace};
       Value = true;
       Status = "locked";
     };
-    cfg = config.${namespace}.apps.firefox;
+    cfg = config.${namespace}.apps._browsers.firefox;
   in
   {
-    options.${namespace}.apps.firefox = with types; {
+    options.${namespace}.apps._browsers.firefox = with types; {
       enable = mkBoolOpt false "Enable Firefox";
     };
 

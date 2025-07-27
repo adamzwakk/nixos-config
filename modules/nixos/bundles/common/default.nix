@@ -45,15 +45,11 @@ in
       nh
       wget
       rar
-      bat                  # A better cat
-      bat-extras.batman    # bat but for man pages
       brightnessctl        # Screen/laptop brightness
       playerctl            # Get music metadata from media players
       killall
       p7zip
       fzf                  # Fuzzy Finder
-      yazi                 # File Manager
-      eza                  # A 'better' ls
 
       htop
       nvtopPackages.amd    # GPU Top for AMD

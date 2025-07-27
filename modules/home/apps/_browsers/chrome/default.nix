@@ -9,10 +9,10 @@
 with lib;
 with lib.${namespace};
   let
-    cfg = config.${namespace}.apps.chrome;
+    cfg = config.${namespace}.apps._browsers.chrome;
   in
   {
-    options.${namespace}.apps.chrome = with types; {
+    options.${namespace}.apps._browsers.chrome = with types; {
       enable = mkBoolOpt false "Enable Chrome";
     };
 

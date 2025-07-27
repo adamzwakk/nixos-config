@@ -73,16 +73,10 @@ in
           nr = "nh os switch --update ~/pj/nixos-config"; ## Rebuild NixOS Config
 
           # Replacemments
-          cat = "bat";
-          man = "batman";
-          ls = "eza";
-          l = "eza -lah";
-          tree = "eza --tree --git-ignore";
-          y = "yazi";
           top = "htop";
 
           # Common arguments
-          #ll = "ls -l";
+          ll = "ls -l";
         };
       }; 
     }
