@@ -19,10 +19,10 @@ with lib.${namespace};
     config = mkIf cfg.enable {
       services.greetd = {
         enable = true;
-        package = pkgs.greetd.tuigreet;
+        package = pkgs.tuigreet;
         settings = {
           default_session = {
-            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd hyprland";
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd hyprland";
             user = "greeter";
           };
         };

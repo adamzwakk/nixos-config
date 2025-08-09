@@ -80,7 +80,7 @@
             homes.modules = with inputs; [
                 plasma-manager.homeManagerModules.plasma-manager
                 sops-nix.homeManagerModules.sops
-                nixvim.homeManagerModules.nixvim
+                nixvim.homeModules.nixvim
                 stylix.homeModules.stylix
             ];
 

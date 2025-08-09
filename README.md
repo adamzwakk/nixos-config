@@ -10,6 +10,14 @@ then from then on you can just run `switch` to update the system config
 
 To add a new key to the existing sops-setup, add or copy a user one and add the new system one to the `.sops.yaml` file and then run `sops --config .sops.yaml updatekeys secrets/secrets.yaml`
 
+## Available Dev Shells
+
+Access different shells by adding a `.envrc` file to a project and specifying the shell you want, for example: `use flake ~/pj/nixos-config/flake.nix#rust` and then `direnv allow` for the directory to use it.
+
+```
+Rust    #rust
+```
+
 ## Cheat Sheets
 
 ### Nix
