@@ -3,11 +3,6 @@
         stable.url = "github:nixos/nixpkgs/release-24.11";
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-        snowfall-lib = {
-            url = "github:snowfallorg/lib";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         nixos-hardware.url = "github:nixos/nixos-hardware";
 
         home-manager = {
@@ -45,53 +40,92 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        # Helpful rust bundles
         rust-overlay = {
             url = "github:oxalica/rust-overlay";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        # flake helpers
+        utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     };
 
-    outputs = inputs:
-        inputs.snowfall-lib.mkFlake {
-            inherit inputs;
-            src = ./.;
+    outputs =
+    { nixpkgs, sops-nix, nixos-hardware, ... }@inputs:
+    {
+      nixosConfigurations = {
+        TKF13 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./nixos-config
+            ./nixos-config/hosts/TKF13
+          ];
 
-            snowfall = {
-                namespace = "lv426";
-                meta = {
-                    name = "lv426";
-                    title = "LV426";
-                };
-            };
+          specialArgs.flake-inputs = inputs;
+        };
+      };
 
-            channels-config = {
-              allowUnfree = true;
-            };
+      packages.x86_64-linux = import ./pkgs {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        flake-inputs = inputs;
+      };
 
-            overlays = with inputs; [
-                nur.overlays.default
-                rust-overlay.overlays.default
-            ];
+      # TODO: Put this shell somewhere else?
+      devShells.x86_64-linux.default =
+        let
+          inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
+          inherit (nixpkgs.legacyPackages.x86_64-linux) nushell nvfetcher;
+        in
+        nixpkgs.legacyPackages.x86_64-linux.mkShell {
+          packages = [
+            nushell
+            nvfetcher
+            sops-init-gpg-key
+            nixpkgs.age
+            nixpkgs.sops
+            nixpkgs.ssh-to-age
+          ];
 
-            systems.modules.nixos = with inputs; [
-                sops-nix.nixosModules.sops
-            ];
+          nativeBuildInputs = [ sops-import-keys-hook ];
+        };
 
-            homes.modules = with inputs; [
-                plasma-manager.homeManagerModules.plasma-manager
-                sops-nix.homeManagerModules.sops
-                nixvim.homeModules.nixvim
-                stylix.homeModules.stylix
-            ];
+    # outputs = inputs:
+    #     inputs.snowfall-lib.mkFlake {
+    #         inherit inputs;
+    #         src = ./.;
 
-            systems.hosts.TKF13.modules = with inputs; [ 
-                nixos-hardware.nixosModules.framework-13-7040-amd 
-            ];
+    #         snowfall = {
+    #             namespace = "lv426";
+    #             meta = {
+    #                 name = "lv426";
+    #                 title = "LV426";
+    #             };
+    #         };
 
-            systems.hosts.ZwakkTower.modules = with inputs; [ 
-                nixos-hardware.nixosModules.common-cpu-amd
-                nixos-hardware.nixosModules.common-gpu-amd
-            ];
+    #         channels-config = {
+    #           allowUnfree = true;
+    #         };
+
+    #         overlays = with inputs; [
+    #             nur.overlays.default
+    #             rust-overlay.overlays.default
+    #         ];
+
+    #         homes.modules = with inputs; [
+    #             plasma-manager.homeManagerModules.plasma-manager
+    #             sops-nix.homeManagerModules.sops
+    #             nixvim.homeModules.nixvim
+    #             stylix.homeModules.stylix
+    #         ];
+
+    #         systems.hosts.TKF13.modules = with inputs; [ 
+    #             nixos-hardware.nixosModules.framework-13-7040-amd 
+    #         ];
+
+    #         systems.hosts.ZwakkTower.modules = with inputs; [ 
+    #             nixos-hardware.nixosModules.common-cpu-amd
+    #             nixos-hardware.nixosModules.common-gpu-amd
+    #         ];
 
         };
 }
