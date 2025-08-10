@@ -40,35 +40,16 @@
   };
 
   sops = {
-    defaultSopsFile = "${../../../secrets/secrets.yaml}";
+    defaultSopsFile = "${../secrets/secrets.yaml}";
     defaultSopsFormat = "yaml";
-
-    age = {
-      generateKey = true;
-      keyFile = "/home/adam/.config/sops/age/keys.txt";
-      sshKeyPaths = [ "/home/adam/.ssh/id_ed25519" ];
-    };
-
-    secrets = {
-      "private_keys/adam" = {
-        path = "${config.home.homeDirectory}/.ssh/id_ed25519";
-      };
-    };
   };
   
-  nixpkgs.overlays = [ 
-    flake-inputs.nur.overlays.default
-    flake-inputs.rust-overlay.overlays.default
-  ];
-
-  stylix = {
-    enable = true;
-    autoEnable = false;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/brewer.yaml"; #https://tinted-theming.github.io/tinted-gallery/
-    opacity = {
-      terminal = 0.8;
-      desktop = 0.5;
-    };
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ 
+      flake-inputs.nur.overlays.default
+      flake-inputs.rust-overlay.overlays.default
+    ];
   };
 
   boot = {
@@ -89,11 +70,21 @@
     defaultLocale = "en_CA.UTF-8";
   };
 
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {
+      inherit flake-inputs;
+      nixos-config = config;
+    };
+  };
+
   users = {
     defaultUserShell = pkgs.bash;
 
     users = {
       adam = {
+        initialPassword = "password";
         isNormalUser = true;
         extraGroups = [ "wheel" "docker" "networkmanager" "kvm" ];
       };

@@ -65,25 +65,25 @@
         };
       };
 
-      packages.x86_64-linux = import ./pkgs {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        flake-inputs = inputs;
-      };
+      # packages.x86_64-linux = import ./pkgs {
+      #   pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      #   flake-inputs = inputs;
+      # };
 
       # TODO: Put this shell somewhere else?
       devShells.x86_64-linux.default =
         let
-          inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
-          inherit (nixpkgs.legacyPackages.x86_64-linux) nushell nvfetcher;
+          inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook ;
+          inherit (nixpkgs.legacyPackages.x86_64-linux) nushell nvfetcher age sops ssh-to-age;
         in
         nixpkgs.legacyPackages.x86_64-linux.mkShell {
           packages = [
             nushell
             nvfetcher
             sops-init-gpg-key
-            nixpkgs.age
-            nixpkgs.sops
-            nixpkgs.ssh-to-age
+            age
+            sops
+            ssh-to-age
           ];
 
           nativeBuildInputs = [ sops-import-keys-hook ];
