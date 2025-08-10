@@ -102,17 +102,6 @@
 
   documentation.man.generateCaches = true;
 
-  environment = {
-    systemPackages = with pkgs; [ pavucontrol ];
-
-    extraInit = ''
-      # Do not want this in the environment. NixOS always sets it and does not
-      # provide any option not to, so I must unset it myself via the
-      # environment.extraInit option.
-      unset -v SSH_ASKPASS
-    '';
-  };
-
   programs = {
     git.enable = true;
     nano.enable = false;
@@ -158,13 +147,12 @@
     };
 
     udisks2.enable = true;
-    # nscd.enableNsncd = true;
-    # blueman.enable = true;
-    # chrony.enable = true;
-    # flatpak.enable = true;
-    # fstrim.enable = true;
     fwupd.enable = true;
     automatic-timezoned.enable = true;
+
+    udev.packages = [
+      pkgs.android-udev-rules
+    ];
   };
 
   hardware = {
@@ -176,6 +164,31 @@
   networking = {
     networkmanager.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    nano
+    git
+    gnumake
+    openssl
+    nh
+    wget
+    rar
+    pavucontrol
+    brightnessctl        # Screen/laptop brightness
+    playerctl            # Get music metadata from media players
+    killall
+    p7zip
+    fzf                  # Fuzzy Finder
+
+    htop
+    nvtopPackages.amd    # GPU Top for AMD
+    fastfetch            # System stats fetching
+    sysstat
+    lm_sensors # for `sensors` command
+    ethtool
+    pciutils # lspci
+    usbutils # lsusb
+  ];
 
   system.stateVersion = "25.05";
 }
