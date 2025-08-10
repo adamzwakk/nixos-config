@@ -124,8 +124,6 @@
     ];
   };
 
-  programs.ssh.startAgent = true;
-
   # My systems never have usable root accounts anyway, so emergency
   # mode just drops into a shell telling me it can't log into root
   systemd.enableEmergencyMode = false;
