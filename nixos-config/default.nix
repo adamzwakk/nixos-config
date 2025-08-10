@@ -42,6 +42,16 @@
   sops = {
     defaultSopsFile = "${../secrets/secrets.yaml}";
     defaultSopsFormat = "yaml";
+
+    age = {
+      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
+    };
+    
+    secrets = {
+      syncthing-hudson-id = {};
+    };
   };
   
   nixpkgs = {
@@ -87,17 +97,12 @@
         initialPassword = "password";
         isNormalUser = true;
         extraGroups = [ "wheel" "docker" "networkmanager" "kvm" ];
+        shell = pkgs.bash;
       };
     };
   };
 
   documentation.man.generateCaches = true;
-
-  programs = {
-    git.enable = true;
-    nano.enable = false;
-    firefox.enable = true;
-  };
 
   fileSystems."/boot".options = [ "fmask=0077" "dmask=0077" ];
 

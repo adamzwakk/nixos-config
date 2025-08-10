@@ -12,6 +12,7 @@
     ../config/desktop/bars/waybar
 
     ../config/apps/_browsers
+    ../config/apps/_tui
   ];
 
   home.packages = with pkgs; [

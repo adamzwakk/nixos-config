@@ -43,20 +43,52 @@ in
     };
   };
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      window = {
-        #opacity = 0.9;
-        dynamic_padding = true;
-        decorations = "None";
-        padding.x = 5;
-        padding.y = 5;
+  programs = {
+    bash.enable = true;
+
+    git = {
+      enable = true;
+      delta.enable = true;
+      extraConfig = {
+        pull.rebase = true;
+        init.defaultBranch = "main";
+        rebase.autoStash = true;
+
+        github.user = "adamzwakk";
+      };
+      lfs.enable = true;
+      userEmail = "adam@adamzwakk.com";
+      userName = "adamzwakk";
+    };
+
+    direnv = {
+      enable = true;
+      enableBashIntegration = true; # see note on other shells below
+      nix-direnv.enable = true;
+    };
+
+    alacritty = {
+      enable = true;
+      settings = {
+        window = {
+          #opacity = 0.9;
+          dynamic_padding = true;
+          decorations = "None";
+          padding.x = 5;
+          padding.y = 5;
+        };
       };
     };
   };
 
   home = {
+    packages = with pkgs; [
+      yt-dlp
+      bitwarden-desktop
+      obsidian
+      discord
+    ];
+
     sessionVariables = {
       # clean up ~
       LESSHISTFILE = cache + "/less/history";

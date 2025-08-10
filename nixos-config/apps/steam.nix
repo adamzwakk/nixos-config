@@ -13,4 +13,14 @@
   environment.systemPackages = with pkgs; [
     protontricks
   ];
+
+  # nixpkgs.config.allowUnfreePredicate =
+  #   pkg:
+  #   builtins.elem (pkgs.lib.getName pkg) [
+  #     "steam"
+  #     "steam-run"
+  #     # Required to get the steam controller to work (i.e., for hardware.steam-hardware)
+  #     "steam-original"
+  #     "steam-unwrapped"
+  #   ];
 }
