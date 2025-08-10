@@ -124,6 +124,8 @@
     ];
   };
 
+  programs.ssh.startAgent = true;
+
   # My systems never have usable root accounts anyway, so emergency
   # mode just drops into a shell telling me it can't log into root
   systemd.enableEmergencyMode = false;
@@ -145,6 +147,7 @@
     udisks2.enable = true;
     fwupd.enable = true;
     automatic-timezoned.enable = true;
+    gnome.gnome-keyring.enable = true;
 
     udev.packages = [
       pkgs.android-udev-rules
@@ -159,6 +162,7 @@
 
   networking = {
     networkmanager.enable = true;
+    firewall.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

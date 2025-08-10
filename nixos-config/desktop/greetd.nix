@@ -8,10 +8,10 @@
 {
   services.greetd = {
     enable = true;
-    package = pkgs.tuigreet;
+    package = pkgs.greetd.tuigreet;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd hyprland";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd hyprland";
         user = "greeter";
       };
     };
