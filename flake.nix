@@ -50,10 +50,11 @@
         utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     };
 
-    outputs = { self, nixpkgs, sops-nix, nixos-hardware, ... }@inputs: let
+    outputs = { self, nixpkgs, sops-nix, rust-overlay, nixos-hardware, ... }@inputs: let
       system = "x86_64-linux";
+      overlays = [ (import rust-overlay) ];
       pkgs = import nixpkgs { 
-        inherit system; 
+        inherit system overlays;  
         config.allowUnfree = true;
       };
     in {
