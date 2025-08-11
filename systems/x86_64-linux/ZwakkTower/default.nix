@@ -71,8 +71,6 @@ in {
       # sddm = enabled; ## Use for KDE
       greetd = enabled; ## Use for hyprland
     };
-
-    rust = enabled;
   };
 
   services = {

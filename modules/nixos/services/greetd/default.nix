@@ -19,7 +19,6 @@ with lib.${namespace};
     config = mkIf cfg.enable {
       services.greetd = {
         enable = true;
-        package = pkgs.tuigreet;
         settings = {
           default_session = {
             command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd hyprland";
