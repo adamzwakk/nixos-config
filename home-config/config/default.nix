@@ -96,6 +96,10 @@ in
       discord
       imv
       mpv
+      gimp3
+      filezilla
+      obs-studio
+      qbittorrent
     ];
 
     sessionVariables = {
