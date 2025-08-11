@@ -100,6 +100,7 @@ in
       filezilla
       obs-studio
       qbittorrent
+      audacity
     ];
 
     sessionVariables = {

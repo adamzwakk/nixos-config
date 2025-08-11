@@ -13,6 +13,12 @@
 
     ../config/apps/_browsers
     ../config/apps/_tui
+
+    ../config/gaming/doom
+    ../config/gaming/quake
+    ../config/gaming/emulation
+    ../config/gaming/lutris
+    ../config/gaming/quake
   ];
 
   home.packages = with pkgs; [

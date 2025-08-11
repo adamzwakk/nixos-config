@@ -158,15 +158,15 @@
     ];
   };
 
-  hardware = {
-    # bluetooth.enable = true;
-    enableRedistributableFirmware = true;
-    # opentabletdriver.enable = true;
-  };
+  hardware.enableRedistributableFirmware = true;
 
   networking = {
     networkmanager.enable = true;
     firewall.enable = true;
+
+    extraHosts = lib.mkAfter ''
+      0.0.0.0 apresolve.spotify.com
+    '';
   };
 
   environment = {

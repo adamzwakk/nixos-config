@@ -6,11 +6,14 @@
 }:
 {
   imports = [
-    flake-inputs.nixos-hardware.nixosModules.framework-13-7040-amd 
+    flake-inputs.nixos-hardware.nixosModules.common-cpu-amd
+    flake-inputs.nixos-hardware.nixosModules.common-gpu-amd
 
     ./hardware-configuration.nix
+    ../../apps/docker.nix
     ../../apps/steam.nix
     ../../apps/syncthing.nix
+    ../../apps/vuescan.nix
   ];
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
@@ -59,18 +62,4 @@
       in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
     };
   };
-
-  hardware.sane.enable = true;
-  hardware.sane.extraBackends = [ nixpkgs.legacyPackages.x86_64-linux.epkowa ];
-  services.udev.packages = [ flake-inputs.self.packages.${pkgs.system}.vuescan ];
-  environment.systemPackages = [ 
-    flake-inputs.self.packages.${pkgs.system}.vuescan
-    flake-inputs.self.packages.${pkgs.system}.epson-v600-plugin 
-  ];
-  system.activationScripts.iscanPluginLibraries = ''
-    mkdir -p /usr/share/iscan
-    mkdir -p /usr/lib/iscan
-    ln -sf ${flake-inputs.self.packages.${pkgs.system}.epson-v600-plugin}/share/iscan/* /usr/share/iscan
-    ln -sf ${flake-inputs.self.packages.${pkgs.system}.epson-v600-plugin}/lib/iscan/* /usr/lib/iscan
-  '';
 }

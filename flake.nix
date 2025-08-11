@@ -52,7 +52,10 @@
 
     outputs = { self, nixpkgs, sops-nix, nixos-hardware, ... }@inputs: let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs { 
+        inherit system; 
+        config.allowUnfree = true;
+      };
     in {
       nixosConfigurations = {
         TKF13 = nixpkgs.lib.nixosSystem {
@@ -60,6 +63,16 @@
           modules = [
             ./nixos-config
             ./nixos-config/hosts/TKF13
+          ];
+
+          specialArgs.flake-inputs = inputs;
+        };
+
+        ZwakkTower = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./nixos-config
+            ./nixos-config/hosts/ZwakkTower
           ];
 
           specialArgs.flake-inputs = inputs;

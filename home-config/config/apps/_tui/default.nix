@@ -7,6 +7,7 @@
     ./bat
     ./eza
     ./yazi
+    ./spotify_player
   ];
 
   home.packages = with pkgs; [ 
