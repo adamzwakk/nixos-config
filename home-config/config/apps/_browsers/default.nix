@@ -1,0 +1,10 @@
+{
+  flake-inputs,
+  ...
+}:
+
+{
+  imports = [
+    ./firefox
+  ];
+}

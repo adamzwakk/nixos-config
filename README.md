@@ -6,6 +6,25 @@ Start by doing the initial flake with
 
 then from then on you can just run `switch` to update the system config
 
+## Structure
+
+Sort of stole ideas from TLATER's config (sorry not sorry):
+```
+├── home-config
+│   ├── config                 --- Home specific Configs
+│   └── hosts                  --- Host Specific Config
+├── nixos-config
+│   ├── apps                   --- Applications that need system level (Steam mostly)
+│   ├── default.nix
+│   ├── desktop                --- Configs for WM/DE/Greeters/etc
+│   └── hosts                  --- Host Specific/Hardware Config
+├── packages
+│   ├── epson-v600-plugin      --- Plugin/drivers for V600 Scanner
+│   ├── sm64coopdx             --- Co-Op SM64
+│   ├── sm64ex                 --- SM64 PC Port
+│   └── vuescan                --- Vuescan
+```
+
 ## SOPS notes
 
 To add a new key to the existing sops-setup, add or copy a user one and add the new system one to the `.sops.yaml` file and then run `sops --config .sops.yaml updatekeys secrets/secrets.yaml`

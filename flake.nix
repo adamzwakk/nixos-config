@@ -1,12 +1,7 @@
 {
     inputs = {
-        stable.url = "github:nixos/nixpkgs/release-24.11";
+        stable.url = "github:nixos/nixpkgs/release-25.05";
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-        snowfall-lib = {
-            url = "github:snowfallorg/lib";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
 
         nixos-hardware.url = "github:nixos/nixos-hardware";
 
@@ -45,53 +40,78 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        # Helpful rust bundles
         rust-overlay = {
             url = "github:oxalica/rust-overlay";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        # flake helpers
+        utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     };
 
-    outputs = inputs:
-        inputs.snowfall-lib.mkFlake {
-            inherit inputs;
-            src = ./.;
+    outputs = { self, nixpkgs, sops-nix, nixos-hardware, ... }@inputs: let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { 
+        inherit system; 
+        config.allowUnfree = true;
+      };
+    in {
+      nixosConfigurations = {
+        TKF13 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./nixos-config
+            ./nixos-config/hosts/TKF13
+          ];
 
-            snowfall = {
-                namespace = "lv426";
-                meta = {
-                    name = "lv426";
-                    title = "LV426";
-                };
-            };
-
-            channels-config = {
-              allowUnfree = true;
-            };
-
-            overlays = with inputs; [
-                nur.overlays.default
-                rust-overlay.overlays.default
-            ];
-
-            systems.modules.nixos = with inputs; [
-                sops-nix.nixosModules.sops
-            ];
-
-            homes.modules = with inputs; [
-                plasma-manager.homeManagerModules.plasma-manager
-                sops-nix.homeManagerModules.sops
-                nixvim.homeModules.nixvim
-                stylix.homeModules.stylix
-            ];
-
-            systems.hosts.TKF13.modules = with inputs; [ 
-                nixos-hardware.nixosModules.framework-13-7040-amd 
-            ];
-
-            systems.hosts.ZwakkTower.modules = with inputs; [ 
-                nixos-hardware.nixosModules.common-cpu-amd
-                nixos-hardware.nixosModules.common-gpu-amd
-            ];
-
+          specialArgs.flake-inputs = inputs;
         };
+
+        ZwakkTower = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./nixos-config
+            ./nixos-config/hosts/ZwakkTower
+          ];
+
+          specialArgs.flake-inputs = inputs;
+        };
+      };
+
+      packages.${system} = pkgs.lib.packagesFromDirectoryRecursive {
+        callPackage = pkgs.lib.callPackageWith (pkgs // { inherit (pkgs) lib; });
+        directory = ./packages;
+      };
+
+      # TODO: Put this shell somewhere else?
+      devShells.x86_64-linux.default =
+        let
+          inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook ;
+          inherit (nixpkgs.legacyPackages.x86_64-linux) nushell nvfetcher age sops ssh-to-age;
+        in
+        nixpkgs.legacyPackages.x86_64-linux.mkShell {
+          packages = [
+            nushell
+            nvfetcher
+            sops-init-gpg-key
+            age
+            sops
+            ssh-to-age
+          ];
+
+          nativeBuildInputs = [ sops-import-keys-hook ];
+        };
+      
+      devShells.x86_64-linux.rust =
+        nixpkgs.legacyPackages.x86_64-linux.mkShell {
+          packages = with pkgs; [
+            (rust-bin.stable.latest.default.override {
+              extensions = ["rust-src"];
+            })
+            rustup 
+            gcc
+          ];
+        };
+    };
 }
