@@ -98,6 +98,10 @@
         isNormalUser = true;
         extraGroups = [ "wheel" "docker" "networkmanager" "kvm" ];
         shell = pkgs.bash;
+
+        openssh.authorizedKeys.keys = [
+          builtins.readFile "../../keys/id_zwakktower.pub"
+        ];
       };
     };
   };
@@ -127,6 +131,8 @@
   # My systems never have usable root accounts anyway, so emergency
   # mode just drops into a shell telling me it can't log into root
   systemd.enableEmergencyMode = false;
+
+  security.rtkit.enable = true;
 
   services = {
     pipewire = {
@@ -163,30 +169,54 @@
     firewall.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    nano
-    git
-    gnumake
-    openssl
-    nh
-    wget
-    rar
-    pavucontrol
-    brightnessctl        # Screen/laptop brightness
-    playerctl            # Get music metadata from media players
-    killall
-    p7zip
-    fzf                  # Fuzzy Finder
+  environment = {
+    systemPackages = with pkgs; [
+      nano
+      git
+      gnumake
+      openssl
+      nh
+      wget
+      rar
+      pavucontrol
+      brightnessctl        # Screen/laptop brightness
+      playerctl            # Get music metadata from media players
+      killall
+      p7zip
+      fzf                  # Fuzzy Finder
 
-    htop
-    nvtopPackages.amd    # GPU Top for AMD
-    fastfetch            # System stats fetching
-    sysstat
-    lm_sensors # for `sensors` command
-    ethtool
-    pciutils # lspci
-    usbutils # lsusb
-  ];
+      htop
+      nvtopPackages.amd    # GPU Top for AMD
+      fastfetch            # System stats fetching
+      sysstat
+      lm_sensors # for `sensors` command
+      ethtool
+      pciutils # lspci
+      usbutils # lsusb
+    ];
+
+    sessionVariables = {
+      NIXOS_CONFIG = "/home/adam/pj/nixos-config";
+      XDG_CACHE_HOME = "$HOME/.cache";
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME = "$HOME/.local/share";
+      XDG_BIN_HOME = "$HOME/.local/bin";
+      # To prevent firefox from creating ~/Desktop.
+      XDG_DESKTOP_DIR = "$HOME";
+      EDITOR = "nano";
+      BROWSER = "firefox";
+      TERMINAL = "alacritty";
+
+      NIXOS_OZONE_WL = "1";
+    };
+    variables = {
+      # Make some programs "XDG" compliant.
+      LESSHISTFILE = "$XDG_CACHE_HOME/less/history";
+      LESSKEY = "$XDG_CACHE_HOME/less/lesskey";
+      WGETRC = "$XDG_CONFIG_HOME/wgetrc";
+    };
+  };
+
 
   system.stateVersion = "25.05";
 }

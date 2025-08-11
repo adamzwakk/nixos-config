@@ -11,6 +11,5 @@
 
   home.packages = with pkgs; [ 
     reddit-tui
-    spotify-player 
   ]; 
 }
