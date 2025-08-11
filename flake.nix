@@ -50,9 +50,10 @@
         utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     };
 
-    outputs =
-    { nixpkgs, sops-nix, nixos-hardware, ... }@inputs:
-    {
+    outputs = { self, nixpkgs, sops-nix, nixos-hardware, ... }@inputs: let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
+    in {
       nixosConfigurations = {
         TKF13 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -65,10 +66,10 @@
         };
       };
 
-      # packages.x86_64-linux = import ./pkgs {
-      #   pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      #   flake-inputs = inputs;
-      # };
+      packages.${system} = pkgs.lib.packagesFromDirectoryRecursive {
+        callPackage = pkgs.lib.callPackageWith (pkgs // { inherit (pkgs) lib; });
+        directory = ./packages;
+      };
 
       # TODO: Put this shell somewhere else?
       devShells.x86_64-linux.default =
@@ -88,44 +89,16 @@
 
           nativeBuildInputs = [ sops-import-keys-hook ];
         };
-
-    # outputs = inputs:
-    #     inputs.snowfall-lib.mkFlake {
-    #         inherit inputs;
-    #         src = ./.;
-
-    #         snowfall = {
-    #             namespace = "lv426";
-    #             meta = {
-    #                 name = "lv426";
-    #                 title = "LV426";
-    #             };
-    #         };
-
-    #         channels-config = {
-    #           allowUnfree = true;
-    #         };
-
-    #         overlays = with inputs; [
-    #             nur.overlays.default
-    #             rust-overlay.overlays.default
-    #         ];
-
-    #         homes.modules = with inputs; [
-    #             plasma-manager.homeManagerModules.plasma-manager
-    #             sops-nix.homeManagerModules.sops
-    #             nixvim.homeModules.nixvim
-    #             stylix.homeModules.stylix
-    #         ];
-
-    #         systems.hosts.TKF13.modules = with inputs; [ 
-    #             nixos-hardware.nixosModules.framework-13-7040-amd 
-    #         ];
-
-    #         systems.hosts.ZwakkTower.modules = with inputs; [ 
-    #             nixos-hardware.nixosModules.common-cpu-amd
-    #             nixos-hardware.nixosModules.common-gpu-amd
-    #         ];
-
+      
+      devShells.x86_64-linux.rust =
+        nixpkgs.legacyPackages.x86_64-linux.mkShell {
+          packages = with pkgs; [
+            (rust-bin.stable.latest.default.override {
+              extensions = ["rust-src"];
+            })
+            rustup 
+            gcc
+          ];
         };
+    };
 }
