@@ -8,6 +8,7 @@
     ./eza
     ./yazi
     ./spotify_player
+    ./nvim
   ];
 
   home.packages = with pkgs; [ 

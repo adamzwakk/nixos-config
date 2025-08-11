@@ -14,6 +14,7 @@ in
   imports = [
     flake-inputs.sops-nix.homeManagerModules.sops
     flake-inputs.stylix.homeModules.stylix
+    flake-inputs.nixvim.homeModules.nixvim
   ];
 
   sops = {
