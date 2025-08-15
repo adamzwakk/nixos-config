@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   flake-inputs,
   ...
 }:
@@ -11,6 +12,7 @@
 
     ./hardware-configuration.nix
     ../../apps/docker.nix
+    ../../apps/k3b.nix
     ../../apps/steam.nix
     ../../apps/syncthing.nix
     ../../apps/vuescan.nix
@@ -23,7 +25,8 @@
 
   # For random android-related things
   programs.adb.enable = true;
-  users.users.adam.extraGroups = [ "adbusers" ];
+
+  users.users.adam.extraGroups = [ "adbusers" "cdrom" ];
 
   fileSystems = {
     "/mnt/Projects" = {
