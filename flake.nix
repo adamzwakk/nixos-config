@@ -52,7 +52,9 @@
 
     outputs = { self, nixpkgs, sops-nix, rust-overlay, nixos-hardware, ... }@inputs: let
       system = "x86_64-linux";
-      overlays = [ (import rust-overlay) ];
+      overlays = [ 
+        (import rust-overlay)
+      ];
       pkgs = import nixpkgs { 
         inherit system overlays;  
         config.allowUnfree = true;
@@ -74,6 +76,12 @@
           modules = [
             ./nixos-config
             ./nixos-config/hosts/ZwakkTower
+
+            ({ config, pkgs, ... }: {
+              nixpkgs.overlays = [
+                (import ./overlays/spotify_player/default.nix)
+              ];
+            })
           ];
 
           specialArgs.flake-inputs = inputs;
