@@ -66,6 +66,12 @@
           modules = [
             ./nixos-config
             ./nixos-config/hosts/TKF13
+
+            ({ config, pkgs, ... }: {
+              nixpkgs.overlays = [
+                (import ./overlays/spotify_player/default.nix)
+              ];
+            })
           ];
 
           specialArgs.flake-inputs = inputs;
