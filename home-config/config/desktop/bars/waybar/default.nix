@@ -79,7 +79,7 @@ with lib;
             critical = 15;
           };
           format = "{capacity}% {icon}";
-          format-charging = "󰂄";
+          format-charging = "{capacity}% 󰂄";
           format-plugged = "󱟢";
           format-alt = "{icon}";
           format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
