@@ -16,6 +16,7 @@
     ../../apps/steam.nix
     ../../apps/syncthing.nix
     ../../apps/vuescan.nix
+    ../../apps/work-vpn.nix
   ];
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
