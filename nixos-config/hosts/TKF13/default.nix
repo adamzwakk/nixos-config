@@ -21,4 +21,12 @@
   # For random android-related things
   programs.adb.enable = true;
   users.users.adam.extraGroups = [ "adbusers" ];
+
+  fileSystems = {
+    "/mnt/Projects" = {
+      device = "10.100.1.12:/mnt/Hudson/Adam/Projects";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" ];
+    };
+  };
 }
