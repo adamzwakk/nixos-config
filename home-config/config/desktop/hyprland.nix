@@ -17,15 +17,17 @@ with lib;
     };
 
     packages = with pkgs; [
-      hyprcursor
+      hyprcursor      # Cursor setting
       #wpaperd
-      hyprprop
-      hyprshot
-      wl-clipboard
+      hyprprop        # Get hyprland window info
+      hyprshot        # Screengrab
+      wl-clipboard    # Clipboard
+      imv             # Image Viewer
+      mpv             # Video Player
       
-      kdePackages.kate
-      kdePackages.ark
-      wlsunset
+      kdePackages.kate  # Text Editor (overkill?)
+      kdePackages.ark   # Archive Manager
+      wlsunset          # Blue light filter
     ];
 
     pointerCursor = {
@@ -43,12 +45,10 @@ with lib;
     settings = {
       exec-once = [
         "hyprctl setcursor Bibata-Modern-Classic 20"
-        "killall -q waybar;sleep .5 && ${pkgs.waybar}/bin/waybar"
         "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
         #"gnome-keyring-daemon --start --daemonize"
         "export SSH_AUTH_SOCK"
         #"${pkgs.wpaperd}/bin/wpaperd -d"
-        "discord --start-minimized"
         "udiskie"
       ];
 

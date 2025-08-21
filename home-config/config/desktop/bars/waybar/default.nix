@@ -3,7 +3,6 @@
   config,
   lib,
   pkgs,
-  namespace,
   inputs,
   ...
 }:
@@ -198,4 +197,8 @@ with lib;
       @define-color crust #181926;
     '';
   };
+
+  wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter [
+    "killall -q waybar;sleep .5 && ${pkgs.waybar}/bin/waybar"
+  ];
 }
