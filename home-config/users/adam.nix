@@ -7,7 +7,6 @@
 }:
 {
   imports = [
-    ../config
     ../config/desktop/hyprland.nix
     ../config/desktop/bars/waybar
 
@@ -17,9 +16,19 @@
 
   home.packages = with pkgs; [
     vscodium
+
+    yt-dlp
+    bitwarden-desktop
+    obsidian
+    discord
+    imv
+    mpv
+    gimp3
+    filezilla
+    obs-studio
+    qbittorrent
+    audacity
   ];
 
   stylix.image = "${../../_wallpapers/ultrawide_21x9/wallhaven-m9qj1m.jpg}";
-
-  home.stateVersion = "25.05";
 }

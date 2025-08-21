@@ -90,20 +90,6 @@ in
   };
 
   home = {
-    packages = with pkgs; [
-      yt-dlp
-      bitwarden-desktop
-      obsidian
-      discord
-      imv
-      mpv
-      gimp3
-      filezilla
-      obs-studio
-      qbittorrent
-      audacity
-    ];
-
     sessionVariables = {
       # clean up ~
       LESSHISTFILE = cache + "/less/history";
@@ -124,7 +110,7 @@ in
 
     shellAliases = {
       # Helpful aliases
-      nr = "nh os switch --update ${config.home.homeDirectory}/pj/nixos-config"; ## Rebuild NixOS Config
+      nr = "nh os switch -a --update ${config.home.homeDirectory}/pj/nixos-config"; ## Rebuild NixOS Config
 
       # Replacemments
       top = "htop";

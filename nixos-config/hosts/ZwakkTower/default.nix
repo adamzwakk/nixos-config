@@ -17,17 +17,19 @@
     ../../apps/syncthing.nix
     ../../apps/vuescan.nix
     ../../apps/work-vpn.nix
+
+    ../../users/adam.nix
   ];
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
 
   networking.hostName = "ZwakkTower";
-  home-manager.users.adam = import "${flake-inputs.self}/home-config/hosts/ZwakkTower.nix";
+  home-manager.users.adam = import "${flake-inputs.self}/home-config/hosts/adam@ZwakkTower.nix";
 
   # For random android-related things
   programs.adb.enable = true;
 
-  users.users.adam.extraGroups = [ "adbusers" "cdrom" ];
+  users.users.adam.extraGroups = [ "cdrom" ];
 
   fileSystems = {
     "/mnt/Projects" = {

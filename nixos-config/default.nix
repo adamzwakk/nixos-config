@@ -12,6 +12,7 @@
     flake-inputs.stylix.nixosModules.stylix
 
     ./desktop
+    ./users/adam.nix
   ];
 
   nix = {
@@ -89,22 +90,7 @@
     };
   };
 
-  users = {
-    defaultUserShell = pkgs.bash;
-
-    users = {
-      adam = {
-        initialPassword = "password";
-        isNormalUser = true;
-        extraGroups = [ "wheel" "docker" "networkmanager" "kvm" ];
-        shell = pkgs.bash;
-
-        openssh.authorizedKeys.keys = [
-          builtins.readFile "../../keys/id_zwakktower.pub"
-        ];
-      };
-    };
-  };
+  users.defaultUserShell = pkgs.bash;
 
   documentation.man.generateCaches = true;
 
