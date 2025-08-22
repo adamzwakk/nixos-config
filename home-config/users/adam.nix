@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  flake-inputs,
   ...
 }:
 {
@@ -13,17 +12,18 @@
     ../config/apps/_browsers
     ../config/apps/_tui
 
+    ../config/apps/bitwarden.nix
     ../config/apps/discord.nix
+    ../config/apps/filezilla.nix
   ];
 
+  # No need for configs below
   home.packages = with pkgs; [
     vscodium
 
     yt-dlp
-    bitwarden-desktop
     obsidian
     gimp3
-    filezilla
     obs-studio
     qbittorrent
     audacity

@@ -7,7 +7,6 @@
   inputs,
   ...
 }:
-with lib;
 {
   home = {
     sessionVariables = {
@@ -154,11 +153,8 @@ with lib;
 
       windowrule = [ ## Use hyprprop to find window names/classes to targets
         "float,class:^(steam)$"
-        "float,class:^(discord)$"
-        "float,class:^(Bitwarden)$"
         "float,class:^(sm64ex)$"
         "float,class:^(sm64coopdx)$"
-        "float,class:^(filezilla)$"
         "float,class:^(com.saivert.pwvucontrol)$"
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"

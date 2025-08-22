@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  flake-inputs,
   ...
 }:
 {
@@ -13,6 +12,4 @@
 
     ../config/apps/_tui/spotify_player
   ];
-
-  stylix.autoEnable = lib.mkForce false;
 }

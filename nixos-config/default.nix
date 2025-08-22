@@ -12,7 +12,7 @@
     flake-inputs.stylix.nixosModules.stylix
 
     ./desktop
-    ./users/adam.nix
+    ./users/adam.nix            # I'm always here >_<
   ];
 
   nix = {
@@ -28,7 +28,7 @@
       trusted-users = ["adam"];
       sandbox = "relaxed";
       auto-optimise-store = true;
-      allowed-users = ["adam"];
+      allowed-users = ["adam" "music"];             # My god it took me hours to realize you need the user here for home manager to work
       experimental-features = "nix-command flakes";
       http-connections = 50;
       warn-dirty = false;
