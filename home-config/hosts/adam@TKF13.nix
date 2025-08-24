@@ -11,7 +11,7 @@
   ];
 
   ## TODO: Switch to diff image
-  stylix.image = "${../../_wallpapers/ultrawide_21x9/wallhaven-m9qj1m.jpg}";
+  stylix.image = "${../../_wallpapers/3x2/wallhaven-q2gpxd.jpg}";
 
   home.stateVersion = "25.05";
 }
