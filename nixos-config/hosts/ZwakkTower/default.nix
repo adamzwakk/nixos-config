@@ -11,12 +11,15 @@
     flake-inputs.nixos-hardware.nixosModules.common-gpu-amd
 
     ./hardware-configuration.nix
-    ../../apps/docker.nix
+    
     ../../apps/k3b.nix
     ../../apps/steam.nix
-    ../../apps/syncthing.nix
     ../../apps/vuescan.nix
-    ../../apps/work-vpn.nix
+
+    ../../services/docker.nix
+    ../../services/networking/networkmanager.nix
+    ../../services/networking/work-vpn.nix
+    ../../services/syncthing.nix
   ];
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;

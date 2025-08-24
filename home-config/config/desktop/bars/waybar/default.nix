@@ -4,14 +4,16 @@
   lib,
   pkgs,
   inputs,
+  nmEnabled,
   ...
 }:
 with lib;
 {
   home.packages = with pkgs; [
     waybar
-    networkmanagerapplet
-  ];
+  ]
+  ## Only include nm applet if we're actually using networkmanager
+  ++ lib.optional nmEnabled networkmanagerapplet;
 
   programs.waybar = {
     enable = true;

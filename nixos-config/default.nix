@@ -86,7 +86,7 @@
     useUserPackages = true;
     extraSpecialArgs = {
       inherit flake-inputs;
-      nixos-config = config;
+      nmEnabled = config.networking.networkmanager.enable;  # Determine if we're using nm or not
     };
   };
 
@@ -147,7 +147,6 @@
   hardware.enableRedistributableFirmware = true;
 
   networking = {
-    networkmanager.enable = true;
     firewall.enable = true;
 
     extraHosts = lib.mkAfter ''

@@ -25,6 +25,10 @@ Sort of stole ideas from TLATER's config (sorry not sorry):
 │   └── vuescan                --- Vuescan
 ```
 
+## Networking notes
+
+You can include just `iwd` or `networkmanager` and `iwd` together. I'm okay with running `impala` for hosts that ONLY have wireless and don't need a full blown connection manager (I'm sure I'll regret this but the minimalism just feels good okay?)
+
 ## SOPS notes
 
 To add a new key to the existing sops-setup, add or copy a user one and add the new system one to the `.sops.yaml` file and then run `sops --config .sops.yaml updatekeys secrets/secrets.yaml`

@@ -10,7 +10,9 @@
 
     ./hardware-configuration.nix
     ../../apps/steam.nix
-    ../../apps/syncthing.nix
+
+    ../../services/networking/iwd.nix
+    ../../services/syncthing.nix
 
     # Extra Users
     ../../users/music.nix

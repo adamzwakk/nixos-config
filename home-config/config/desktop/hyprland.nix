@@ -3,8 +3,8 @@
   config,
   lib,
   pkgs,
-  namespace,
   inputs,
+  nmEnabled,
   ...
 }:
 {
@@ -44,11 +44,14 @@
     settings = {
       exec-once = [
         "hyprctl setcursor Bibata-Modern-Classic 20"
-        "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
         #"gnome-keyring-daemon --start --daemonize"
         "export SSH_AUTH_SOCK"
         #"${pkgs.wpaperd}/bin/wpaperd -d"
         "udiskie"
+      ]
+      ## Only include nm applet if we're actually using networkmanager
+      ++ lib.optionals nmEnabled [
+        "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
       ];
 
       "$mod" = "SUPER";
