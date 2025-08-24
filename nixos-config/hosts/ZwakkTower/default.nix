@@ -27,9 +27,7 @@
   networking.hostName = "ZwakkTower";
   home-manager.users.adam = import "${flake-inputs.self}/home-config/hosts/adam@ZwakkTower.nix";
 
-  # For random android-related things
-  programs.adb.enable = true;
-
+  # Yes this has an optical drive
   users.users.adam.extraGroups = [ "cdrom" ];
 
   fileSystems = {
