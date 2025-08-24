@@ -2,15 +2,16 @@
   users.users.adam = {
     initialPassword = "password";
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "kvm" "adbusers" ]
-    
-    ++ lib.optionals networking.networkmanager.enable [
-      "networkmanager"
-    ]
-    
-    ++ lib.optionals programs.adb.enable [
-      "adbusers"
-    ];
+    extraGroups = [ "wheel" "docker" "kvm" ]
+      ++ lib.optionals config.networking.networkmanager.enable [
+        "networkmanager"
+      ]
+      ++ lib.optionals config.programs.adb.enable [
+        "adbusers"
+      ]
+      ++ lib.optionals config.virtualisation.docker.enable [
+        "docker"
+      ];
     shell = pkgs.bash;
 
     openssh.authorizedKeys.keys = [
