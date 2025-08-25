@@ -12,6 +12,9 @@
     };
   };
 
+  networking.networkmanager.wifi.backend =
+    if config.networking.networkmanager.enable then "iwd" else null;
+
   environment.systemPackages = with pkgs; [
     impala
   ];
