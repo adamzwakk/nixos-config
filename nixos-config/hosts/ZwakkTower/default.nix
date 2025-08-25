@@ -22,8 +22,6 @@
     ../../services/syncthing.nix
   ];
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
-
   networking.hostName = "ZwakkTower";
   home-manager.users.adam = import "${flake-inputs.self}/home-config/hosts/adam@ZwakkTower.nix";
 
