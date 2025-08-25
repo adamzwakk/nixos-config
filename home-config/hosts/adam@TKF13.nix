@@ -10,8 +10,7 @@
     ../users/adam.nix
   ];
 
-  ## TODO: Switch to diff image
-  stylix.image = "${../../_wallpapers/3x2/wallhaven-q2gpxd.jpg}";
+  stylix.image = "${../../_wallpapers/3x2/wallhaven-k71581.jpg}";
 
   home.stateVersion = "25.05";
 }
