@@ -54,12 +54,8 @@ in
         pull.rebase = true;
         init.defaultBranch = "main";
         rebase.autoStash = true;
-
-        github.user = "adamzwakk";
       };
       lfs.enable = true;
-      userEmail = "adam@adamzwakk.com";
-      userName = "adamzwakk";
     };
 
     direnv = {

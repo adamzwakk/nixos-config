@@ -19,21 +19,19 @@
     ../../services/docker.nix
     ../../services/networking/networkmanager.nix
     ../../services/networking/work-vpn.nix
-    ../../services/syncthing.nix
   ];
 
   networking.hostName = "ZwakkTower";
   home-manager.users.adam = import "${flake-inputs.self}/home-config/hosts/adam@ZwakkTower.nix";
 
-  sops.secrets."syncthing/ZwakkTower/key" = {};
-  sops.secrets."syncthing/ZwakkTower/cert" = {};
-  services.syncthing.key = config.sops.secrets."syncthing/ZwakkTower/key".path;
-  services.syncthing.cert = config.sops.secrets."syncthing/ZwakkTower/cert".path;
-
   # Yes this has an optical drive
   users.users.adam.extraGroups = [ "cdrom" ];
 
-  fileSystems = {
+  fileSystems = 
+    let 
+      smb_automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+    in
+    {
     "/mnt/Projects" = {
       device = "10.100.1.12:/mnt/Hudson/Adam/Projects";
       fsType = "nfs";
@@ -54,20 +52,12 @@
     "/mnt/Media" = {
       device = "//10.100.1.12/Media";
       fsType = "cifs";
-      options = let
-        # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-
-      in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
+      options = ["${smb_automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
     };
     "/mnt/Games" = {
       device = "//10.100.1.12/Games";
       fsType = "cifs";
-      options = let
-        # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-
-      in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
+      options = ["${smb_automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
     };
   };
 }

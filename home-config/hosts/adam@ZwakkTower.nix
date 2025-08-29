@@ -15,6 +15,8 @@
     ../config/gaming/lutris
     ../config/gaming/quake
 
+    ../config/services/syncthing.nix
+
     ../users/adam.nix
   ];
 
@@ -37,6 +39,11 @@
   # };
 
   stylix.image = "${../../_wallpapers/ultrawide_21x9/wallhaven-m9qj1m.jpg}";
+
+  sops.secrets."syncthing/ZwakkTower/key" = {};
+  sops.secrets."syncthing/ZwakkTower/cert" = {};
+  services.syncthing.key = config.sops.secrets."syncthing/ZwakkTower/key".path;
+  services.syncthing.cert = config.sops.secrets."syncthing/ZwakkTower/cert".path;
 
   home.stateVersion = "25.05";
 }

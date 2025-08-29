@@ -110,9 +110,12 @@
     ];
   };
 
-  # My systems never have usable root accounts anyway, so emergency
-  # mode just drops into a shell telling me it can't log into root
-  systemd.enableEmergencyMode = false;
+  systemd = {
+    # My systems never have usable root accounts anyway, so emergency
+    # mode just drops into a shell telling me it can't log into root
+    enableEmergencyMode = false;
+    services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
+  };
 
   security.rtkit.enable = true;
 
@@ -134,10 +137,6 @@
     fwupd.enable = true;
     automatic-timezoned.enable = true;
     gnome.gnome-keyring.enable = true;
-
-    udev.packages = [
-      pkgs.android-udev-rules
-    ];
   };
 
   hardware.enableRedistributableFirmware = true;

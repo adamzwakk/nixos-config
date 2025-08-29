@@ -17,6 +17,10 @@
     ../config/apps/filezilla.nix
   ];
 
+  programs.git.extraConfig.github.user = "adamzwakk";
+  programs.git.userEmail = "adam@adamzwakk.com";
+  programs.git.userName = "adamzwakk";
+
   # No need for configs below
   home.packages = with pkgs; [
     vscodium
