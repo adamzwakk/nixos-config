@@ -30,11 +30,11 @@
 
   # https://wiki.hyprland.org/Configuring/Monitors/
   wayland.windowManager.hyprland.settings.monitor = ", highrr, auto, 1";
-  services.wpaperd.settings = {
-    DP-2 = {
-      path = "${../../../_wallpapers/ultrawide_21x9}";
-    };
-  };
+  # services.wpaperd.settings = {
+  #   DP-2 = {
+  #     path = "${../../../_wallpapers/ultrawide_21x9}";
+  #   };
+  # };
 
   stylix.image = "${../../_wallpapers/ultrawide_21x9/wallhaven-m9qj1m.jpg}";
 

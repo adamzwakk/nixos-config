@@ -25,6 +25,11 @@
   networking.hostName = "ZwakkTower";
   home-manager.users.adam = import "${flake-inputs.self}/home-config/hosts/adam@ZwakkTower.nix";
 
+  sops.secrets."syncthing/ZwakkTower/key" = {};
+  sops.secrets."syncthing/ZwakkTower/cert" = {};
+  services.syncthing.key = config.sops.secrets."syncthing/ZwakkTower/key".path;
+  services.syncthing.cert = config.sops.secrets."syncthing/ZwakkTower/cert".path;
+
   # Yes this has an optical drive
   users.users.adam.extraGroups = [ "cdrom" ];
 
