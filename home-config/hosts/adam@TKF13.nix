@@ -7,6 +7,9 @@
 {
   imports = [
     ../config
+
+    ../config/services/syncthing.nix
+
     ../users/adam.nix
   ];
 

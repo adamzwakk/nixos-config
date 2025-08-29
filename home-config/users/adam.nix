@@ -21,6 +21,15 @@
   programs.git.userEmail = "adam@adamzwakk.com";
   programs.git.userName = "adamzwakk";
 
+  services.syncthing.settings.folders = {
+    "ccjci-yo3ne" = {
+      id = "ccjci-yo3ne";
+      label = "Obsidian";
+      path = "${config.home.homeDirectory}/Syncthing/Obsidian";
+      devices = [ "Hudson" ];
+    };
+  };
+
   # No need for configs below
   home.packages = with pkgs; [
     vscodium
