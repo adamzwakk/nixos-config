@@ -9,6 +9,7 @@
   imports = [
     ../config
 
+    ../config/apps/86Box
     ../config/gaming/doom
     ../config/gaming/quake
     ../config/gaming/emulation

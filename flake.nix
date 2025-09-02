@@ -64,8 +64,8 @@
         TKF13 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./nixos-config
-            ./nixos-config/hosts/TKF13
+            ./system
+            ./system/hosts/TKF13
 
             ({ config, pkgs, ... }: {
               nixpkgs.overlays = [
@@ -80,8 +80,8 @@
         ZwakkTower = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./nixos-config
-            ./nixos-config/hosts/ZwakkTower
+            ./system
+            ./system/hosts/ZwakkTower
 
             ({ config, pkgs, ... }: {
               nixpkgs.overlays = [

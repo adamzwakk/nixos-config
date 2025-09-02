@@ -30,20 +30,26 @@
   fileSystems = 
     let 
       smb_automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+      hudson_dir = "10.100.1.12:/mnt/Hudson";
     in
     {
     "/mnt/Projects" = {
-      device = "10.100.1.12:/mnt/Hudson/Adam/Projects";
+      device = "${hudson_dir}/Adam/Projects";
       fsType = "nfs";
       options = [ "x-systemd.automount" "noauto" ];
     };
     "/mnt/Adam" = {
-      device = "10.100.1.12:/mnt/Hudson/Adam";
+      device = "${hudson_dir}/Adam";
       fsType = "nfs";
       options = [ "x-systemd.automount" "noauto" ];
     };
     "/mnt/Torrents" = {
-      device = "10.100.1.12:/mnt/Hudson/Downloads/Torrents";
+      device = "${hudson_dir}/Downloads/Torrents";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" ];
+    };
+    "/mnt/Hoarding" = {
+      device = "${hudson_dir}/Hoarding";
       fsType = "nfs";
       options = [ "x-systemd.automount" "noauto" ];
     };
