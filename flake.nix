@@ -66,12 +66,6 @@
           modules = [
             ./system
             ./system/hosts/TKF13
-
-            ({ config, pkgs, ... }: {
-              nixpkgs.overlays = [
-                (import ./overlays/spotify_player/default.nix)
-              ];
-            })
           ];
 
           specialArgs.flake-inputs = inputs;
@@ -82,12 +76,6 @@
           modules = [
             ./system
             ./system/hosts/ZwakkTower
-
-            ({ config, pkgs, ... }: {
-              nixpkgs.overlays = [
-                (import ./overlays/spotify_player/default.nix)
-              ];
-            })
           ];
 
           specialArgs.flake-inputs = inputs;
