@@ -12,7 +12,6 @@
     ../../apps/steam.nix
 
     ../../services/networking/iwd.nix
-    ../../services/syncthing.nix
 
     # Extra Users
     ../../users/music.nix

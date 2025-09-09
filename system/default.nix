@@ -114,7 +114,7 @@
     # My systems never have usable root accounts anyway, so emergency
     # mode just drops into a shell telling me it can't log into root
     enableEmergencyMode = false;
-    services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
+    #services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
   };
 
   security.rtkit.enable = true;
