@@ -11,9 +11,7 @@
     ../config/services/syncthing.nix
 
     ../users/adam.nix
+    ./systems/TKF13.nix
   ];
-
-  stylix.image = "${../../_wallpapers/3x2/wallhaven-k71581.jpg}";
-
   home.stateVersion = "25.05";
 }

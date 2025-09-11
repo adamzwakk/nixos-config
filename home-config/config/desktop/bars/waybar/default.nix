@@ -7,7 +7,9 @@
   nmEnabled,
   ...
 }:
-with lib;
+let  
+  hypridleActive = config.services.hypridle.enable or false;
+in 
 {
   home.packages = with pkgs; [
     waybar
@@ -23,7 +25,14 @@ with lib;
         position = "top";
         modules-left = ["hyprland/workspaces"];
         modules-center = ["hyprland/window"];
-        modules-right = ["memory" "network" "battery" "clock" "tray"];
+        modules-right = [
+          "memory" 
+          "network" 
+          "battery" 
+        ] ++ lib.optional hypridleActive "custom/hypridle" ++ [
+          "clock" 
+          "tray"
+        ];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -36,10 +45,6 @@ with lib;
             "4" = [];
             "5" = [];
             "6" = [];
-            # "7" = [];
-            # "8" = [];
-            # "9" = [];
-            # "0" = [];
           };
         };
 
@@ -68,12 +73,6 @@ with lib;
           format-alt = "{ifname}: {ipaddr}/{cidr}";
         };
 
-        "backlight" = {
-          device = "intel_backlight";
-          format = "{icon}";
-          format-icons = ["" "" "" "" "" "" "" "" ""];
-        };
-
         "battery" = {
           states = {
             warning = 30;
@@ -85,16 +84,18 @@ with lib;
           format-alt = "{icon}";
           format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         };
+
+        "custom/hypridle" = {
+          exec = "~/.local/bin/hypridle/hypridle-status.sh";
+          return-type = "json";
+          interval = 5;
+          on-click = "~/.local/bin/hypridle/hypridle-toggle.sh";
+          signal = 9;
+        };
       }
     ];
 
     style = ''
-      * {
-        font-family: '0xProto Nerd Font';
-        font-size: 14px;
-        min-height: 0;
-      }
-
       #waybar {
         background: transparent;
         color: @text;
@@ -125,14 +126,14 @@ with lib;
       }
 
       #tray,
-      #backlight,
       #network,
       #clock,
       #memory,
       #battery,
+      #custom-hypridle,
       #custom-power {
         background-color: @surface0;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0.7rem;
         margin: 5px 0;
       }
 
@@ -154,10 +155,6 @@ with lib;
         color: @red;
       }
 
-      #backlight {
-        color: @yellow;
-      }
-
       #memory {
         border-radius: 1rem 0px 0px 1rem;
       }
@@ -169,6 +166,13 @@ with lib;
       #tray {
         margin-right: 1rem;
         border-radius: 1rem;
+      }
+
+      #custom-hypridle.on {
+        color: #a6e3a1;
+      }
+      #custom-hypridle.off {
+        color: #f38ba8;
       }
 
       @define-color rosewater #f4dbd6;

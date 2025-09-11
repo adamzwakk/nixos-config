@@ -36,6 +36,16 @@
       name = "Bibata-Modern-Classic";
       size = 20;
     };
+
+    ## Easy status/disable hypridle through script/for waybar
+    file.".local/bin/hypridle/hypridle-status.sh" = {
+      source = ./scripts/hypridle/hypridle-status.sh;
+      executable = true;
+    };
+    file.".local/bin/hypridle/hypridle-toggle.sh" = {
+      source = ./scripts/hypridle/hypridle-toggle.sh;
+      executable = true;
+    };
   };
 
   ## sorta basing off https://github.com/dc-tec/nixos-config/blob/main/modules/graphical/desktop/hyprland/default.nix

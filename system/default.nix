@@ -164,6 +164,7 @@
       killall
       p7zip
       fzf                  # Fuzzy Finder
+      jq                   # Better JSON parsing
 
       htop
       nvtopPackages.amd    # GPU Top for AMD

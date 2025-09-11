@@ -19,6 +19,8 @@
     ../config/services/syncthing.nix
 
     ../users/adam.nix
+    
+    ./systems/ZwakkTower.nix
   ];
 
   home.packages = with pkgs; [
@@ -31,8 +33,6 @@
     flake-inputs.self.packages.${pkgs.system}.sm64ex.default
   ];
 
-  # https://wiki.hyprland.org/Configuring/Monitors/
-  wayland.windowManager.hyprland.settings.monitor = ", highrr, auto, 1";
   # services.wpaperd.settings = {
   #   DP-2 = {
   #     path = "${../../../_wallpapers/ultrawide_21x9}";

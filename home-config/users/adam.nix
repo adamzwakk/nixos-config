@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    ../config/desktop/hyprland.nix
+    ../config/desktop/hyprland
     ../config/desktop/bars/waybar
 
     ../config/apps/_browsers
