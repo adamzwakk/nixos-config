@@ -46,6 +46,11 @@
       source = ./scripts/hypridle/hypridle-toggle.sh;
       executable = true;
     };
+
+    file.".local/bin/mpv/open-url.sh" = {
+      source = ./scripts/mpv/open-url.sh;
+      executable = true;
+    };
   };
 
   ## sorta basing off https://github.com/dc-tec/nixos-config/blob/main/modules/graphical/desktop/hyprland/default.nix
@@ -115,6 +120,7 @@
         "$mod, down, movefocus, d"
 
         "$mod, V, togglefloating,"
+        "$mod SHIFT, A, pin,"
 
         # Move window to workspace
         "$mod SHIFT, 1, movetoworkspace, 1"
@@ -128,6 +134,7 @@
         "$mod, Return, exec, $terminal"
         "$mod, D, exec, $menu"
         "$mod SHIFT, S, exec, hyprshot -m region --clipboard-only" ## Screenshot util
+        "$mod SHIFT, M, exec, ${config.home.homeDirectory}/.local/bin/mpv/open-url.sh" ## Open clipboard to mpv
         "$mod, E, exec, thunar"
 
         # Workspace
