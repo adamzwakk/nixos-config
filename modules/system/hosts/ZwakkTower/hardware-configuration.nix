@@ -1,7 +1,9 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, modulesPath, flake-inputs, ... }:
 
 {
   imports = [ 
+    flake-inputs.nixos-hardware.nixosModules.common-cpu-amd
+    flake-inputs.nixos-hardware.nixosModules.common-gpu-amd
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 

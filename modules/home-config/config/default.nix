@@ -15,10 +15,20 @@ in
     flake-inputs.sops-nix.homeManagerModules.sops
     flake-inputs.stylix.homeModules.stylix
     flake-inputs.nixvim.homeModules.nixvim
+
+    ./desktop/hyprland
+    ./desktop/bars/waybar
+
+    ./apps/_browsers
+    ./apps/_tui
+
+    ./apps/bitwarden.nix
+    ./apps/discord.nix
+    ./apps/filezilla.nix
   ];
 
   sops = {
-    defaultSopsFile = "${../../secrets/secrets.yaml}";
+    defaultSopsFile = "${flake-inputs.self}/secrets/secrets.yaml";
     defaultSopsFormat = "yaml";
 
     age = {
@@ -50,10 +60,15 @@ in
     git = {
       enable = true;
       delta.enable = true;
+      userName = "adamzwakk";
+      userEmail = "adam@adamzwakk.com";
+
       extraConfig = {
         pull.rebase = true;
         init.defaultBranch = "main";
         rebase.autoStash = true;
+
+        github.user = "adamzwakk";
       };
       lfs.enable = true;
     };
@@ -85,7 +100,26 @@ in
     };
   };
 
+  services.syncthing.settings.folders = {
+    "ccjci-yo3ne" = {
+      id = "ccjci-yo3ne";
+      label = "Obsidian";
+      path = "${config.home.homeDirectory}/Syncthing/Obsidian";
+      devices = [ "Hudson" ];
+    };
+  };
+
   home = {
+    packages = with pkgs; [
+      vscodium
+
+      yt-dlp
+      obsidian
+      gimp3
+      obs-studio
+      qbittorrent
+      audacity
+    ];
     sessionVariables = {
       # clean up ~
       LESSHISTFILE = cache + "/less/history";

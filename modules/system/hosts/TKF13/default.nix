@@ -6,20 +6,14 @@
 }:
 {
   imports = [
-    flake-inputs.nixos-hardware.nixosModules.framework-13-7040-amd 
-
     ./hardware-configuration.nix
     ../../apps/steam.nix
 
     ../../services/networking/iwd.nix
-
-    # Extra Users
-    ../../users/music.nix
   ];
 
   networking.hostName = "TKF13";
-  home-manager.users.adam = import "${flake-inputs.self}/home-config/hosts/adam@TKF13.nix";
-  home-manager.users.music = import "${flake-inputs.self}/home-config/hosts/music@TKF13.nix";
+  home-manager.users.adam = import "${flake-inputs.self}/modules/home-config/hosts/TKF13.nix";
 
   fileSystems = {
     "/mnt/Projects" = {

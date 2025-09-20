@@ -7,9 +7,6 @@
 }:
 {
   imports = [
-    flake-inputs.nixos-hardware.nixosModules.common-cpu-amd
-    flake-inputs.nixos-hardware.nixosModules.common-gpu-amd
-
     ./hardware-configuration.nix
     
     ../../apps/k3b.nix
@@ -21,8 +18,12 @@
     ../../services/networking/work-vpn.nix
   ];
 
+  lv426 = {
+    desktop.hyprland.enable = true;
+  };
+
   networking.hostName = "ZwakkTower";
-  home-manager.users.adam = import "${flake-inputs.self}/home-config/hosts/adam@ZwakkTower.nix";
+  home-manager.users.adam = import "${flake-inputs.self}/modules/home-config/hosts/ZwakkTower.nix";
 
   # Yes this has an optical drive
   users.users.adam.extraGroups = [ "cdrom" ];

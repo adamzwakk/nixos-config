@@ -1,24 +1,15 @@
-{
-  lib,
-  config,
-  pkgs,
-  flake-inputs,
-  ...
-}:
+{ flake-inputs, pkgs, lib, config, ... }:
 {
   imports = [
     ../config
 
-    ../config/apps/86Box
+    # ../config/apps/86Box
     ../config/gaming/doom
     ../config/gaming/quake
     ../config/gaming/emulation
-    ../config/gaming/lutris
     ../config/gaming/quake
 
     ../config/services/syncthing.nix
-
-    ../users/adam.nix
   ];
 
   home.packages = with pkgs; [
@@ -44,16 +35,23 @@
 
   # services.wpaperd.settings = {
   #   DP-2 = {
-  #     path = "${../../../_wallpapers/ultrawide_21x9}";
+  #     path = "${flake-inputs.self}_wallpapers/ultrawide_21x9";
   #   };
   # };
 
-  stylix.image = "${../../_wallpapers/ultrawide_21x9/wallhaven-m9qj1m.jpg}";
+  stylix.image = "${flake-inputs.self}/_wallpapers/ultrawide_21x9/wallhaven-m9qj1m.jpg";
 
-  sops.secrets."syncthing/ZwakkTower/key" = {};
-  sops.secrets."syncthing/ZwakkTower/cert" = {};
-  services.syncthing.key = config.sops.secrets."syncthing/ZwakkTower/key".path;
-  services.syncthing.cert = config.sops.secrets."syncthing/ZwakkTower/cert".path;
+  sops = {
+    secrets."syncthing/ZwakkTower/key" = {};
+    secrets."syncthing/ZwakkTower/cert" = {};
+  };
+
+  services = {
+    syncthing = {
+      key = config.sops.secrets."syncthing/ZwakkTower/key".path;
+      cert = config.sops.secrets."syncthing/ZwakkTower/cert".path;
+    };
+  };
 
   home.stateVersion = "25.05";
 }

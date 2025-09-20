@@ -64,8 +64,8 @@
         TKF13 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./system
-            ./system/hosts/TKF13
+            ./modules/system
+            ./modules/system/hosts/TKF13
           ];
 
           specialArgs.flake-inputs = inputs;
@@ -74,8 +74,8 @@
         ZwakkTower = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./system
-            ./system/hosts/ZwakkTower
+            ./modules/system
+            ./modules/system/hosts/ZwakkTower
           ];
 
           specialArgs.flake-inputs = inputs;
@@ -84,7 +84,7 @@
 
       packages.${system} = pkgs.lib.packagesFromDirectoryRecursive {
         callPackage = pkgs.lib.callPackageWith (pkgs // { inherit (pkgs) lib; });
-        directory = ./packages;
+        directory = ./modules/packages;
       };
 
       # TODO: Put this shell somewhere else?

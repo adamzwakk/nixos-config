@@ -5,6 +5,7 @@
   flake-inputs,
   ...
 }:
+with lib;
 {
   imports = [
     flake-inputs.home-manager.nixosModules.home-manager
@@ -12,7 +13,7 @@
     flake-inputs.stylix.nixosModules.stylix
 
     ./desktop
-    ./users/adam.nix            # I'm always here >_<
+    ../lv426/options.nix
   ];
 
   nix = {
@@ -41,7 +42,7 @@
   };
 
   sops = {
-    defaultSopsFile = "${../secrets/secrets.yaml}";
+    defaultSopsFile = "${flake-inputs.self}/secrets/secrets.yaml";
     defaultSopsFormat = "yaml";
 
     age = {
@@ -83,10 +84,34 @@
     extraSpecialArgs = {
       inherit flake-inputs;
       nmEnabled = config.networking.networkmanager.enable;  # Determine if we're using nm or not
+      lv426 = config.lv426;
     };
   };
 
-  users.defaultUserShell = pkgs.bash;
+  users = {
+    defaultUserShell = pkgs.bash;
+    users = {
+      adam = { # I always exists, I am always here
+        isNormalUser = true;
+        initialPassword = "password";
+        shell = pkgs.bash;
+        extraGroups = [
+          "wheel"
+          "video"
+          "kvm"
+        ] 
+        ++ lib.optionals config.networking.networkmanager.enable [
+          "networkmanager"
+        ]
+        ++ lib.optionals config.programs.adb.enable [
+          "adbusers"
+        ]
+        ++ lib.optionals config.virtualisation.docker.enable [
+          "docker"
+        ];
+      };
+    };
+  };
 
   documentation.man.generateCaches = true;
 
