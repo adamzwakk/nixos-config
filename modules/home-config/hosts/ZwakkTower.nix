@@ -8,6 +8,7 @@
 
     ../config/apps/_browsers
     ../config/apps/_tui
+    ../config/apps/filezilla.nix
 
     # ../config/apps/86Box
     ../config/gaming/doom

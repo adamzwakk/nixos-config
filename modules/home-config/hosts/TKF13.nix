@@ -14,6 +14,7 @@
 
     ../config/apps/_browsers
     ../config/apps/_tui
+    ../config/apps/filezilla.nix
 
     ../config/services/syncthing.nix
   ];

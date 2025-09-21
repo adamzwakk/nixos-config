@@ -18,7 +18,6 @@ in
 
     ./apps/bitwarden.nix
     ./apps/discord.nix
-    ./apps/filezilla.nix
   ];
 
   sops = {
