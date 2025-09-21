@@ -31,7 +31,7 @@ You can include just `iwd` or `networkmanager` and `iwd` together. I'm okay with
 
 ## SOPS notes
 
-To add a new key to the existing sops-setup, add or copy a user one and add the new system one to the `.sops.yaml` file and then run `sops --config .sops.yaml updatekeys secrets/secrets.yaml`
+To add a new key to the existing sops-setup, add or copy a user one to `.config/sops/age/keys.txt` and add the new system one `ssh-keygen -A && sudo cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age` to the `.sops.yaml` file and then run `sops --config .sops.yaml updatekeys secrets/secrets.yaml`
 
 ## Available Dev Shells
 

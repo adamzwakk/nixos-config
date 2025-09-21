@@ -7,6 +7,9 @@
 {
   imports = [
     ./hardware-configuration.nix
+
+    ../../desktop/hyprland
+
     ../../apps/steam.nix
 
     ../../services/networking/iwd.nix

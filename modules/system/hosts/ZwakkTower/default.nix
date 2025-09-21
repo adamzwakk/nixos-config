@@ -8,6 +8,8 @@
 {
   imports = [
     ./hardware-configuration.nix
+
+    ../../desktop/hyprland
     
     ../../apps/k3b.nix
     ../../apps/steam.nix

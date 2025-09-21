@@ -80,6 +80,16 @@
 
           specialArgs.flake-inputs = inputs;
         };
+
+        Burke = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./modules/system
+            ./modules/system/hosts/Burke
+          ];
+
+          specialArgs.flake-inputs = inputs;
+        };
       };
 
       packages.${system} = pkgs.lib.packagesFromDirectoryRecursive {
