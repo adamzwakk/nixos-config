@@ -6,8 +6,10 @@
   namespace,
   ...
 }:
+with lib;
 {
-  environment.systemPackages = with pkgs; [
+  config = mkIf config.lv426.services.docker.enable {
+    environment.systemPackages = with pkgs; [
       docker-compose
     ];
 
@@ -16,4 +18,5 @@
       docker.storageDriver = "btrfs";
       podman.enable = true;
     };
+  };
 }

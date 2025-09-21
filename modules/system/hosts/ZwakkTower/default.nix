@@ -8,20 +8,19 @@
 {
   imports = [
     ./hardware-configuration.nix
-
-    ../../desktop/hyprland
     
     ../../apps/k3b.nix
     ../../apps/steam.nix
     ../../apps/vuescan.nix
 
-    ../../services/docker.nix
     ../../services/networking/networkmanager.nix
     ../../services/networking/work-vpn.nix
   ];
 
   lv426 = {
     desktop.hyprland.enable = true;
+    services.greetd.enable = true;
+    services.docker.enable = true;
   };
 
   networking.hostName = "ZwakkTower";

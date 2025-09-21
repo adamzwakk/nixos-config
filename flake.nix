@@ -81,11 +81,11 @@
           specialArgs.flake-inputs = inputs;
         };
 
-        Burke = nixpkgs.lib.nixosSystem {
+        Hicks = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             ./modules/system
-            ./modules/system/hosts/Burke
+            ./modules/system/hosts/Hicks
           ];
 
           specialArgs.flake-inputs = inputs;

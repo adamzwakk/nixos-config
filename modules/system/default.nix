@@ -13,6 +13,9 @@ with lib;
     flake-inputs.stylix.nixosModules.stylix
 
     ../lv426/options.nix
+
+    ./desktop
+    ./services
   ];
 
   nix = {

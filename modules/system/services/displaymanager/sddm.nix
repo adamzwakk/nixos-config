@@ -3,20 +3,19 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 with lib;
-with lib.${namespace};
-  let
-    vanilla_theme = builtins.fromTOML(builtins.readFile "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme/Themes/black_hole.conf");
-    theme = vanilla_theme.General;
+let
+  vanilla_theme = builtins.fromTOML(builtins.readFile "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme/Themes/black_hole.conf");
+  theme = vanilla_theme.General;
 
-    sddm-astronaut = pkgs.sddm-astronaut.override {
-      themeConfig = theme;
-    };
-  in
-  {
+  sddm-astronaut = pkgs.sddm-astronaut.override {
+    themeConfig = theme;
+  };
+in
+{
+  config = mkIf config.lv426.services.sddm.enable {
     services.displayManager.sddm = {
       enable = true;
       wayland.enable = true;
@@ -32,4 +31,5 @@ with lib.${namespace};
       sddm-astronaut
       kdePackages.qtmultimedia
     ];
+  };
 }
