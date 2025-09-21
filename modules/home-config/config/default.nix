@@ -16,12 +16,6 @@ in
     flake-inputs.stylix.homeModules.stylix
     flake-inputs.nixvim.homeModules.nixvim
 
-    ./desktop/hyprland
-    ./desktop/bars/waybar
-
-    ./apps/_browsers
-    ./apps/_tui
-
     ./apps/bitwarden.nix
     ./apps/discord.nix
     ./apps/filezilla.nix

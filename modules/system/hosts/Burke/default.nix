@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, flake-inputs, ... }:
 
 {
   imports =[
@@ -10,7 +10,8 @@
       ../../services/networking/iwd.nix
     ];
 
-  networking.hostName = "Burke"; # Define your hostname.
+  networking.hostName = "Burke";
+  home-manager.users.adam = import "${flake-inputs.self}/modules/home-config/hosts/Burke.nix";
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -19,9 +20,6 @@
   # Enable automatic login for the user.
   # services.displayManager.autoLogin.enable = true;
   # services.displayManager.autoLogin.user = "adamz";
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   system.stateVersion = "25.05"; # Did you read the comment?
 

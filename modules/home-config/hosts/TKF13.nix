@@ -8,10 +8,14 @@
   imports = [
     ../config
 
+    ../config/desktop/hyprland
+    ../config/desktop/bars/waybar
+
+    ../config/apps/_browsers
+    ../config/apps/_tui
+
     ../config/services/syncthing.nix
   ];
-
-  lv426 = config.lv426;
 
   stylix.image = "${flake-inputs.self}/_wallpapers/3x2/wallhaven-k71581.jpg";
   programs.waybar.style = lib.optionalString config.programs.waybar.enable ''

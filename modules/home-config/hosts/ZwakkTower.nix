@@ -3,6 +3,12 @@
   imports = [
     ../config
 
+    ../config/desktop/hyprland
+    ../config/desktop/bars/waybar
+
+    ../config/apps/_browsers
+    ../config/apps/_tui
+
     # ../config/apps/86Box
     ../config/gaming/doom
     ../config/gaming/quake
