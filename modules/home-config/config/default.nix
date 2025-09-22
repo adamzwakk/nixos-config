@@ -105,6 +105,7 @@ in
   home = {
     packages = with pkgs; [
       vscodium
+      mpv
 
       yt-dlp
       obsidian

@@ -21,9 +21,6 @@ with lib;
     };
 
     environment.systemPackages = with pkgs; [
-      # ... other packages
-      # pkgs.kitty # required for the default Hyprland config
-
       mako
       libnotify
       pwvucontrol

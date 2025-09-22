@@ -175,9 +175,10 @@ with lib;
 
         windowrule = [ ## Use hyprprop to find window names/classes to targets
           "float,class:^(steam)$"
-          "float,class:^(sm64ex)$"
-          "float,class:^(sm64coopdx)$"
+          "float,class:^(sm64.*)$"
           "float,class:^(com.saivert.pwvucontrol)$"
+          "float, initialClass:thunar, title:(File Operation Progress.*)"
+          "float, initialClass:thunar, title:(Rename:.*)"
           "suppressevent maximize, class:.*"
           "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
           "idleinhibit fullscreen, class:.*"

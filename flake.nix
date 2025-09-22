@@ -80,16 +80,6 @@
 
           specialArgs.flake-inputs = inputs;
         };
-
-        Hicks = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./modules/system
-            ./modules/system/hosts/Hicks
-          ];
-
-          specialArgs.flake-inputs = inputs;
-        };
       };
 
       packages.${system} = pkgs.lib.packagesFromDirectoryRecursive {
