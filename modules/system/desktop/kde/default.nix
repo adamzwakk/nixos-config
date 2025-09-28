@@ -7,6 +7,12 @@
 }:
 with lib;
 {
+  options.lv426.desktop.kde.enable = mkOption {
+    type = types.bool;
+    default = false;
+    description = "Whether to enable KDE as the desktop environment";
+  };
+
   config = mkIf config.lv426.desktop.kde.enable {
     services = {
       desktopManager.plasma6.enable = true;

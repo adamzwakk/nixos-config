@@ -15,6 +15,12 @@ let
   };
 in
 {
+  options.lv426.services.sddm.enable = mkOption {
+    type = types.bool;
+    default = false;
+    description = "Whether to enable SDDM as the display manager";
+  };
+
   config = mkIf config.lv426.services.sddm.enable {
     services.displayManager.sddm = {
       enable = true;

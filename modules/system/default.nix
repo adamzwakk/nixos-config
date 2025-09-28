@@ -12,8 +12,6 @@ with lib;
     flake-inputs.sops-nix.nixosModules.sops
     flake-inputs.stylix.nixosModules.stylix
 
-    ../lv426/options.nix
-
     ./desktop
     ./services
   ];

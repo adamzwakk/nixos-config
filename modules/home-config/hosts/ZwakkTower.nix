@@ -23,6 +23,7 @@
     hugin
     kdePackages.kdenlive
     makemkv
+    handbrake
     transmission-remote-gtk
 
     flake-inputs.self.packages.${pkgs.system}.sm64coopdx.default

@@ -7,6 +7,12 @@
 }:
 with lib;
 {
+  options.lv426.services.greetd.enable = mkOption {
+    type = types.bool;
+    default = false;
+    description = "Whether to enable greetd as the display manager";
+  };
+
   config = mkIf config.lv426.services.greetd.enable {
     services.greetd = {
       enable = true;
