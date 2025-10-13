@@ -14,7 +14,7 @@
     ../config/gaming/doom
     ../config/gaming/quake
     ../config/gaming/emulation
-    ../config/gaming/quake
+    # ../config/gaming/heroic
 
     ../config/services/syncthing.nix
   ];
