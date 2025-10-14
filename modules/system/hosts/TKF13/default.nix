@@ -21,6 +21,7 @@
 
   networking.hostName = "TKF13";
   home-manager.users.adam = import "${flake-inputs.self}/modules/home-config/hosts/TKF13.nix";
+  virtualisation.docker.storageDriver = lib.mkForce null;
 
   fileSystems = {
     "/mnt/Projects" = {
