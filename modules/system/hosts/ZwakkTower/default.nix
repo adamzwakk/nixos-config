@@ -15,6 +15,8 @@
 
     ../../services/networking/networkmanager.nix
     ../../services/networking/work-vpn.nix
+
+    flake-inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
   lv426 = {
@@ -25,6 +27,19 @@
 
   networking.hostName = "ZwakkTower";
   home-manager.users.adam = import "${flake-inputs.self}/modules/home-config/hosts/ZwakkTower.nix";
+
+  ## Secure Boot Stuff
+  environment.systemPackages = [
+    # For debugging and troubleshooting Secure Boot.
+    pkgs.sbctl
+  ];
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
+  ## End Secure Boot Stuff
 
   # Yes this has an optical drive
   users.users.adam.extraGroups = [ "cdrom" ];

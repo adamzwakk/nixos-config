@@ -46,6 +46,14 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        # Secure Boot
+        lanzaboote = {
+          url = "github:nix-community/lanzaboote/v0.4.2";
+
+          # Optional but recommended to limit the size of your system closure.
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         # flake helpers
         utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     };
