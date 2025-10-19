@@ -5,11 +5,13 @@
   inputs,
   nmEnabled,
   lv426,
+  flake-inputs,
   ...
 }:
 with lib;
 {
   config = mkIf lv426.desktop.hyprland.enable {
+
     home = {
       sessionVariables = {
         QT_QPA_PLATFORM = "wayland";
@@ -41,16 +43,16 @@ with lib;
 
       ## Easy status/disable hypridle through script/for waybar
       file.".local/bin/hypridle/hypridle-status.sh" = {
-        source = ./scripts/hypridle/hypridle-status.sh;
+        source = "${flake-inputs.self}/scripts/hypridle/hypridle-status.sh";
         executable = true;
       };
       file.".local/bin/hypridle/hypridle-toggle.sh" = {
-        source = ./scripts/hypridle/hypridle-toggle.sh;
+        source = "${flake-inputs.self}/scripts/hypridle/hypridle-toggle.sh";
         executable = true;
       };
 
       file.".local/bin/mpv/open-url.sh" = {
-        source = ./scripts/mpv/open-url.sh;
+        source = "${flake-inputs.self}/scripts/mpv/open-url.sh";
         executable = true;
       };
     };
@@ -186,76 +188,13 @@ with lib;
       };
     };
 
-    # https://mynixos.com/home-manager/option/services.hypridle.settings
-    # https://0xda.de/blog/2024/07/framework-and-nixos-locking-customization/
-    services.hypridle = {
-      enable = true;
-      settings = {
-        general = {
-            lock_cmd = "pidof hyprlock || hyprlock";       # avoid starting multiple hyprlock instances.
-            before_sleep_cmd = "loginctl lock-session";    # lock before suspend.
-            after_sleep_cmd = "hyprctl dispatch dpms on";  # to avoid having to press a key twice to turn on the display.
-            ignore_dbus_inhibit = false;
-        };
-
-        listener = [
-          {
-            timeout = 600;                           # 10min
-            on-timeout = "hyprctl dispatch dpms off";  # command to run when timeout has passed
-            on-resume = "hyprctl dispatch dpms on";   # command to run when activity is detected after timeout has fired.
-          }
-          {
-            timeout = 300;                                 # 5min
-            on-timeout = "loginctl lock-session";          # lock screen when timeout has passed
-          }
-          {
-            timeout = 1800;                              # 30min
-            on-timeout = "systemctl suspend";            # suspend pc
-          }
-        ];
-      };
-    };
-
-    services.wpaperd = {
-      enable = false;
-      settings.default = {
-        duration = "30m";
-        mode = "fit";
-      };
-    };
-
     # Extra stuff not really needed for its own modules (for now...)
-
-    # Blue light filter
-    services.wlsunset = {
-      enable = true;
-      latitude = 43.5;
-      longitude = -81.7;
-
-      temperature.night = 3300;
-    };
-
-    services.mako = {
-      enable = true;
-      settings = {
-        default-timeout = 5000;
-      };
-    };
-
-    programs.rofi = {
-      enable = true;
-      package = pkgs.rofi;
-    };
 
     stylix = {
       iconTheme = {
         enable = true;
         dark = "Dracula";
         package = pkgs.dracula-icon-theme;
-      };
-      targets = {
-        rofi.enable = true;
-        mako.enable = true;
       };
     };
   };

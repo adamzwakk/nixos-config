@@ -9,6 +9,7 @@
     ../config/apps/_browsers
     ../config/apps/_tui
     ../config/apps/filezilla.nix
+    ../config/apps/rofi.nix
 
     # ../config/apps/86Box
     ../config/gaming/doom
@@ -17,6 +18,11 @@
     # ../config/gaming/heroic
 
     ../config/services/syncthing.nix
+
+    ../config/services/hypridle.nix
+    ../config/services/mako.nix
+    ../config/services/wpaperd.nix
+    ../config/services/wlsunset.nix
   ];
 
   home.packages = with pkgs; [
