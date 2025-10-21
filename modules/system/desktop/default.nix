@@ -2,5 +2,6 @@
   imports = [
     ./hyprland
     ./kde
+    ./niri
   ];
 }

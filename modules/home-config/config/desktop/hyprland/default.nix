@@ -24,13 +24,10 @@ with lib;
         #wpaperd
         hyprprop        # Get hyprland window info
         hyprshot        # Screengrab
-        wl-clipboard    # Clipboard
-        imv             # Image Viewer
         mpv             # Video Player
         
         kdePackages.kate  # Text Editor (overkill?)
         kdePackages.ark   # Archive Manager
-        wlsunset          # Blue light filter
       ];
 
       pointerCursor = {

@@ -1,4 +1,13 @@
 {
+  flake-inputs,
+  pkgs,
+  ...
+}:
+{
+  home.packages = [
+    pkgs.wlsunset
+  ];
+  
   # Blue light filter
     services.wlsunset = {
       enable = true;
