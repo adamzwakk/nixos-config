@@ -9,6 +9,8 @@
   imports = [
     ../config
 
+    ../config/_bundles/wayland_tiling
+    
     ../config/desktop/hyprland
     ../config/desktop/bars/waybar
 

@@ -50,18 +50,22 @@ in
   programs = {
     bash.enable = true;
 
+    delta.enable = true;
+
     git = {
       enable = true;
-      delta.enable = true;
-      userName = "adamzwakk";
-      userEmail = "adam@adamzwakk.com";
 
-      extraConfig = {
+      settings = {
         pull.rebase = true;
         init.defaultBranch = "main";
         rebase.autoStash = true;
 
         github.user = "adamzwakk";
+
+        user = {
+          name = "adamzwakk";
+          email = "adam@adamzwakk.com";
+        };
       };
       lfs.enable = true;
     };
