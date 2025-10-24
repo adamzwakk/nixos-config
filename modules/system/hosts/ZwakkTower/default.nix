@@ -17,10 +17,13 @@
     ../../services/networking/work-vpn.nix
 
     flake-inputs.lanzaboote.nixosModules.lanzaboote
+
+    flake-inputs.niri.nixosModules.niri
   ];
 
   lv426 = {
     desktop.hyprland.enable = true;
+    # desktop.niri.enable = true;
     services.greetd.enable = true;
     services.docker.enable = true;
   };

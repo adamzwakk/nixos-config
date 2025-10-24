@@ -1,4 +1,13 @@
 {
+    nixConfig = {
+      extra-substituters = [
+        "https://niri.cachix.org"
+      ];
+      extra-trusted-public-keys = [
+        "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+      ];
+    };
+
     inputs = {
         stable.url = "github:nixos/nixpkgs/release-25.05";
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -51,6 +60,11 @@
           url = "github:nix-community/lanzaboote/v0.4.2";
 
           # Optional but recommended to limit the size of your system closure.
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        niri = {
+          url = "github:sodiboo/niri-flake";
           inputs.nixpkgs.follows = "nixpkgs";
         };
 
