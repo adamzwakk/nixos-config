@@ -31,6 +31,8 @@ in
   ## Only include nm applet if we're actually using networkmanager
   ++ lib.optional nmEnabled networkmanagerapplet;
 
+  stylix.targets.waybar.enable = true;
+
   programs.waybar = {
     enable = true;
     settings = [

@@ -15,9 +15,10 @@ in{
 
     # ../config/apps/86Box
     ../config/gaming/doom
+    # ../config/gaming/heroic
     ../config/gaming/quake
     ../config/gaming/emulation
-    # ../config/gaming/heroic
+    ../config/gaming/sm64
 
     ../config/services/syncthing.nix
   ];
@@ -28,9 +29,6 @@ in{
     makemkv
     handbrake
     transmission-remote-gtk
-
-    flake-inputs.self.packages.${pkgs.system}.sm64coopdx.default
-    flake-inputs.self.packages.${pkgs.system}.sm64ex.default
   ];
 
   programs.waybar.style = lib.optionalString config.programs.waybar.enable ''

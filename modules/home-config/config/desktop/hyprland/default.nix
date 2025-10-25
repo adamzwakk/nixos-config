@@ -24,7 +24,6 @@ with lib;
         #wpaperd
         hyprprop        # Get hyprland window info
         hyprshot        # Screengrab
-        mpv             # Video Player
         
         kdePackages.kate  # Text Editor (overkill?)
         kdePackages.ark   # Archive Manager
@@ -36,16 +35,6 @@ with lib;
         package = pkgs.bibata-cursors;
         name = "Bibata-Modern-Classic";
         size = 20;
-      };
-
-      ## Easy status/disable hypridle through script/for waybar
-      file.".local/bin/hypridle/hypridle-status.sh" = {
-        source = "${flake-inputs.self}/scripts/hypridle/hypridle-status.sh";
-        executable = true;
-      };
-      file.".local/bin/hypridle/hypridle-toggle.sh" = {
-        source = "${flake-inputs.self}/scripts/hypridle/hypridle-toggle.sh";
-        executable = true;
       };
 
       file.".local/bin/mpv/open-url.sh" = {
@@ -174,7 +163,6 @@ with lib;
 
         windowrule = [ ## Use hyprprop to find window names/classes to targets
           "float,class:^(steam)$"
-          "float,class:^(sm64.*)$"
           "float,class:^(com.saivert.pwvucontrol)$"
           "float, initialClass:thunar, title:(File Operation Progress.*)"
           "float, initialClass:thunar, title:(Rename:.*)"
