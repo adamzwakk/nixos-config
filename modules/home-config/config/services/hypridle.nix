@@ -1,6 +1,7 @@
 {
   # https://mynixos.com/home-manager/option/services.hypridle.settings
   # https://0xda.de/blog/2024/07/framework-and-nixos-locking-customization/
+  
   services.hypridle = {
       enable = true;
       settings = {

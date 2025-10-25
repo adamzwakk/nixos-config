@@ -15,8 +15,16 @@
 
   lv426 = {
     desktop.hyprland.enable = true;
-    services.greetd.enable = true;
-    services.docker.enable = true;
+    services = {
+      hyprlock.enable = true;
+
+      greetd = {
+        enable = true;
+        default = "hyprland";
+      };
+      
+      docker.enable = true;
+    };
   };
 
   networking.hostName = "TKF13";

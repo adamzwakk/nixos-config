@@ -27,4 +27,6 @@ in
 
     enableBashIntegration = true;
   };
+
+  stylix.targets.yazi.enable = true;
 }

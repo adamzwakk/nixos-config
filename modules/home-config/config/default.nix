@@ -14,7 +14,9 @@ in
   imports = [
     flake-inputs.sops-nix.homeManagerModules.sops
     flake-inputs.stylix.homeModules.stylix
-    flake-inputs.nixvim.homeModules.nixvim
+    #flake-inputs.nixvim.homeModules.nixvim
+
+    ./desktop
 
     ./apps/bitwarden.nix
     ./apps/discord.nix
@@ -39,11 +41,17 @@ in
 
   stylix = {
     enable = true;
-    autoEnable = true;
+    autoEnable = false;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/brewer.yaml"; #https://tinted-theming.github.io/tinted-gallery/
     opacity = {
       terminal = 0.8;
       desktop = 0.5;
+    };
+    targets = {
+      alacritty.enable = true;
+      
+      gtk.enable = true;
+      qt.enable = true;
     };
   };
 

@@ -188,6 +188,10 @@ with lib;
     # Extra stuff not really needed for its own modules (for now...)
 
     stylix = {
+      targets.hyprland.enable = true;
+      targets.hyprland.hyprpaper.enable = true;
+      targets.hyprlock.enable = mkIf config.lv426.services.hyprlock.enable true;
+
       iconTheme = {
         enable = true;
         dark = "Dracula";

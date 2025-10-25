@@ -13,21 +13,25 @@ with lib;
     description = "Whether to enable greetd as the display manager";
   };
 
+  options.lv426.services.greetd.default = mkOption {
+    type = types.str;
+    default = "bash"; ## Always default to bash
+    description = "What default option for greetd";
+  };
+
   config = mkIf config.lv426.services.greetd.enable {
     services.greetd = {
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd hyprland";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd ${config.lv426.services.greetd.default}";
           user = "greeter";
         };
       };
     };
 
     environment.etc."greetd/environments".text = ''
-      hyprland
-      bash
-    '';
+      bash''; ## Always default to bash
 
     systemd.services.greetd.serviceConfig = {
       Type = "idle";

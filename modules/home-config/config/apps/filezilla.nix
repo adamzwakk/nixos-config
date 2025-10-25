@@ -15,4 +15,13 @@
       "float,class:^(filezilla)$"
     ];
   };
+
+  programs.niri.settings = {
+    window-rules = lib.mkAfter [
+      {
+        matches = [ { app-id = "filezilla"; } ] ;
+        open-floating = true;
+      }
+    ];
+  };
 }

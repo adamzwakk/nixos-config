@@ -1,11 +1,12 @@
 { flake-inputs, pkgs, lib, config, ... }:
-{
+let
+  wallpaper = "${flake-inputs.self}/_wallpapers/ultrawide_21x9/wallhaven-m9qj1m.jpg";
+in{
   imports = [
     ../config
 
     ../config/_bundles/wayland_tiling
     
-    ../config/desktop/hyprland
     ../config/desktop/bars/waybar
 
     ../config/apps/_browsers
@@ -43,13 +44,20 @@
   # https://wiki.hyprland.org/Configuring/Monitors/
   wayland.windowManager.hyprland.settings.monitor = ", highrr, auto, 1";
 
-  # services.wpaperd.settings = {
-  #   DP-2 = {
-  #     path = "${flake-inputs.self}_wallpapers/ultrawide_21x9";
-  #   };
-  # };
+  programs.niri.settings = {
+    spawn-at-startup = lib.mkAfter [
+      { argv = ["swww" "img" wallpaper]; }
+    ];
+    outputs.DP-2 = {
+      enable = true;
+      mode = {
+        width = 3440;
+        height = 1440;
+      };
+    };
+  };
 
-  stylix.image = "${flake-inputs.self}/_wallpapers/ultrawide_21x9/wallhaven-m9qj1m.jpg";
+  stylix.image = wallpaper;
 
   sops = {
     secrets."syncthing/ZwakkTower/key" = {};

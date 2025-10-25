@@ -1,12 +1,12 @@
 {
-    nixConfig = {
-      extra-substituters = [
-        "https://niri.cachix.org"
-      ];
-      extra-trusted-public-keys = [
-        "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-      ];
-    };
+    # nixConfig = {
+    #   extra-substituters = [
+    #     "https://niri.cachix.org"
+    #   ];
+    #   extra-trusted-public-keys = [
+    #     "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+    #   ];
+    # };
 
     inputs = {
         stable.url = "github:nixos/nixpkgs/release-25.05";
@@ -44,10 +44,10 @@
         };
 
         # An easier way to config nvim
-        nixvim = {
-            url = "github:nix-community/nixvim";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+        # nixvim = {
+        #     url = "github:nix-community/nixvim";
+        #     inputs.nixpkgs.follows = "nixpkgs";
+        # };
 
         # Helpful rust bundles
         rust-overlay = {
@@ -67,6 +67,8 @@
           url = "github:sodiboo/niri-flake";
           inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        swww.url = "github:LGFae/swww";
 
         # flake helpers
         utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
@@ -109,7 +111,6 @@
         directory = ./modules/packages;
       };
 
-      # TODO: Put this shell somewhere else?
       devShells.x86_64-linux.default =
         let
           inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook ;

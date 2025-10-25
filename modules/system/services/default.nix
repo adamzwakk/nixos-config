@@ -4,5 +4,6 @@
     ./displaymanager/sddm.nix
 
     ./docker.nix
+    ./hyprlock.nix
   ];
 }

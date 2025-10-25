@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  flake-inputs,
   ...
 }:
 with lib;
@@ -14,8 +15,13 @@ with lib;
   };
 
   config = mkIf config.lv426.desktop.niri.enable {
+    nixpkgs.overlays = [ flake-inputs.niri.overlays.niri ];
+
     programs = {
-      niri.enable = true;
+      niri = {
+        enable = true;
+        package = pkgs.niri-unstable;
+      };
       hyprlock.enable = true;
     };
 
@@ -35,6 +41,10 @@ with lib;
     xdg.portal = {
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      xdgOpenUsePortal = true;
     };
+
+    environment.etc."greetd/environments".text = lib.mkAfter ''
+      niri'';
   };
 }

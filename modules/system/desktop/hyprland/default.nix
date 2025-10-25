@@ -38,5 +38,8 @@ with lib;
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
+
+    environment.etc."greetd/environments".text = lib.mkAfter ''
+      hyprland'';
   };
 }

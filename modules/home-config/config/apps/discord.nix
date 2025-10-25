@@ -19,4 +19,16 @@
       "discord --start-minimized"
     ];
   };
+
+  programs.niri.settings = {
+    spawn-at-startup = lib.mkAfter [
+      { argv = ["discord" "--start-minimized"]; }
+    ];
+    window-rules = lib.mkAfter [
+      {
+        matches = [ { app-id = "discord"; } ] ;
+        open-floating = true;
+      }
+    ];
+  };
 }
