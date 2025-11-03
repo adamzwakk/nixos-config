@@ -1,4 +1,4 @@
-{ flake-inputs, pkgs, lib, config, ... }:
+{ flake-inputs, pkgs, lib, config, lv426, ... }:
 let
   wallpaper = "${flake-inputs.self}/_wallpapers/ultrawide_21x9/wallhaven-m9qj1m.jpg";
 in{
@@ -42,7 +42,7 @@ in{
   # https://wiki.hyprland.org/Configuring/Monitors/
   wayland.windowManager.hyprland.settings.monitor = ", highrr, auto, 1";
 
-  programs.niri.settings = {
+  programs.niri.settings = lib.mkIf lv426.desktop.niri.enable {
     spawn-at-startup = lib.mkAfter [
       { argv = ["swww" "img" wallpaper]; }
     ];

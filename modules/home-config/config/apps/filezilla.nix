@@ -16,12 +16,11 @@
     ];
   };
 
-  programs.niri.settings = {
-    window-rules = lib.mkAfter [
+  programs.niri.settings.window-rules = lib.mkIf  lv426.desktop.niri.enable(
+    lib.mkAfter [
       {
         matches = [ { app-id = "filezilla"; } ] ;
         open-floating = true;
       }
-    ];
-  };
+  ]);
 }

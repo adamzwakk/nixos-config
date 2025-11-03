@@ -61,6 +61,7 @@
 
           # Optional but recommended to limit the size of your system closure.
           inputs.nixpkgs.follows = "nixpkgs";
+          inputs.rust-overlay.follows = "rust-overlay"; # because of https://github.com/nix-community/lanzaboote/issues/485
         };
 
         niri = {
@@ -68,7 +69,7 @@
           inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        swww.url = "github:LGFae/swww";
+        # swww.url = "github:LGFae/swww";
 
         # flake helpers
         utils.url = "github:gytis-ivaskevicius/flake-utils-plus";

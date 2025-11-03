@@ -224,7 +224,8 @@ in
     "killall -q waybar;sleep .5 && ${pkgs.waybar}/bin/waybar"
   ];
 
-  programs.niri.settings.spawn-at-startup = lib.mkAfter [
-    { argv = ["waybar"]; }
-  ];
+  programs.niri.settings.spawn-at-startup = lib.mkIf lv426.desktop.niri.enable(
+    lib.mkAfter [
+      { argv = ["waybar"]; }
+  ]);
 }

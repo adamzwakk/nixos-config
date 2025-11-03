@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, autoPatchelfHook, gnutar, wrapGAppsHook, glibc, gtk3
+{ lib, stdenv, fetchurl, autoPatchelfHook, gnutar, wrapGAppsHook3, glibc, gtk3
 , makeDesktopItem }:
 
 let
@@ -25,7 +25,7 @@ in stdenv.mkDerivation rec {
     sha256 = "sha256-Nre27SY6KH3z7NLiIHx5TSklbY2GIA86RSDj+I1Ebeo=";
   };
 
-  nativeBuildInputs = [ autoPatchelfHook gnutar wrapGAppsHook ];
+  nativeBuildInputs = [ autoPatchelfHook gnutar wrapGAppsHook3 ];
   buildInputs = [ glibc gtk3 ];
 
   dontStrip = true;

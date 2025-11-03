@@ -37,16 +37,6 @@ with lib;
         size = 20;
       };
 
-      ## Easy status/disable hypridle through script/for waybar
-      file.".local/bin/hypridle/hypridle-status.sh" = {
-        source = "${flake-inputs.self}/scripts/hypridle/hypridle-status.sh";
-        executable = true;
-      };
-      file.".local/bin/hypridle/hypridle-toggle.sh" = {
-        source = "${flake-inputs.self}/scripts/hypridle/hypridle-toggle.sh";
-        executable = true;
-      };
-
       file.".local/bin/mpv/open-url.sh" = {
         source = "${flake-inputs.self}/scripts/mpv/open-url.sh";
         executable = true;
@@ -100,22 +90,8 @@ with lib;
           "XF86AudioPlay".action.spawn = ["playerctl" "play-pause"];
           "XF86AudioPrev".action.spawn = ["playerctl" "previous"];
         };
-
-        # windowrule = [ ## Use hyprprop to find window names/classes to targets
-        #   "float,class:^(steam)$"
-        #   "float,class:^(sm64.*)$"
-        #   "float,class:^(com.saivert.pwvucontrol)$"
-        #   "float, initialClass:thunar, title:(File Operation Progress.*)"
-        #   "float, initialClass:thunar, title:(Rename:.*)"
-        #   "suppressevent maximize, class:.*"
-        #   "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-        #   "idleinhibit fullscreen, class:.*"
-        # ];
       };
     };
-
-    # Extra stuff not really needed for its own modules (for now...)
-
 
     stylix = {
       targets.niri.enable = true;
