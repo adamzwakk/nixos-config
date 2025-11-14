@@ -14,7 +14,6 @@ in
 
     ../config/_bundles/wayland_tiling
     
-    ../config/desktop
     ../config/desktop/bars/waybar
 
     ../config/apps/_browsers
