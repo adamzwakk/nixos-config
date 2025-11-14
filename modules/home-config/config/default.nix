@@ -147,6 +147,7 @@ in
     shellAliases = {
       # Helpful aliases
       nr = "nh os switch -a --update ${config.home.homeDirectory}/pj/nixos-config"; ## Rebuild NixOS Config
+      rbwin = "systemctl reboot --boot-loader-entry=auto-windows"; ## Reboot into Windows
 
       # Replacemments
       top = "htop";

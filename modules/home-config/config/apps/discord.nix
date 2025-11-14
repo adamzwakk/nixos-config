@@ -19,15 +19,4 @@
       "discord --start-minimized"
     ];
   };
-
-  programs.niri.settings = lib.mkIf lv426.desktop.niri.enable {
-    exec-once = lib.mkAfter [
-      { argv = ["discord" "--start-minimized"]; }
-    ];
-    window-rules = lib.mkAfter [
-      {
-        matches = [ { app-id = "discord"; } ] ;
-        open-floating = true;
-      }];
-  };
 }

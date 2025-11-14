@@ -41,20 +41,6 @@ in{
 
   # https://wiki.hyprland.org/Configuring/Monitors/
   wayland.windowManager.hyprland.settings.monitor = ", highrr, auto, 1";
-
-  programs.niri.settings = lib.mkIf lv426.desktop.niri.enable {
-    spawn-at-startup = lib.mkAfter [
-      { argv = ["swww" "img" wallpaper]; }
-    ];
-    outputs.DP-2 = {
-      enable = true;
-      mode = {
-        width = 3440;
-        height = 1440;
-      };
-    };
-  };
-
   stylix.image = wallpaper;
 
   sops = {

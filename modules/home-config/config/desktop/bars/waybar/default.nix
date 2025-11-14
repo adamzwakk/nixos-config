@@ -11,17 +11,14 @@
 let  
   hypridleActive = config.services.hypridle.enable or false;
 
-  isNiri = lv426.desktop.niri.enable or false;
   isHyprland = lv426.desktop.hyprland.enable or false;
   
   workspaceModule = 
-    if isNiri then "niri/workspaces"
-    else if isHyprland then "hyprland/workspaces"
+    if isHyprland then "hyprland/workspaces"
     else "sway/workspaces";  # fallback
     
   windowModule =
-    if isNiri then "niri/window"
-    else if isHyprland then "hyprland/window"
+    if isHyprland then "hyprland/window"
     else "sway/window";
 in 
 {
@@ -223,9 +220,4 @@ in
   wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter [
     "killall -q waybar;sleep .5 && ${pkgs.waybar}/bin/waybar"
   ];
-
-  programs.niri.settings.spawn-at-startup = lib.mkIf lv426.desktop.niri.enable(
-    lib.mkAfter [
-      { argv = ["waybar"]; }
-  ]);
 }

@@ -19,8 +19,6 @@
     ../../services/networking/work-vpn.nix
 
     flake-inputs.lanzaboote.nixosModules.lanzaboote
-
-    flake-inputs.niri.nixosModules.niri
   ];
 
   lv426 = {

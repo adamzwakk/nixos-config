@@ -64,11 +64,6 @@
           inputs.rust-overlay.follows = "rust-overlay"; # because of https://github.com/nix-community/lanzaboote/issues/485
         };
 
-        niri = {
-          url = "github:sodiboo/niri-flake";
-          inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         # swww.url = "github:LGFae/swww";
 
         # flake helpers
