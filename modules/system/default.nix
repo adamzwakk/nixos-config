@@ -223,6 +223,11 @@ with lib;
     };
   };
 
+  programs.nano.nanorc = ''
+    set nowrap
+    set tabstospaces
+    set tabsize 4
+  '';
 
   system.stateVersion = "25.05";
 }
