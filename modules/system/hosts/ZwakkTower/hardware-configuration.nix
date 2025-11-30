@@ -28,6 +28,15 @@
     { device = "/dev/disk/by-uuid/42450461-4480-4b83-904a-36fc506b6102"; }
   ];
 
+  boot = {
+    blacklistedKernelModules = [ "r8169" ];
+
+    extraModulePackages = with config.boot.kernelPackages; [
+      r8125
+    ];
+    kernelModules = [ "r8125" ];
+  };
+
   hardware = {
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     
