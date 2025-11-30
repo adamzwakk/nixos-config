@@ -240,24 +240,16 @@
         "host": "gitlab.gnome.org",
         "lastModified": 1762869044,
         "narHash": "sha256-nwm/GJ2Syigf7VccLAZ66mFC8mZJFqpJmIxSGKl7+Ds=",
-        "host": "gitlab.gnome.org",
-        "lastModified": 1762869044,
-        "narHash": "sha256-nwm/GJ2Syigf7VccLAZ66mFC8mZJFqpJmIxSGKl7+Ds=",
         "owner": "GNOME",
         "repo": "gnome-shell",
-        "rev": "680e3d195a92203f28d4bf8c6e8bb537cc3ed4ad",
-        "type": "gitlab"
         "rev": "680e3d195a92203f28d4bf8c6e8bb537cc3ed4ad",
         "type": "gitlab"
       },
       "original": {
         "host": "gitlab.gnome.org",
-        "host": "gitlab.gnome.org",
         "owner": "GNOME",
         "ref": "gnome-49",
-        "ref": "gnome-49",
         "repo": "gnome-shell",
-        "type": "gitlab"
         "type": "gitlab"
       }
     },
@@ -365,11 +357,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764461310,
-        "narHash": "sha256-tRyE+bhTt+keNFvW38vE8m0Z67VxKUpUa18bpobK1LQ=",
+        "lastModified": 1764462757,
+        "narHash": "sha256-vVsZ1WkiplNyDIllxAdG3uX20XNkrt8ZdypW488lquA=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "f3ade40a424179bb584f409e18aff6cc9b20d780",
+        "rev": "0b227c767410d7456aba676ecae088c2193bfa23",
         "type": "github"
       },
       "original": {
