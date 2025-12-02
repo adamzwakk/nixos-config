@@ -169,9 +169,7 @@ with lib;
   networking = {
     firewall.enable = true;
 
-    extraHosts = lib.mkAfter ''
-      0.0.0.0 apresolve.spotify.com
-    '';
+    hosts."0.0.0.0" = ["apresolve.spotify.com"];
   };
 
   environment = {
@@ -229,5 +227,5 @@ with lib;
     set tabsize 4
   '';
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }
