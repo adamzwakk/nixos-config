@@ -188,6 +188,7 @@ with lib;
       p7zip
       fzf                  # Fuzzy Finder
       jq                   # Better JSON parsing
+      bc
 
       htop
       nvtopPackages.amd    # GPU Top for AMD
