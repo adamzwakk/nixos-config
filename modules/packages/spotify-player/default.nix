@@ -8,6 +8,9 @@
   cmake,
   installShellFiles,
   writableTmpDirAsHomeHook,
+  autoconf,
+  automake,
+  libtool,
 
   # deps for audio backends
   alsa-lib,
@@ -50,16 +53,16 @@ assert lib.assertOneOf "withAudioBackend" withAudioBackend [
 
 rustPlatform.buildRustPackage rec {
   pname = "spotify-player";
-  version = "0.21.2";
+  version = "unstable";
 
   src = fetchFromGitHub {
     owner = "aome510";
     repo = "spotify-player";
-    tag = "v${version}";
-    hash = "sha256-2LOsFcFZRdgH4TqtmVDqf8dxsPwZVQKsQbjyuDHwP/4=";
+    rev = "master";
+    hash = "sha256-0GE1KlemW0cx/z/sZ7RnNgwQI7a/dHj+xiStdoAgyIo=";
   };
 
-  cargoHash = "sha256-JgPf68KpRE8z+2webU99cR0+6xmaplcVwgFcgvHiwrs=";
+  cargoHash = "sha256-mJSFSUeVEBd1KohFG1/UPofnOHzVl5o4IayuvbRJUBM=";
 
   nativeBuildInputs = [
     pkg-config
@@ -69,6 +72,7 @@ rustPlatform.buildRustPackage rec {
     # Tries to access $HOME when installing shell files, and on Darwin
     writableTmpDirAsHomeHook
   ]
+  ++ lib.optionals withSixel [ autoconf automake libtool ]
   ++ lib.optionals stdenv.hostPlatform.isDarwin [
     makeBinaryWrapper
   ];
@@ -132,7 +136,7 @@ rustPlatform.buildRustPackage rec {
   meta = {
     description = "Terminal spotify player that has feature parity with the official client";
     homepage = "https://github.com/aome510/spotify-player";
-    changelog = "https://github.com/aome510/spotify-player/releases/tag/v${version}";
+    changelog = "https://github.com/aome510/spotify-player/commits/master";
     mainProgram = "spotify_player";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [

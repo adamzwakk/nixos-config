@@ -14,9 +14,11 @@
 
     ../../apps/steam.nix
     ../../apps/vuescan.nix
+    # ../../apps/vr.nix
 
     ../../services/networking/networkmanager.nix
     ../../services/networking/work-vpn.nix
+    # ../../services/networking/avahi.nix
 
     flake-inputs.lanzaboote.nixosModules.lanzaboote
   ];

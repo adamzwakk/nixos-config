@@ -65,6 +65,7 @@
         };
 
         # swww.url = "github:LGFae/swww";
+        spotify-player.url = "github:aome510/spotify-player";
 
         # flake helpers
         utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
