@@ -24,6 +24,6 @@ in
   };
 
   wayland.windowManager.hyprland.settings.windowrule = lib.mkAfter [
-    "float,class:^(net.86box.86Box)$"
+    "float on,match:class ^(net.86box.86Box)$"
   ];
 }

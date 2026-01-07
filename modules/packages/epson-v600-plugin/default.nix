@@ -15,6 +15,13 @@ in stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ autoPatchelfHook rpm ];
 
+  configureFlags = [
+    "--enable-dependency-reduction"
+    "--disable-frontend"
+    # fix build with gcc 15
+    "CFLAGS=-std=gnu17"
+  ];
+
   installPhase = ''
     cd plugins
     ${rpm}/bin/rpm2cpio iscan-plugin-gt-x820-*.x86_64.rpm | ${cpio}/bin/cpio -idmv

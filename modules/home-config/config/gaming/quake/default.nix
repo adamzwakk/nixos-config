@@ -24,6 +24,6 @@
   };
 
   wayland.windowManager.hyprland.settings.windowrule = lib.mkAfter [
-    "float,class:^(ironwail)$"
+    "float on,match:class ^(ironwail)$"
   ];
 }

@@ -162,13 +162,13 @@ with lib;
         ];
 
         windowrule = [ ## Use hyprprop to find window names/classes to targets
-          "float,class:^(steam)$"
-          "float,class:^(com.saivert.pwvucontrol)$"
-          "float, initialClass:thunar, title:(File Operation Progress.*)"
-          "float, initialClass:thunar, title:(Rename:.*)"
-          "suppressevent maximize, class:.*"
-          "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-          "idleinhibit fullscreen, class:.*"
+          "float on,match:class ^(steam)$"
+          "float on,match:class ^(com.saivert.pwvucontrol)$"
+          "float on, match:initial_class thunar, match:title (File Operation Progress.*)"
+          "float on, match:initial_class thunar, match:title (Rename:.*)"
+          #"suppressevent maximize, class:.*"
+          "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
+          "idle_inhibit fullscreen, match:class .*"
         ];
 
         workspace = [
@@ -195,7 +195,7 @@ with lib;
       targets.hyprland.hyprpaper.enable = true;
       targets.hyprlock.enable = mkIf config.lv426.services.hyprlock.enable true;
 
-      iconTheme = {
+      icons = {
         enable = true;
         dark = "Dracula";
         package = pkgs.dracula-icon-theme;

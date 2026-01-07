@@ -12,7 +12,7 @@
 
   wayland.windowManager.hyprland.settings = lib.mkIf lv426.desktop.hyprland.enable {
     windowrule = lib.mkAfter [
-      "float,class:^(filezilla)$"
+      "float on,match:class ^(filezilla)$"
     ];
   };
 }

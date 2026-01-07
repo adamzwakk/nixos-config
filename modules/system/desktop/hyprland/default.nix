@@ -31,7 +31,7 @@ with lib;
       libnotify
       pwvucontrol
       udiskie
-      xfce.thunar
+      thunar
     ];
 
     xdg.portal = {

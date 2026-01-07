@@ -14,6 +14,7 @@ with lib;
 
     ./desktop
     ./services
+    ./apps/android.nix ## TODO: Make this smarter to ignore
   ];
 
   nix = {
@@ -103,7 +104,7 @@ with lib;
         ++ lib.optionals config.networking.networkmanager.enable [
           "networkmanager"
         ]
-        ++ lib.optionals config.programs.adb.enable [
+        ++ lib.optionals config.lv426.android.enable [
           "adbusers"
         ]
         ++ lib.optionals config.virtualisation.docker.enable [

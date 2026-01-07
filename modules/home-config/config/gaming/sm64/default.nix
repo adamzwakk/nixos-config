@@ -14,6 +14,6 @@
   ];
 
   wayland.windowManager.hyprland.settings.windowrule = lib.mkAfter [
-    "float,class:^(sm64.*)$"
+    "float on,match:class ^(sm64.*)$"
   ];
 }

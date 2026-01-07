@@ -24,7 +24,7 @@
 }:
 let 
   pname = "sm64coopdx";
-  version = "v1.3.2";
+  version = "v1.4.1";
   desktopItem = makeDesktopItem {
     name = "SM64 Coop Deluxe";
     desktopName = "SM64 Coop Deluxe";
@@ -45,8 +45,8 @@ in stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "coop-deluxe";
     repo = "sm64coopdx";
-    rev = "v1.3.2";
-    hash = "sha256-FHH3+pGowkT8asDmU9qxPNDKy4VPKlkA0X7e4gnX9KY=";
+    rev = "v1.4.1";
+    hash = "sha256-ct7X6LCitk1QID00guvYOMfIwnZccMeXqXwUB3ioKh8=";
   };
 
   buildInputs = [
