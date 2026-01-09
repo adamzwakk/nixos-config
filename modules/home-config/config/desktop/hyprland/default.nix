@@ -190,6 +190,10 @@ with lib;
 
     # Extra stuff not really needed for its own modules (for now...)
 
+    services.hyprpaper.settings = {
+      splash = false;
+    };
+
     stylix = {
       targets.hyprland.enable = true;
       targets.hyprland.hyprpaper.enable = true;
