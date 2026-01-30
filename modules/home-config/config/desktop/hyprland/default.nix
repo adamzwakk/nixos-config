@@ -169,21 +169,17 @@ with lib;
           #"suppressevent maximize, class:.*"
           "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
           "idle_inhibit fullscreen, match:class .*"
+
+          "border_size 0, match:float 0, match:workspace w[tv1]"
+          "rounding 0, match:float 0, match:workspace w[tv1]"
+          "border_size 0, match:float 0, match:workspace f[1]"
+          "rounding 0, match:float 0, match:workspace f[1]"
         ];
 
         workspace = [
           "w[t1], gapsout:0, gapsin:0"
           "w[tg1], gapsout:0, gapsin:0"
           "f[1], gapsout:0, gapsin:0"
-        ];
-
-        windowrulev2 = [
-          "bordersize 0, floating:0, onworkspace:w[t1]"
-          "rounding 0, floating:0, onworkspace:w[t1]"
-          "bordersize 0, floating:0, onworkspace:w[tg1]"
-          "rounding 0, floating:0, onworkspace:w[tg1]"
-          "bordersize 0, floating:0, onworkspace:f[1]"
-          "rounding 0, floating:0, onworkspace:f[1]"
         ];
       };
     };
