@@ -40,6 +40,6 @@ with lib;
     };
 
     environment.etc."greetd/environments".text = lib.mkAfter ''
-      hyprland'';
+      start-hyprland'';
   };
 }
