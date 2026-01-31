@@ -20,7 +20,7 @@
 
       greetd = {
         enable = true;
-        default = "hyprland";
+        default = "start-hyprland";
       };
       
       docker.enable = true;
