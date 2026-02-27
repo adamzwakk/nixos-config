@@ -26,7 +26,7 @@ in{
   home.packages = with pkgs; [
     hugin
     kdePackages.kdenlive
-    makemkv
+    # makemkv
     handbrake
     transmission-remote-gtk
   ];

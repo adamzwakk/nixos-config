@@ -57,7 +57,7 @@ with lib;
     config.allowUnfree = true;
     overlays = [ 
       flake-inputs.nur.overlays.default
-      flake-inputs.rust-overlay.overlays.default
+      # flake-inputs.rust-overlay.overlays.default
     ];
   };
 
@@ -114,7 +114,7 @@ with lib;
     };
   };
 
-  documentation.man.generateCaches = true;
+  documentation.man.cache.enable = true;
 
   fileSystems."/boot".options = [ "fmask=0077" "dmask=0077" ];
 

@@ -50,18 +50,18 @@
         # };
 
         # Helpful rust bundles
-        rust-overlay = {
-            url = "github:oxalica/rust-overlay";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+        # rust-overlay = {
+        #     url = "github:oxalica/rust-overlay";
+        #     inputs.nixpkgs.follows = "nixpkgs";
+        # };
 
         # Secure Boot
         lanzaboote = {
-          url = "github:nix-community/lanzaboote/v0.4.2";
+          url = "github:nix-community/lanzaboote/v1.0.0";
 
           # Optional but recommended to limit the size of your system closure.
           inputs.nixpkgs.follows = "nixpkgs";
-          inputs.rust-overlay.follows = "rust-overlay"; # because of https://github.com/nix-community/lanzaboote/issues/485
+          # inputs.rust-overlay.follows = "rust-overlay"; # because of https://github.com/nix-community/lanzaboote/issues/485
         };
 
         # swww.url = "github:LGFae/swww";
@@ -71,11 +71,9 @@
         utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     };
 
-    outputs = { self, nixpkgs, sops-nix, rust-overlay, nixos-hardware, ... }@inputs: let
+    outputs = { self, nixpkgs, sops-nix, nixos-hardware, ... }@inputs: let
       system = "x86_64-linux";
-      overlays = [ 
-        (import rust-overlay)
-      ];
+      overlays = [];
       pkgs = import nixpkgs { 
         inherit system overlays;  
         config.allowUnfree = true;
@@ -126,15 +124,15 @@
           nativeBuildInputs = [ sops-import-keys-hook ];
         };
       
-      devShells.x86_64-linux.rust =
-        nixpkgs.legacyPackages.x86_64-linux.mkShell {
-          packages = with pkgs; [
-            (rust-bin.stable.latest.default.override {
-              extensions = ["rust-src"];
-            })
-            rustup 
-            gcc
-          ];
-        };
+      # devShells.x86_64-linux.rust =
+      #   nixpkgs.legacyPackages.x86_64-linux.mkShell {
+      #     packages = with pkgs; [
+      #       (rust-bin.stable.latest.default.override {
+      #         extensions = ["rust-src"];
+      #       })
+      #       rustup 
+      #       gcc
+      #     ];
+      #   };
     };
 }
