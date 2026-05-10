@@ -28,6 +28,8 @@ with lib.${namespace};
     programs.firefox = {
       enable = true;
 
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
+
       profiles = {
         "default" = {
           id = 0;
@@ -77,47 +79,47 @@ with lib.${namespace};
             "app.normandy.enabled" = false;
             "app.shield.optoutstudies.enabled" = false;
 
-            "extensions.pocket.enabled" = lock-false;
+            "extensions.pocket.enabled" = false;
             "browser.policies.runOncePerModification.displayBookmarksToolbar" = "newtab";
             "browser.contentblocking.category" = "standard"; # "strict"
 
-            "browser.shell.checkDefaultBrowser" = lock-false;
+            "browser.shell.checkDefaultBrowser" = false;
 
-            "browser.newtabpage.activity-stream.showSponsored" = lock-false;
-            "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
-            "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
+            "browser.newtabpage.activity-stream.showSponsored" = false;
+            "browser.newtabpage.activity-stream.system.showSponsored" = false;
+            "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
 
             # disable new data submission
-            "datareporting.policy.dataSubmissionEnabled" = lock-false;
+            "datareporting.policy.dataSubmissionEnabled" = false;
             # disable Health Reports
-            "datareporting.healthreport.uploadEnabled" = lock-false;
+            "datareporting.healthreport.uploadEnabled" = false;
             # 0332: disable telemetry
 
             "privacy.donottrackheader.enabled" = true;
             "privacy.trackingprotection.enabled" = true;
             "privacy.trackingprotection.socialtracking.enabled" = true;
 
-            "toolkit.telemetry.unified" = lock-false;
-            "toolkit.telemetry.enabled" = lock-false;
+            "toolkit.telemetry.unified" = false;
+            "toolkit.telemetry.enabled" = false;
             "toolkit.telemetry.server" = "data:,";
-            "toolkit.telemetry.archive.enabled" = lock-false;
-            "toolkit.telemetry.newProfilePing.enabled" = lock-false;
-            "toolkit.telemetry.shutdownPingSender.enabled" = lock-false;
-            "toolkit.telemetry.updatePing.enabled" = lock-false;
-            "toolkit.telemetry.bhrPing.enabled" = lock-false;
-            "toolkit.telemetry.firstShutdownPing.enabled" = lock-false;
+            "toolkit.telemetry.archive.enabled" = false;
+            "toolkit.telemetry.newProfilePing.enabled" = false;
+            "toolkit.telemetry.shutdownPingSender.enabled" = false;
+            "toolkit.telemetry.updatePing.enabled" = false;
+            "toolkit.telemetry.bhrPing.enabled" = false;
+            "toolkit.telemetry.firstShutdownPing.enabled" = false;
             # disable Telemetry Coverage
             "toolkit.telemetry.coverage.opt-out" = true; # [HIDDEN PREF]
             "toolkit.coverage.opt-out" = true; # [FF64+] [HIDDEN PREF]
             "toolkit.coverage.endpoint.base" = "";
             # disable PingCentre telemetry (used in several System Add-ons) [FF57+]
-            "browser.ping-centre.telemetry" = lock-false;
+            "browser.ping-centre.telemetry" = false;
             # disable Firefox Home (Activity Stream) telemetry
-            "browser.newtabpage.activity-stream.feeds.telemetry" = lock-false;
-            "browser.newtabpage.activity-stream.telemetry" = lock-false;
-            "toolkit.telemetry.reportingpolicy.firstRun" = lock-false;
-            "toolkit.telemetry.shutdownPingSender.enabledFirstsession" = lock-false;
-            "browser.vpn_promo.enabled" = lock-false;
+            "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+            "browser.newtabpage.activity-stream.telemetry" = false;
+            "toolkit.telemetry.reportingpolicy.firstRun" = false;
+            "toolkit.telemetry.shutdownPingSender.enabledFirstsession" = false;
+            "browser.vpn_promo.enabled" = false;
           };
         };
       };
