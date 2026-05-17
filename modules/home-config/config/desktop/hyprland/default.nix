@@ -46,6 +46,7 @@ with lib;
     ## sorta basing off https://github.com/dc-tec/nixos-config/blob/main/modules/graphical/desktop/hyprland/default.nix
     wayland.windowManager.hyprland = {
       enable = true;
+      configType = "hyprlang";
       settings = {
         exec-once = [
           "hyprctl setcursor Bibata-Modern-Classic 20"
