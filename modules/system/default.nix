@@ -209,6 +209,7 @@ with lib;
 
       ## Dev stuff
       gnumake
+      gcc
       glibc     
       glibcInfo # glibc manpages (thank you https://sourcery.zone/articles/2025/03/c-man-pages-in-nixos/)
       man-pages
