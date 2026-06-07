@@ -73,9 +73,8 @@
 
     outputs = { self, nixpkgs, sops-nix, nixos-hardware, ... }@inputs: let
       system = "x86_64-linux";
-      overlays = [];
       pkgs = import nixpkgs { 
-        inherit system overlays;  
+        inherit system;
         config.allowUnfree = true;
       };
     in {

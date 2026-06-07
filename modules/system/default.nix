@@ -56,8 +56,13 @@ with lib;
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [ 
+      (import ../../overlays { inputs = flake-inputs; }).modifications
       flake-inputs.nur.overlays.default
       # flake-inputs.rust-overlay.overlays.default
+    ];
+
+    config.permittedInsecurePackages = [ 
+      "electron-39.8.10" 
     ];
   };
 
@@ -114,7 +119,10 @@ with lib;
     };
   };
 
-  documentation.man.cache.enable = true;
+  documentation = {
+    dev.enable = true;
+    man.cache.enable = true;
+  };
 
   fileSystems."/boot".options = [ "fmask=0077" "dmask=0077" ];
 
@@ -177,7 +185,6 @@ with lib;
     systemPackages = with pkgs; [
       nano
       git
-      gnumake
       openssl
       nh
       wget
@@ -199,6 +206,13 @@ with lib;
       ethtool
       pciutils # lspci
       usbutils # lsusb
+
+      ## Dev stuff
+      gnumake
+      glibc     
+      glibcInfo # glibc manpages (thank you https://sourcery.zone/articles/2025/03/c-man-pages-in-nixos/)
+      man-pages
+      just
     ];
 
     sessionVariables = {

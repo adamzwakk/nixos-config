@@ -45,8 +45,8 @@ in stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "coop-deluxe";
     repo = "sm64coopdx";
-    rev = "v1.4.1";
-    hash = "sha256-ct7X6LCitk1QID00guvYOMfIwnZccMeXqXwUB3ioKh8=";
+    rev = "v1.5.1";
+    hash = "sha256-AadjXTjUBnSbHP8tRHKvWotW58s5tMUJGtxbdPxYg6E=";
   };
 
   buildInputs = [
