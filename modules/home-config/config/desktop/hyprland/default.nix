@@ -30,6 +30,7 @@ with lib;
       ];
 
       pointerCursor = {
+        enable = true;
         gtk.enable = true;
         hyprcursor.enable = true;
         package = pkgs.bibata-cursors;
