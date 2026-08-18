@@ -47,12 +47,12 @@ with lib;
     ## sorta basing off https://github.com/dc-tec/nixos-config/blob/main/modules/graphical/desktop/hyprland/default.nix
     wayland.windowManager.hyprland = {
       enable = true;
-      configType = "hyprlang";
+      configType = "hyprlang"; # TODO: Move to lua soon dummy
       settings = {
         exec-once = [
-          "hyprctl setcursor Bibata-Modern-Classic 20"
+          # "hyprctl setcursor Bibata-Modern-Classic 20"
           #"gnome-keyring-daemon --start --daemonize"
-          "export SSH_AUTH_SOCK"
+          # "export SSH_AUTH_SOCK"
           #"${pkgs.wpaperd}/bin/wpaperd -d"
           "udiskie"
         ]

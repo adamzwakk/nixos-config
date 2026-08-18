@@ -105,6 +105,8 @@ in
     };
   };
 
+  services.ssh-agent.enable = true;
+  
   services.syncthing.settings.folders = {
     "ccjci-yo3ne" = {
       id = "ccjci-yo3ne";
