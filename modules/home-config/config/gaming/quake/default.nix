@@ -22,8 +22,4 @@
     categories = [ "Game" ];
     terminal = false;
   };
-
-  wayland.windowManager.hyprland.settings.windowrule = lib.mkAfter [
-    "float on,match:class ^(ironwail)$"
-  ];
 }

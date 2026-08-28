@@ -8,6 +8,51 @@
   flake-inputs,
   ...
 }:
+let  
+  lua = lib.generators.mkLuaInline;
+  dsp = {
+    exec = cmd: lua ''hl.dsp.exec_cmd("${cmd}")'';
+    close = lua "hl.dsp.window.close()";
+    exit = lua "hl.dsp.exit()";
+    float = lua ''hl.dsp.window.float({ action = "toggle" })'';
+    fullscreen = lua "hl.dsp.window.fullscreen()";
+    pseudo = lua "hl.dsp.window.pseudo()";
+    layout = msg: lua ''hl.dsp.layout("${msg}")'';
+    focus = dir: lua ''hl.dsp.focus({ direction = "${dir}" })'';
+    swap = dir: lua ''hl.dsp.window.swap({ direction = "${dir}" })'';
+    toggleSpecial = name: lua ''hl.dsp.workspace.toggle_special("${name}")'';
+    moveToSpecial = name: lua ''hl.dsp.window.move({ workspace = "special:${name}" })'';
+    focusWorkspace = ws: lua ''hl.dsp.focus({ workspace = "${toString ws}" })'';
+    moveToWorkspace = ws: lua ''hl.dsp.window.move({ workspace = "${toString ws}" })'';
+    drag = lua "hl.dsp.window.drag()";
+    resize = lua "hl.dsp.window.resize()";
+    sendshortcut = mod: key: lua ''hl.dsp.send_shortcut({ mods = "${mod}", key = "${key}" })'';
+    pin = lua "hl.dsp.window.pin()";
+  };
+
+  bind = keys: dispatcher: { _args = [keys dispatcher]; };
+  bindOpts = keys: dispatcher: opts: { _args = [keys dispatcher opts]; };
+
+  workspaceBinds = lib.concatMap (i:
+    let key = toString (lib.mod i 10);
+    in [
+      (bind "SUPER + ${key}" (dsp.focusWorkspace i))
+      (bind "SUPER + SHIFT + ${key}" (dsp.moveToWorkspace i))
+    ]
+  ) (lib.range 1 10);
+
+  startupPrograms = [
+    "udiskie"
+    "killall -q waybar; sleep 0.5; ${pkgs.waybar}/bin/waybar"
+  ]
+  ++ lib.optionals nmEnabled [ ## Only include nm applet if we're actually using networkmanager
+    "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
+  ];
+
+  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    ${lib.concatStringsSep "\n" (map (prog: "(${prog}) &") startupPrograms)}
+  '';
+in
 with lib;
 {
   config = mkIf lv426.desktop.hyprland.enable {
@@ -45,144 +90,205 @@ with lib;
     };
 
     ## sorta basing off https://github.com/dc-tec/nixos-config/blob/main/modules/graphical/desktop/hyprland/default.nix
+    ## https://www.reddit.com/r/NixOS/comments/1tg9cse/hyprland_hm_lua_config_migration/
     wayland.windowManager.hyprland = {
       enable = true;
-      configType = "hyprlang"; # TODO: Move to lua soon dummy
+      configType = "lua";
       settings = {
-        exec-once = [
-          # "hyprctl setcursor Bibata-Modern-Classic 20"
-          #"gnome-keyring-daemon --start --daemonize"
-          # "export SSH_AUTH_SOCK"
-          #"${pkgs.wpaperd}/bin/wpaperd -d"
-          "udiskie"
-        ]
-        ## Only include nm applet if we're actually using networkmanager
-        ++ lib.optionals nmEnabled [
-          "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
-        ];
+        config = {
+          general = {
+            gaps_in = 5;
+            gaps_out = 5;
+            border_size = 1;
+            col = {
+              active_border = "rgb(e1e1e1)";
+              inactive_border = "rgb(151515)";
+            };
+          };
 
-        "$mod" = "SUPER";
-        "$terminal" = "alacritty";
-        "$menu" = "rofi -show drun";
-
-        animations = {
-          enabled = true;
-          bezier = [
-            "linear, 0, 0, 1, 1"
-            "md3_standard, 0.2, 0, 0, 1"
-            "md3_decel, 0.05, 0.7, 0.1, 1"
-            "md3_accel, 0.3, 0, 0.8, 0.15"
-            "overshot, 0.05, 0.9, 0.1, 1.1"
-            "crazyshot, 0.1, 1.5, 0.76, 0.92"
-            "hyprnostretch, 0.05, 0.9, 0.1, 1.0"
-            "menu_decel, 0.1, 1, 0, 1"
-            "menu_accel, 0.38, 0.04, 1, 0.07"
-            "easeInOutCirc, 0.85, 0, 0.15, 1"
-            "easeOutCirc, 0, 0.55, 0.45, 1"
-            "easeOutExpo, 0.16, 1, 0.3, 1"
-            "softAcDecel, 0.26, 0.26, 0.15, 1"
-            "md2, 0.4, 0, 0.2, 1"
-          ];
-          animation = [
-            "windows, 1, 3, md3_decel, popin 60%"
-            "windowsIn, 1, 3, md3_decel, popin 60%"
-            "windowsOut, 1, 3, md3_accel, popin 60%"
-            "border, 1, 10, default"
-            "fade, 1, 3, md3_decel"
-            "layersIn, 1, 3, menu_decel, slide"
-            "layersOut, 1, 1.6, menu_accel"
-            "fadeLayersIn, 1, 2, menu_decel"
-            "fadeLayersOut, 1, 4.5, menu_accel"
-            "workspaces, 1, 7, menu_decel, slide"
-            "specialWorkspace, 1, 3, md3_decel, slidevert"
-          ];
+          animations = {
+            enabled = true;
+          };
         };
 
+        curve = [
+          {_args = [
+            "linear"
+            {
+              type = "bezier";
+              points = lua "{ {0, 0}, {1, 1} }";
+            }
+          ];}
+          {_args = [
+            "md3_accel"
+            {
+              type = "bezier";
+              points = lua "{ {0.3, 0}, {0.8, 0.15} }";
+            }
+          ];}
+          {_args = [
+            "md3_decel"
+            {
+              type = "bezier";
+              points = lua "{ {0.05, 0.7}, {0.1, 1} }";
+            }
+          ];}
+          {_args = [
+            "menu_accel"
+            {
+              type = "bezier";
+              points = lua "{ {0.38, 0.04}, {1, 0.07} }";
+            }
+          ];}
+          {_args = [
+            "menu_decel"
+            {
+              type = "bezier";
+              points = lua "{ {0.1, 1}, {0, 1} }";
+            }
+          ];}
+        ];
+
+        animation = [
+          { leaf = "windows"; enabled = true; speed = 3; bezier = "md3_decel"; style = "popin 60%";  }
+          { leaf = "windowsIn"; enabled = true; speed = 3; bezier = "md3_decel"; style = "popin 60%"; }
+          { leaf = "windowsOut"; enabled = true; speed = 3; bezier = "md3_accel"; style = "popin 60%"; }
+          { leaf = "border"; enabled = true; speed = 10; bezier = "default"; }
+          { leaf = "fade"; enabled = true; speed = 3; bezier = "default"; }
+          { leaf = "layersIn"; enabled = true; speed = 3; bezier = "menu_decel"; style = "slide"; }
+          { leaf = "layersOut"; enabled = true; speed = 1.6; bezier = "md3_accel"; }
+          { leaf = "fadeLayersIn"; enabled = true; speed = 3; bezier = "menu_decel"; }
+          { leaf = "fadeLayersOut"; enabled = true; speed = 1.6; bezier = "md3_accel"; }          
+          { leaf = "workspaces"; enabled = true; speed = 3; bezier = "menu_decel"; style = "slide"; }
+        ];
+
+        window_rule = [
+          ## FLOATS
+          {
+            match = { class = "^(steam)$"; };
+            float = true;
+          }
+          {
+            match = { class = "^(discord)$"; };
+            float = true;
+          }
+          {
+            match = { class = "^(Bitwarden)$"; };
+            float = true;
+          }
+          {
+            match = { class = "^(filezilla)$"; };
+            float = true;
+          }
+          {
+            match = { class = "^(zdl)$"; };
+            float = true;
+          }
+          {
+            match = { class = "^(uzdoom)$"; };
+            float = true;
+          }
+          {
+            match = { class = "^(ironwail)$"; };
+            float = true;
+          }
+          {
+            match = { class = "^(sm64.*)$"; };
+            float = true;
+          }
+          {
+            match = { class = "^(com.saivert.pwvucontrol)$"; };
+            float = true;
+          }
+          {
+            match = {
+              initial_class = "thunar";
+              title = "(File Operation Progress.*)";
+            };
+            float = true;
+          }
+          {
+            match = {
+              initial_class = "thunar";
+              title = "(Rename.*)";
+            };
+            float = true;
+          }
+
+          # OVERRIDES
+          {
+            match = {
+              class = "^$";
+              title = "^$";
+              xwayland = 1;
+              float = 1;
+              fullscreen = 0;
+              pin = 0;
+            };
+            no_focus = true;
+          }
+          {
+            match = {
+              class = ".*";
+            };
+            idle_inhibit = "fullscreen";
+          }
+
+        ];
+
+
+        on = [
+          {
+            _args = [
+              "hyprland.start"
+              (lua ''
+                function()
+                  hl.exec_cmd("${startupScript}/bin/start")
+                end
+              '')
+            ];
+          }
+        ];
+
         bind = [
-          # main hotkeys
-          "$mod SHIFT, E, exit,"
-          "$mod SHIFT, Q, killactive,"
-          "$mod SHIFT, l, exec, hyprlock"
-          "$mod, J, layoutmsg, orientationnext"
+          ## APP LAUNCHER
+          (bind "SUPER + RETURN" (dsp.exec "alacritty"))
+          (bind "SUPER + D" (dsp.exec "rofi -show drun"))
+          (bind "SUPER + E" (dsp.exec "thunar"))
+          (bind "SUPER + SHIFT + S" (dsp.exec "hyprshot -m region --clipboard-only"))
+          (bind "SUPER + SHIFT + M" (dsp.exec "${config.home.homeDirectory}/.local/bin/mpv/open-url.sh"))
 
-          # Move Focus
-          "$mod, left, movefocus, l"
-          "$mod, right, movefocus, r"
-          "$mod, up, movefocus, u"
-          "$mod, down, movefocus, d"
+          # HYPRLAND
+          (bind "SUPER + SHIFT + Q" dsp.close)
+          (bind "SUPER + SHIFT + L" (dsp.exec "hyprlock"))
+          (bind "SUPER + SHIFT + E" dsp.exit)
+          (bind "SUPER + V" dsp.float)
+          (bind "SUPER + left" (dsp.focus "left"))
+          (bind "SUPER + right" (dsp.focus "right"))
+          (bind "SUPER + up" (dsp.focus "up"))
+          (bind "SUPER + down" (dsp.focus "down"))
+          (bind "SUPER + SHIFT + A" dsp.pin)
 
-          "$mod, V, togglefloating,"
-          "$mod SHIFT, A, pin,"
+          # Volume keys
+          (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+") { locked = true; repeating = true; })
+          (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") { locked = true; repeating = true; })
+          (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") { locked = true; })
+          (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle") { locked = true; })
 
-          # Move window to workspace
-          "$mod SHIFT, 1, movetoworkspace, 1"
-          "$mod SHIFT, 2, movetoworkspace, 2"
-          "$mod SHIFT, 3, movetoworkspace, 3"
-          "$mod SHIFT, 4, movetoworkspace, 4"
-          "$mod SHIFT, 5, movetoworkspace, 5"
-          "$mod SHIFT, 6, movetoworkspace, 6"
+          ## Monitor Brightness
+          (bindOpts "XF86MonBrightnessUp" (dsp.exec "brightnessctl s 5%+s") { locked = true; })
+          (bindOpts "XF86MonBrightnessDown" (dsp.exec "brightnessctl s 5%-s") { locked = true; })
 
-          # app hotkeys
-          "$mod, Return, exec, $terminal"
-          "$mod, D, exec, $menu"
-          "$mod SHIFT, S, exec, hyprshot -m region --clipboard-only" ## Screenshot util
-          "$mod SHIFT, M, exec, ${config.home.homeDirectory}/.local/bin/mpv/open-url.sh" ## Open clipboard to mpv
-          "$mod, E, exec, thunar"
+          ## Audio Controls
+          (bindOpts "XF86AudioNext" (dsp.exec "playerctl next") { locked = true; })
+          (bindOpts "XF86AudioPause" (dsp.exec "playerctl play-pause") { locked = true; })
+          (bindOpts "XF86AudioPlay" (dsp.exec "playerctl play-pause") { locked = true; })
+          (bindOpts "XF86AudioPrev" (dsp.exec "playerctl previous") { locked = true; })
 
-          # Workspace
-          "$mod, 1, workspace, 1"
-          "$mod, 2, workspace, 2"
-          "$mod, 3, workspace, 3"
-          "$mod, 4, workspace, 4"
-          "$mod, 5, workspace, 5"
-          "$mod, 6, workspace, 6"
-
-          #"$mod SHIFT, Z, exec, ${pkgs.wpaperd}/bin/wpaperctl next" # Cycle Wallpaper
-        ];
-
-        bindm = [
-          # mouse movements
-          "$mod, mouse:272, movewindow"
-          "$mod, mouse:273, resizewindow"
-          "$mod ALT, mouse:272, resizewindow"
-        ];
-
-        bindel = [
-          ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-          ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-          ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-          ",XF86MonBrightnessUp, exec, brightnessctl s 5%+s"
-          ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
-        ];
-
-        bindl = [
-          ", XF86AudioNext, exec, playerctl next"
-          ", XF86AudioPause, exec, playerctl play-pause"
-          ", XF86AudioPlay, exec, playerctl play-pause"
-          ", XF86AudioPrev, exec, playerctl previous"
-        ];
-
-        windowrule = [ ## Use hyprprop to find window names/classes to targets
-          "float on,match:class ^(steam)$"
-          "float on,match:class ^(com.saivert.pwvucontrol)$"
-          "float on, match:initial_class thunar, match:title (File Operation Progress.*)"
-          "float on, match:initial_class thunar, match:title (Rename:.*)"
-          #"suppressevent maximize, class:.*"
-          "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
-          "idle_inhibit fullscreen, match:class .*"
-
-          "border_size 0, match:float 0, match:workspace w[tv1]"
-          "rounding 0, match:float 0, match:workspace w[tv1]"
-          "border_size 0, match:float 0, match:workspace f[1]"
-          "rounding 0, match:float 0, match:workspace f[1]"
-        ];
-
-        workspace = [
-          "w[t1], gapsout:0, gapsin:0"
-          "w[tg1], gapsout:0, gapsin:0"
-          "f[1], gapsout:0, gapsin:0"
-        ];
+          # Mouse move/resize
+          (bindOpts "SUPER + mouse:272" dsp.drag { mouse = true; })
+          (bindOpts "SUPER + mouse:273" dsp.resize { mouse = true; })
+        ] ++ workspaceBinds;
       };
     };
 

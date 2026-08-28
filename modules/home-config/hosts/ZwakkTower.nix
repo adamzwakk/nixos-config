@@ -40,7 +40,12 @@ in{
   '';
 
   # https://wiki.hyprland.org/Configuring/Monitors/
-  wayland.windowManager.hyprland.settings.monitor = ", highrr, auto, 1";
+  wayland.windowManager.hyprland.settings.monitor = [{
+    output = "";
+    mode = "highrr";
+    position = "auto";
+    scale = 1;
+  }];
   stylix.image = wallpaper;
 
   sops = {
