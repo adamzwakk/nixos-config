@@ -41,6 +41,7 @@ let
     ]
   ) (lib.range 1 10);
 
+  ## Startup programs
   startupPrograms = [
     "udiskie"
     "killall -q waybar; sleep 0.5; ${pkgs.waybar}/bin/waybar"
@@ -52,6 +53,20 @@ let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${lib.concatStringsSep "\n" (map (prog: "(${prog}) &") startupPrograms)}
   '';
+
+  ## Floating Rules
+
+  floatingClasses = [
+    "steam"
+    "discord"
+    "bitwarden"
+    "filezilla"
+    "zdl"
+    "uzdoom"
+    "ironwail"
+    "sm64.*"
+    "com.saivert.pwvucontrol"
+  ];
 in
 with lib;
 {
@@ -162,57 +177,18 @@ with lib;
           { leaf = "workspaces"; enabled = true; speed = 3; bezier = "menu_decel"; style = "slide"; }
         ];
 
-        window_rule = [
+        window_rule = 
           ## FLOATS
-          {
-            match = { class = "^(steam)$"; };
+          (map (cls: {
+            match = { class = "^(${cls})$"; };
             float = true;
-          }
+          }) floatingClasses)
+
+          ++ [
           {
-            match = { class = "^(discord)$"; };
+            match = { initial_class = "thunar"; title = "^(File Operation Progress.*|Rename.*)"; };
             float = true;
-          }
-          {
-            match = { class = "^(Bitwarden)$"; };
-            float = true;
-          }
-          {
-            match = { class = "^(filezilla)$"; };
-            float = true;
-          }
-          {
-            match = { class = "^(zdl)$"; };
-            float = true;
-          }
-          {
-            match = { class = "^(uzdoom)$"; };
-            float = true;
-          }
-          {
-            match = { class = "^(ironwail)$"; };
-            float = true;
-          }
-          {
-            match = { class = "^(sm64.*)$"; };
-            float = true;
-          }
-          {
-            match = { class = "^(com.saivert.pwvucontrol)$"; };
-            float = true;
-          }
-          {
-            match = {
-              initial_class = "thunar";
-              title = "(File Operation Progress.*)";
-            };
-            float = true;
-          }
-          {
-            match = {
-              initial_class = "thunar";
-              title = "(Rename.*)";
-            };
-            float = true;
+            persistent_size = true;
           }
 
           # OVERRIDES
@@ -227,12 +203,7 @@ with lib;
             };
             no_focus = true;
           }
-          {
-            match = {
-              class = ".*";
-            };
-            idle_inhibit = "fullscreen";
-          }
+          { match = { class = ".*"; }; idle_inhibit = "fullscreen"; }
 
         ];
 
