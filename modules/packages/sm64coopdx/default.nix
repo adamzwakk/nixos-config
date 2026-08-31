@@ -24,7 +24,7 @@
 }:
 let 
   pname = "sm64coopdx";
-  version = "v1.4.1";
+  version = "v1.5.1";
   desktopItem = makeDesktopItem {
     name = "SM64 Coop Deluxe";
     desktopName = "SM64 Coop Deluxe";

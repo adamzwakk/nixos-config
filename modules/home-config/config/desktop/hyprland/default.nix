@@ -113,7 +113,7 @@ with lib;
         config = {
           general = {
             gaps_in = 5;
-            gaps_out = 5;
+            gaps_out = 0;
             border_size = 1;
             col = {
               active_border = "rgb(e1e1e1)";
