@@ -12,7 +12,7 @@
     # Yes this has an optical drive
     ../../_bundles/optical.nix
 
-    # ../../_bundles/hoarding.nix
+    #../../_bundles/hoarding.nix
 
     ../../apps/steam.nix
     ../../apps/vuescan.nix

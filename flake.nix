@@ -69,6 +69,8 @@
 
         # flake helpers
         utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+
+        vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
     };
 
     outputs = { self, nixpkgs, sops-nix, nixos-hardware, ... }@inputs: let
