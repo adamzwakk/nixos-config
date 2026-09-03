@@ -54,70 +54,76 @@ in
       portMappings = [ { from = torrentRPCPort; to = torrentRPCPort; } ];
     };
 
-    systemd.services.transmission.vpnConfinement = {
-      enable = true;
-      vpnNamespace = "wg";
-    };
+    systemd = {
+      services = {
+        transmission = {
+          vpnConfinement = {
+            enable = true;
+            vpnNamespace = "wg";
+          };
 
-    systemd.services.pia-wg-gen = {
-      description = "Generate PIA WireGuard config";
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
-      before = [ "wg.service" ];
-      requiredBy = [ "wg.service" ];
-      serviceConfig = {
-        Type = "oneshot";
-        StateDirectory = "pia";
-        RemainAfterExit = true;
-        EnvironmentFile = config.sops.secrets."pia/env".path;
-        ExecStart = "${piaGen}/bin/pia-wg-gen";
+          serviceConfig.ExecStartPre = lib.mkAfter [
+            ("+" + pkgs.writeShellScript "transmission-peerport" ''
+              port=$(cat /var/lib/pia/port)
+              f=${config.services.transmission.home}/.config/transmission-daemon/settings.json
+              ${pkgs.jq}/bin/jq --argjson p "$port" '."peer-port" = $p' "$f" > "$f.tmp"
+              install -m 600 -o ${config.services.transmission.user} -g ${config.services.transmission.group} "$f.tmp" "$f"
+              rm -f "$f.tmp"
+            '')
+          ];
+        };
+
+        pia-wg-gen = {
+          description = "Generate PIA WireGuard config";
+          after = [ "network-online.target" ];
+          wants = [ "network-online.target" ];
+          before = [ "wg.service" ];
+          requiredBy = [ "wg.service" ];
+          serviceConfig = {
+            Type = "oneshot";
+            StateDirectory = "pia";
+            RemainAfterExit = true;
+            EnvironmentFile = config.sops.secrets."pia/env".path;
+            ExecStart = "${piaGen}/bin/pia-wg-gen";
+          };
+        };
+
+        pia-portforward = {
+          description = "Acquire PIA forwarded port";
+          vpnConfinement = { enable = true; vpnNamespace = "wg"; };
+          after = [ "wg.service" ];
+          requires = [ "wg.service" ];
+          before = [ "transmission.service" ];
+          requiredBy = [ "transmission.service" ];
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+            EnvironmentFile = config.sops.secrets."pia/env".path;
+            ExecStart = "${piaPortForward}/bin/pia-portforward";
+          };
+        };
+
+        pia-pf-refresh = {
+          vpnConfinement = { enable = true; vpnNamespace = "wg"; };
+          after = [ "pia-portforward.service" ];
+          requires = [ "pia-portforward.service" ];
+          serviceConfig = {
+            Type = "oneshot";
+            ExecStart = "${piaPfRefresh}/bin/pia-pf-refresh";
+          };
+        };
       };
-    };
 
-    systemd.services.pia-portforward = {
-      description = "Acquire PIA forwarded port";
-      vpnConfinement = { enable = true; vpnNamespace = "wg"; };
-      after = [ "wg.service" ];
-      requires = [ "wg.service" ];
-      before = [ "transmission.service" ];
-      requiredBy = [ "transmission.service" ];
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = true;
-        EnvironmentFile = config.sops.secrets."pia/env".path;
-        ExecStart = "${piaPortForward}/bin/pia-portforward";
+      timers.pia-pf-refresh = {
+        wantedBy = [ "timers.target" ];
+        timerConfig = { OnBootSec = "5m"; OnUnitActiveSec = "15m"; };
       };
+
+      tmpfiles.rules = [
+        "d ${config.lv426.hoarding.downloadBaseDir}                 2775 root    hoarding - -"
+        "d ${config.lv426.hoarding.downloadBaseDir}/Torrents   2775 sabnzbd hoarding - -"
+      ];
     };
-
-    systemd.services.transmission.serviceConfig.ExecStartPre = lib.mkAfter [
-      ("+" + pkgs.writeShellScript "transmission-peerport" ''
-        port=$(cat /var/lib/pia/port)
-        f=${config.services.transmission.home}/.config/transmission-daemon/settings.json
-        ${pkgs.jq}/bin/jq --argjson p "$port" '."peer-port" = $p' "$f" > "$f.tmp"
-        install -m 600 -o ${config.services.transmission.user} -g ${config.services.transmission.group} "$f.tmp" "$f"
-        rm -f "$f.tmp"
-      '')
-    ];
-
-    systemd.services.pia-pf-refresh = {
-      vpnConfinement = { enable = true; vpnNamespace = "wg"; };
-      after = [ "pia-portforward.service" ];
-      requires = [ "pia-portforward.service" ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${piaPfRefresh}/bin/pia-pf-refresh";
-      };
-    };
-
-    systemd.timers.pia-pf-refresh = {
-      wantedBy = [ "timers.target" ];
-      timerConfig = { OnBootSec = "5m"; OnUnitActiveSec = "15m"; };
-    };
-
-    systemd.tmpfiles.rules = [
-      "d ${config.lv426.hoarding.downloadBaseDir}                 2775 root    hoarding - -"
-      "d ${config.lv426.hoarding.downloadBaseDir}/Torrents   2775 sabnzbd hoarding - -"
-    ];
 
     ## Access with http://192.168.15.1:9091/transmission/web locally
     services.transmission = {
