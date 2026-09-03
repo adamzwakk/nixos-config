@@ -36,3 +36,10 @@ AllowedIPs = 0.0.0.0/0
 Endpoint = $wg_ip:$(echo "$json" | jq -r '.server_port')
 PersistentKeepalive = 25
 EOF
+
+umask 077
+cat > /var/lib/pia/meta <<EOF
+PF_GATEWAY=$(echo "$json" | jq -r '.server_vip')
+PF_HOSTNAME=$wg_cn
+PIA_TOKEN=$token
+EOF

@@ -105,6 +105,7 @@ with lib;
           "wheel"
           "video"
           "kvm"
+          "hoarding"
         ] 
         ++ lib.optionals config.networking.networkmanager.enable [
           "networkmanager"
@@ -117,8 +118,8 @@ with lib;
         ];
       };
     };
+    groups.hoarding = {};
   };
-
   documentation = {
     dev.enable = true;
     man.cache.enable = true;
