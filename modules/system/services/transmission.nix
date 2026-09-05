@@ -128,7 +128,7 @@ in
     ## Access with http://192.168.15.1:9091/transmission/web locally
     services.transmission = {
       enable = true;
-      group = "hoarding";
+      group = "media";
       settings = {
         rpc-port = torrentRPCPort;
         rpc-bind-address = "0.0.0.0";
