@@ -31,7 +31,7 @@ with lib;
       sandbox = "relaxed";
       auto-optimise-store = true;
       allowed-users = ["adam" "music"];             # My god it took me hours to realize you need the user here for home manager to work
-      experimental-features = "nix-command flakes";
+      experimental-features = ["nix-command" "flakes"];
       http-connections = 50;
       warn-dirty = false;
       log-lines = 50;
@@ -105,7 +105,7 @@ with lib;
           "wheel"
           "video"
           "kvm"
-          "hoarding"
+          "media"
         ] 
         ++ lib.optionals config.networking.networkmanager.enable [
           "networkmanager"
@@ -118,7 +118,7 @@ with lib;
         ];
       };
     };
-    groups.hoarding = {};
+    groups.media = {};
   };
   documentation = {
     dev.enable = true;
