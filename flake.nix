@@ -70,6 +70,8 @@
         # flake helpers
         utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
+        noctalia.url = "github:noctalia-dev/noctalia";
+
         vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
         nixarr = {
           url = "github:nix-media-server/nixarr";

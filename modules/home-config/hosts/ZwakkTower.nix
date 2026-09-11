@@ -48,6 +48,12 @@ in{
     position = "auto";
     scale = 1;
   }];
+
+  wayland.windowManager.niri.settings.output = {
+    _args = [ "DP-2" ];
+    mode = "3440x1440";
+  };
+
   stylix.image = wallpaper;
 
   sops = {

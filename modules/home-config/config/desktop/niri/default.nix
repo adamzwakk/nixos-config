@@ -13,17 +13,13 @@ let
   ## Startup programs
   startupPrograms = [
     "udiskie"
+    (lib.getExe flake-inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default)
   ]
   ++ lib.optionals nmEnabled [ ## Only include nm applet if we're actually using networkmanager
     "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
   ];
 
-  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    ${lib.concatStringsSep "\n" (map (prog: "(${prog}) &") startupPrograms)}
-  '';
-
   ## Floating Rules
-
   floatingClasses = [
     "steam"
     "discord"
@@ -69,7 +65,16 @@ with lib;
     wayland.windowManager.niri = {
       enable = true;
       settings = {
-        spawn-at-startup = startupPrograms;
+        _children = (map (cmd: { spawn-sh-at-startup = cmd; }) startupPrograms)
+        ++ [{
+          window-rule._children =
+            (map (cls: { match._props.app-id = "(?i)^${cls}$"; }) floatingClasses)
+            ++ [ { open-floating = true; } ];
+        }];
+
+        input.focus-follows-mouse = {
+          _props.max-scroll-amount = "0%";
+        };
 
         layout.gaps = 5;
 
@@ -79,19 +84,26 @@ with lib;
             _props.hotkey-overlay-title = "Open Terminal";
             spawn-sh = lib.getExe pkgs.alacritty;
           };
-          "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
           "Mod+D" = {
-            _props.hotkey-overlay-title = "Show Rofi";
-            spawn = ["rofi" "-show" "drun"];
+            _props.hotkey-overlay-title = "Show Launcher";
+            spawn-sh = "${lib.getExe flake-inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default} msg panel-toggle launcher";
+          };
+          "Mod+Shift+L" = {
+            _props.hotkey-overlay-title = "Lock Session";
+            spawn = ["hyprlock"];
           };
           "Mod+Shift+E".quit = {};
           "Mod+Shift+M" = {
             _props.hotkey-overlay-title = "Open URL in MPV";
             spawn-sh = "${config.home.homeDirectory}/.local/bin/mpv/open-url.sh";
           };
+          "Mod+Shift+S" = {
+            _props.hotkey-overlay-title = "Take Screenshot";
+            spawn-sh = "${lib.getExe flake-inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default} msg screenshot-region";
+          };
 
           ### WINDOW MANAGEMENT ##
-          "Mod+Q".close-window = {};
+          "Mod+Shift+Q".close-window = {};
           "Mod+Left".focus-column-left = {};
           "Mod+Right".focus-column-right = {};
           "Mod+Up".focus-window-up = {};
@@ -110,9 +122,9 @@ with lib;
           "Mod+Ctrl+K".move-window-up = {};
           "Mod+Ctrl+J".move-window-down = {};
 
-          "Mod+Shift+V".switch-focus-between-floating-and-tiling = {};
+          "Mod+Shift+V".toggle-window-floating = {};
           "Mod+F".maximize-column = {};
-          "Mod+Ctrl+F".expand-column-to-available-width = {};
+          "Mod+Shift+F".expand-column-to-available-width = {};
 
           ## WORKSPACE MANAGEMENT ##
           "Mod+1".focus-workspace = 1;
@@ -174,8 +186,7 @@ with lib;
     };
 
     stylix = {
-
-
+      targets.hyprlock.enable = mkIf config.lv426.services.hyprlock.enable true;
       icons = {
         enable = true;
         dark = "Dracula";

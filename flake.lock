@@ -383,6 +383,19 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1788614874,
+        "narHash": "sha256-PRK1fSEiAcO29DkUoOlsVLGYRK3h1YKVr+qQJB0VcYQ=",
+        "rev": "c043004d1c6985732bcc1cbc5a9c9aecbbb4e0f0",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1068089.c043004d1c69/nixexprs.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1788752844,
         "narHash": "sha256-VaWGJ6+cIYN2erfSecbRV+4ljI185Ty2wUrXyvQbgOw=",
         "owner": "nixos",
@@ -397,6 +410,24 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1789065747,
+        "narHash": "sha256-kX5eqD+MGMtGNRw6Y86eNTvC1zYUye49ESaiCXY9n0o=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "rev": "0565d25c1d3f13c7432fd64d32d08e27dbaff444",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -405,11 +436,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789086395,
-        "narHash": "sha256-yQM2jikrFN5royo9t2kOLtQ5IyAMrTvNmL3EuAVKEg8=",
+        "lastModified": 1789089959,
+        "narHash": "sha256-8hSM+eXBitY4HnqxoSoEuv3mnCBug6JQ2wSpX2GOppc=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "fd2e8856854a8b84816e8ecb15b97c904792a787",
+        "rev": "e7265fc151625b489e9887a9aa02916386953286",
         "type": "github"
       },
       "original": {
@@ -496,6 +527,7 @@
         "nixarr": "nixarr",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
+        "noctalia": "noctalia",
         "nur": "nur",
         "plasma-manager": "plasma-manager",
         "sops-nix": "sops-nix",
@@ -550,7 +582,7 @@
     "spotify-player": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1788918641,

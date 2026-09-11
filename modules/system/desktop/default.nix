@@ -3,5 +3,6 @@
     ./hyprland
     ./kde
     ./niri
+    ./noctalia
   ];
 }
