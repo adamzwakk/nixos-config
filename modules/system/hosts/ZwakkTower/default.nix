@@ -25,6 +25,7 @@
 
   lv426 = {
     desktop.hyprland.enable = true;
+    desktop.niri.enable = true;
 
     services = {
 
