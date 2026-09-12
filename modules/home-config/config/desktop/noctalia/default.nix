@@ -27,10 +27,10 @@ with lib;
           copy_to_clipboard = true;
         };
 
-        # wallpaper = {
-        #   enabled = true;
-        #   default.path = "/path/to/wallpapers/wallpaper.png";
-        # };
+        wallpaper = {
+          enabled = true;
+          directory = "${flake-inputs.self}/_wallpapers/";
+        };
       };
     };
   };

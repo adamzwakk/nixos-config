@@ -54,7 +54,7 @@ in{
     mode = "3440x1440";
   };
 
-  stylix.image = wallpaper;
+  # stylix.image = wallpaper;
 
   sops = {
     secrets."syncthing/ZwakkTower/key" = {};
