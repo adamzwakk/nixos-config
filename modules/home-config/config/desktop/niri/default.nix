@@ -34,7 +34,7 @@ let
 in
 with lib;
 {
-  config = mkIf lv426.desktop.hyprland.enable {
+  config = mkIf lv426.desktop.niri.enable {
 
     home = {
       sessionVariables = {
@@ -69,14 +69,20 @@ with lib;
         ++ [{
           window-rule._children =
             (map (cls: { match._props.app-id = "(?i)^${cls}$"; }) floatingClasses)
-            ++ [ { open-floating = true; } ];
-        }];
+              ++ [ { open-floating = true; } ];}
+            { window-rule = { match._props.app-id = "^Alacritty$"; draw-border-with-background = false; }; }
+          ];
 
         input.focus-follows-mouse = {
           _props.max-scroll-amount = "0%";
         };
 
-        layout.gaps = 5;
+        layout = {
+          gaps = 16;
+          focus-ring = {
+            width = 2;
+          };
+        };
 
         binds = {
           "Mod+Shift+Slash".show-hotkey-overlay = {};
@@ -90,7 +96,7 @@ with lib;
           };
           "Mod+Shift+L" = {
             _props.hotkey-overlay-title = "Lock Session";
-            spawn = ["hyprlock"];
+            spawn-sh = "${lib.getExe pkgs.hyprlock} & sleep 2 && niri msg action power-off-monitors";
           };
           "Mod+Shift+E".quit = {};
           "Mod+Shift+M" = {
@@ -108,19 +114,19 @@ with lib;
           "Mod+Right".focus-column-right = {};
           "Mod+Up".focus-window-up = {};
           "Mod+Down".focus-window-down = {};
-          "Mod+Ctrl+Left".move-column-left = {};
-          "Mod+Ctrl+Right".move-column-right = {};
-          "Mod+Ctrl+Up".move-window-up = {};
-          "Mod+Ctrl+Down".move-window-down = {};
+          "Mod+Shift+Left".move-column-left = {};
+          "Mod+Shift+Right".move-column-right = {};
+          "Mod+Shift+Up".move-window-up = {};
+          "Mod+Shift+Down".move-window-down = {};
           # Vim keybinding of above
-          "Mod+H".focus-column-left = {};
-          "Mod+L".focus-column-right = {};
-          "Mod+K".focus-window-up = {};
-          "Mod+J".focus-window-down = {};
-          "Mod+Ctrl+H".move-column-left = {};
-          "Mod+Ctrl+L".move-column-right = {};
-          "Mod+Ctrl+K".move-window-up = {};
-          "Mod+Ctrl+J".move-window-down = {};
+          # "Mod+H".focus-column-left = {};
+          # "Mod+L".focus-column-right = {};
+          # "Mod+K".focus-window-up = {};
+          # "Mod+J".focus-window-down = {};
+          # "Mod+Shift+H".move-column-left = {};
+          # "Mod+Shift+L".move-column-right = {};
+          # "Mod+Shift+K".move-window-up = {};
+          # "Mod+Shift+J".move-window-down = {};
 
           "Mod+Shift+V".toggle-window-floating = {};
           "Mod+F".maximize-column = {};
