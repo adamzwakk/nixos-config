@@ -8,13 +8,11 @@
 with lib;
 {
   config = mkIf lv426.desktop.hyprland.enable {
-    services.mako = {
+    programs.rofi = {
       enable = true;
-      settings = {
-        default-timeout = 5000;
-      };
+      package = pkgs.rofi;
     };
 
-    stylix.targets.mako.enable = true;
+    stylix.targets.rofi.enable = true;
   };
 }

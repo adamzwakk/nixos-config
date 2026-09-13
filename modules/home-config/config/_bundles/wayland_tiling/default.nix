@@ -6,11 +6,6 @@
 
 {
   imports = [
-    ../../apps/rofi.nix
-
-    ../../services/hypridle.nix
-    ../../services/mako.nix
-    # ../../services/wpaperd.nix
     ../../services/wlsunset.nix
   ];
 
@@ -18,4 +13,11 @@
     wl-clipboard    # Clipboard
     imv             # Image Viewer
   ];
+
+  programs.imv = {
+    enable = true;
+    settings = { ## https://manpages.ubuntu.com/manpages/lunar/man5/imv-x11.5.html
+      options.overlay = true;
+    };
+  };
 }

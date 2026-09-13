@@ -6,9 +6,9 @@
   ...
 }:
 let
-  d = "~/.local/share";
-  c = "~/.config";
-  cache = "~/.cache";
+  d = "${config.home.homeDirectory}/.local/share";
+  c = "${config.home.homeDirectory}/.config";
+  cache = "${config.home.homeDirectory}/.cache";
 in
 {
   imports = [
@@ -17,9 +17,7 @@ in
     #flake-inputs.nixvim.homeModules.nixvim
 
     ./desktop
-
-    ./apps/bitwarden.nix
-    ./apps/discord.nix
+    ./apps
   ];
 
   sops = {
@@ -28,7 +26,7 @@ in
 
     age = {
       generateKey = true;
-      keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+      keyFile = "${c}/sops/age/keys.txt";
       sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
     };
 
@@ -40,16 +38,13 @@ in
   };
 
   stylix = {
-    enable = true;
     autoEnable = false;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/brewer.yaml"; #https://tinted-theming.github.io/tinted-gallery/
     opacity = {
       terminal = 0.8;
       desktop = 0.5;
     };
-    targets = {
-      alacritty.enable = true;
-      
+    targets = {     
       gtk.enable = true;
       qt.enable = true;
     };
@@ -83,51 +78,11 @@ in
       enableBashIntegration = true; # see note on other shells below
       nix-direnv.enable = true;
     };
-
-    alacritty = {
-      enable = true;
-      settings = {
-        window = {
-          #opacity = 0.9;
-          dynamic_padding = true;
-          decorations = "None";
-          padding.x = 5;
-          padding.y = 5;
-        };
-      };
-    };
-
-    imv = {
-      enable = true;
-      settings = { ## https://manpages.ubuntu.com/manpages/lunar/man5/imv-x11.5.html
-        options.overlay = true;
-      };
-    };
   };
 
   services.ssh-agent.enable = true;
-  
-  services.syncthing.settings.folders = {
-    "ccjci-yo3ne" = {
-      id = "ccjci-yo3ne";
-      label = "Obsidian";
-      path = "${config.home.homeDirectory}/Syncthing/Obsidian";
-      devices = [ "Hudson" ];
-    };
-  };
 
   home = {
-    packages = with pkgs; [
-      vscodium
-      mpv
-
-      yt-dlp
-      obsidian
-      gimp3
-      obs-studio
-      qbittorrent
-      audacity
-    ];
     sessionVariables = {
       # clean up ~
       LESSHISTFILE = cache + "/less/history";
@@ -149,6 +104,9 @@ in
     shellAliases = {
       # Helpful aliases
       nr = "nh os switch -a --update ${config.home.homeDirectory}/pj/nixos-config"; ## Rebuild NixOS Config
+      ni = "nh os switch -a ${config.home.homeDirectory}/pj/nixos-config"; ## Install NixOS Config without updating flake
+      nt = "nh os test -a ${config.home.homeDirectory}/pj/nixos-config"; ## Test NixOS Config without updating flake
+
       rbwin = "systemctl reboot --boot-loader-entry=auto-windows"; ## Reboot into Windows
 
       # Replacemments

@@ -9,9 +9,6 @@
     ./yazi
     ./spotify_player
     #./nvim
+    ./yt-dlp
   ];
-
-  home.packages = with pkgs; [ 
-    reddit-tui
-  ]; 
 }

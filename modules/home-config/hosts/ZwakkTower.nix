@@ -4,16 +4,10 @@ let
 in{
   imports = [
     ../config
-
     ../config/_bundles/wayland_tiling
     
-    # ../config/desktop/bars/waybar
-
     ../config/apps/_browsers
-    ../config/apps/_tui
-    ../config/apps/filezilla.nix
 
-    # ../config/apps/86Box
     ../config/gaming/doom
     # ../config/gaming/heroic
     ../config/gaming/quake
@@ -24,6 +18,27 @@ in{
 
     ../config/services/syncthing.nix
   ];
+
+  lv426 = {
+    apps = {
+      alacritty.enable = true;
+      audacity.enable = true;
+      bitwarden.enable = true;
+      discord.enable = true;
+      filezilla.enable = true;
+      gimp.enable = true;
+      mpv.enable = true;
+      obs-studio.enable = true;
+      obsidian.enable = true;
+      qbittorrent.enable = true;
+      vscode.enable = true;
+    };
+
+    services = {
+      syncthing.enable = true;
+      wlsunset.enable = true;
+    };
+  };
 
   home.packages = with pkgs; [
     hugin
@@ -54,7 +69,10 @@ in{
     mode = "3440x1440";
   };
 
-  # stylix.image = wallpaper;
+  stylix = {
+    enable = true;
+    # image = wallpaper;
+  };
 
   sops = {
     secrets."syncthing/ZwakkTower/key" = {};

@@ -70,6 +70,12 @@ let
 in
 with lib;
 {
+  imports = [
+    ../../services/hypridle.nix
+    ../../services/mako.nix
+    ../launchers/rofi.nix
+  ];
+
   config = mkIf lv426.desktop.hyprland.enable {
 
     home = {

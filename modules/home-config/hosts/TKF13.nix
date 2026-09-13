@@ -11,19 +11,36 @@ in
 {
   imports = [
     ../config
-
     ../config/_bundles/wayland_tiling
-    
     ../config/desktop/bars/waybar
-
     ../config/apps/_browsers
-    ../config/apps/_tui
-    ../config/apps/filezilla.nix
-
-    ../config/services/syncthing.nix
   ];
 
-  stylix.image = wallpaper;
+  lv426 = {
+    apps = {
+      alacritty.enable = true;
+      audacity.enable = true;
+      bitwarden.enable = true;
+      discord.enable = true;
+      filezilla.enable = true;
+      gimp.enable = true;
+      mpv.enable = true;
+      obs-studio.enable = true;
+      obsidian.enable = true;
+      vscode.enable = true;
+    };
+
+    services = {
+      syncthing.enable = true;
+      wlsunset.enable = true;
+    };
+  };
+
+  stylix = {
+    enable = true;
+    image = wallpaper;
+  };
+
   programs.waybar.style = lib.optionalString config.programs.waybar.enable ''
     * {
         font-family: '0xProto Nerd Font';

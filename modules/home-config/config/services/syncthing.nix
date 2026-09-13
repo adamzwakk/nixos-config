@@ -1,14 +1,25 @@
 {
   config,
+  lib,
   ...
 }:
+with lib;
 {
-  services.syncthing = {
-    enable = true;
-    
-    settings = {
-      options.urAccepted = -1;
-      devices.Hudson.id = "BVIX3HR-CIBWNUR-TNI2OWD-6OUC7H4-NII3XNU-Z3E6GA7-VNG5N3F-3DBPYQ3";
+  options.lv426.services.syncthing.enable = mkOption {
+    type = types.bool;
+    default = false;
+    description = "Whether to enable syncthing";
+  };
+
+  config = mkIf config.lv426.services.syncthing.enable {
+
+    services.syncthing = {
+      enable = true;
+      
+      settings = {
+        options.urAccepted = -1;
+        devices.Hudson.id = "BVIX3HR-CIBWNUR-TNI2OWD-6OUC7H4-NII3XNU-Z3E6GA7-VNG5N3F-3DBPYQ3";
+      };
     };
   };
 }
