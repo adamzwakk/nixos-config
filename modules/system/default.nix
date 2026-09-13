@@ -14,7 +14,9 @@ with lib;
 
     ./desktop
     ./services
-    ./apps/android.nix ## TODO: Make this smarter to ignore
+    ./_bundles/audio.nix
+    ./_bundles/secure_boot.nix
+    ./apps/android.nix
   ];
 
   nix = {
@@ -155,19 +157,6 @@ with lib;
   security.rtkit.enable = true;
 
   services = {
-    pipewire = {
-      enable = true;
-
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-
-      jack.enable = true;
-      pulse.enable = true;
-      wireplumber.enable = true;
-    };
-
     udisks2.enable = true;
     fwupd.enable = true;
     automatic-timezoned.enable = true;
@@ -190,9 +179,7 @@ with lib;
       nh
       wget
       rar
-      pavucontrol
       brightnessctl        # Screen/laptop brightness
-      playerctl            # Get music metadata from media players
       killall
       p7zip
       fzf                  # Fuzzy Finder

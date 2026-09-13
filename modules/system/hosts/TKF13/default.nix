@@ -14,6 +14,7 @@
   ];
 
   lv426 = {
+    audio.enable = true;
     desktop.hyprland.enable = true;
     services = {
       hyprlock.enable = true;

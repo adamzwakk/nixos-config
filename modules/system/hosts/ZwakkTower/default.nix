@@ -19,11 +19,10 @@
     ../../services/networking/networkmanager.nix
     ../../services/networking/work-vpn.nix
     # ../../services/networking/avahi.nix
-
-    flake-inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
   lv426 = {
+    
     desktop = {
       #hyprland.enable = true;
       niri.enable = true;
@@ -41,6 +40,11 @@
       docker.enable = true;
     };
 
+    system = {
+      audio.enable = true;
+      secure_boot.enable = true;
+    };
+
     # hoarding = {
     #   usenet.enable = true;
     #   #transmission.enable = true;
@@ -50,19 +54,6 @@
 
   networking.hostName = "ZwakkTower";
   home-manager.users.adam = import "${flake-inputs.self}/modules/home-config/hosts/ZwakkTower.nix";
-
-  ## Secure Boot Stuff
-  environment.systemPackages = [
-    # For debugging and troubleshooting Secure Boot.
-    pkgs.sbctl
-  ];
-  boot.loader.systemd-boot.enable = lib.mkForce false;
-
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/var/lib/sbctl";
-  };
-  ## End Secure Boot Stuff
 
   fileSystems = 
     let 
