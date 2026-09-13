@@ -7,12 +7,17 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-let
-  cfg = config.${namespace}.apps._browsers.tor;
-in
 {
+  options.lv426.apps.browsers.tor.enable = mkOption {
+    type = types.bool;
+    default = false;
+    description = "Whether to enable tor browser";
+  };
+
+  config = mkIf config.lv426.apps.browsers.tor.enable {
+
     home.packages = with pkgs; [ 
       tor-browser
-    ];  
+    ];
+  };
 }

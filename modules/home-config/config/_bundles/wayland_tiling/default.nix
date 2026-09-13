@@ -5,10 +5,6 @@
 }:
 
 {
-  imports = [
-    ../../services/wlsunset.nix
-  ];
-
   home.packages = with pkgs; [
     wl-clipboard    # Clipboard
     imv             # Image Viewer

@@ -5,9 +5,9 @@
 {
   imports = [
     ./bat
-    ./eza
+    #./eza
     ./yazi
-    ./spotify_player
+    # ./spotify_player
     #./nvim
     ./yt-dlp
   ];

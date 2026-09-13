@@ -4,6 +4,7 @@
     ./alacritty.nix
     ./audacity.nix
     ./bitwarden.nix
+    ./_browsers
     ./discord.nix
     ./filezilla.nix
     ./gimp.nix

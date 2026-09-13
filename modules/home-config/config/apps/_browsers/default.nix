@@ -6,6 +6,7 @@
 {
   imports = [
     ./firefox
+    ./chrome
     ./tor-browser
   ];
 }

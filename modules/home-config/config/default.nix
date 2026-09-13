@@ -18,6 +18,7 @@ in
 
     ./desktop
     ./apps
+    ./services
   ];
 
   sops = {

@@ -5,9 +5,6 @@ in{
   imports = [
     ../config
     ../config/_bundles/wayland_tiling
-    
-    ../config/apps/_browsers
-
     ../config/gaming/doom
     # ../config/gaming/heroic
     ../config/gaming/quake
@@ -15,8 +12,6 @@ in{
     ../config/gaming/decomps/sm64
     ../config/gaming/decomps/banjo
     # ../config/gaming/decomps/mariokartwii
-
-    ../config/services/syncthing.nix
   ];
 
   lv426 = {
@@ -24,6 +19,11 @@ in{
       alacritty.enable = true;
       audacity.enable = true;
       bitwarden.enable = true;
+      browsers = {
+        chrome.enable = false;
+        firefox.enable = true;
+        tor.enable = true;
+      };
       discord.enable = true;
       filezilla.enable = true;
       gimp.enable = true;

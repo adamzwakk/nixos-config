@@ -13,7 +13,6 @@ in
     ../config
     ../config/_bundles/wayland_tiling
     ../config/desktop/bars/waybar
-    ../config/apps/_browsers
   ];
 
   lv426 = {
@@ -21,6 +20,11 @@ in
       alacritty.enable = true;
       audacity.enable = true;
       bitwarden.enable = true;
+      browsers = {
+        chrome.enable = false;
+        firefox.enable = true;
+        tor.enable = false;
+      };
       discord.enable = true;
       filezilla.enable = true;
       gimp.enable = true;

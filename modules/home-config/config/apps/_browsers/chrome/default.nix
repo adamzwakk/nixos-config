@@ -7,11 +7,15 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-  let
-    cfg = config.${namespace}.apps._browsers.chrome;
-  in
-  {
+{
+  options.lv426.apps.browsers.chrome.enable = mkOption {
+    type = types.bool;
+    default = false;
+    description = "Whether to enable chrome browser";
+  };
+
+  config = mkIf config.lv426.apps.browsers.chrome.enable {
+
     programs = {
       chromium = {
         enable = true;
@@ -20,4 +24,5 @@ with lib.${namespace};
         ];
       };
     };
+  };
 }
