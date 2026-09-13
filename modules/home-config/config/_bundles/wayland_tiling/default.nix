@@ -6,10 +6,10 @@
 
 {
   imports = [
-    # ../../apps/rofi.nix
+    ../../apps/rofi.nix
 
-    # ../../services/hypridle.nix
-    # ../../services/mako.nix
+    ../../services/hypridle.nix
+    ../../services/mako.nix
     # ../../services/wpaperd.nix
     ../../services/wlsunset.nix
   ];

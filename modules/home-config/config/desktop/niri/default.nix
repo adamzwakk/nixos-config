@@ -84,6 +84,10 @@ with lib;
           };
         };
 
+        gestures.hot-corners = {
+          off = {};
+        };
+
         binds = {
           "Mod+Shift+Slash".show-hotkey-overlay = {};
           "Mod+Return" = {

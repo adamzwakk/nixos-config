@@ -1,6 +1,16 @@
 {
+  lib,
+  config,
+  pkgs,
+  lv426,
+  ...
+}:
+let
+  hyprEnabled = lv426.desktop.hyprland.enable;
+in
+{
   services.mako = {
-    enable = true;
+    enable = hyprEnabled;
     settings = {
       default-timeout = 5000;
     };

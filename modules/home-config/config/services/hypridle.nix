@@ -8,6 +8,7 @@
 let
   niriEnabled = lv426.desktop.niri.enable;
   noctaliaEnabled = lv426.desktop.noctalia.enable;
+  hyprEnabled = lv426.desktop.hyprland.enable;
 
   dpmsOff = if niriEnabled
     then "niri msg action power-off-monitors"
