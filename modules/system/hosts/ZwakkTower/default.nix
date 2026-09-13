@@ -25,17 +25,17 @@
 
   lv426 = {
     desktop = {
-      hyprland.enable = true;
+      #hyprland.enable = true;
       niri.enable = true;
       noctalia.enable = true;
     };
     services = {
 
-      hyprlock.enable = true;
+      #hyprlock.enable = true;
 
       greetd = {
         enable = true;
-        default = "niri";
+        default = "niri-session";
       };
 
       docker.enable = true;

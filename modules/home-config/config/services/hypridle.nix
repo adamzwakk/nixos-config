@@ -7,6 +7,7 @@
 }:
 let
   niriEnabled = lv426.desktop.niri.enable;
+  noctaliaEnabled = lv426.desktop.noctalia.enable;
 
   dpmsOff = if niriEnabled
     then "niri msg action power-off-monitors"
@@ -20,7 +21,7 @@ in
   # https://0xda.de/blog/2024/07/framework-and-nixos-locking-customization/
   
   services.hypridle = {
-    enable = true;
+    enable = !noctaliaEnabled;
     settings = {
       general = {
           lock_cmd = "pidof hyprlock || hyprlock";       # avoid starting multiple hyprlock instances.
@@ -56,4 +57,5 @@ in
     source = "${flake-inputs.self}/scripts/hypridle/hypridle-toggle.sh";
     executable = true;
   };
+  
 }

@@ -7,7 +7,7 @@ in{
 
     ../config/_bundles/wayland_tiling
     
-    ../config/desktop/bars/waybar
+    # ../config/desktop/bars/waybar
 
     ../config/apps/_browsers
     ../config/apps/_tui
