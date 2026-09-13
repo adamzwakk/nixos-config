@@ -100,7 +100,7 @@ with lib;
           };
           "Mod+Shift+L" = {
             _props.hotkey-overlay-title = "Lock Session";
-            spawn-sh = "${lib.getExe pkgs.hyprlock} & sleep 2 && niri msg action power-off-monitors";
+            spawn-sh = "noctalia msg session lock";
           };
           "Mod+Shift+E".quit = {};
           "Mod+Shift+M" = {
