@@ -21,7 +21,6 @@ with lib;
     };
 
     environment.systemPackages = with pkgs; [
-      mako
       libnotify
       pwvucontrol
       udiskie

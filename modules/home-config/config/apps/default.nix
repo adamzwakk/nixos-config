@@ -12,6 +12,7 @@
     ./obs-studio.nix
     ./obsidian.nix
     ./qbittorrent.nix
+    ./rss.nix
     ./vscode.nix
 
     ./_tui

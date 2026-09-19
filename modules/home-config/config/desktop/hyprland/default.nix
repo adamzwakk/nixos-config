@@ -72,7 +72,6 @@ with lib;
 {
   imports = [
     ../../services/hypridle.nix
-    ../../services/mako.nix
     ../launchers/rofi.nix
   ];
 

@@ -31,6 +31,7 @@ in{
       obs-studio.enable = true;
       obsidian.enable = true;
       qbittorrent.enable = true;
+      rss.enable = true;
       vscode.enable = true;
     };
 
