@@ -78,6 +78,7 @@ with lib;
         };
 
         layout = {
+          always-center-single-column = true;
           gaps = 16;
           focus-ring = {
             width = 2;
@@ -134,7 +135,7 @@ with lib;
 
           "Mod+Shift+V".toggle-window-floating = {};
           "Mod+F".maximize-column = {};
-          "Mod+Shift+F".expand-column-to-available-width = {};
+          "Mod+Shift+F".fullscreen-window = {};
 
           ## WORKSPACE MANAGEMENT ##
           "Mod+1".focus-workspace = 1;

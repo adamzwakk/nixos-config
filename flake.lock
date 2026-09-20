@@ -418,11 +418,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789781493,
-        "narHash": "sha256-ord5Rgu6Z5vbfoftbBnfThRTrCwKsaz3UKonGnSp7lM=",
+        "lastModified": 1789829139,
+        "narHash": "sha256-fiBNgD4yRuG8L56j16O3i1HKRhl5U06tVbPz0kENZrw=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "eee6ded67a7971bb01bcfe7878207c1078b6dbe4",
+        "rev": "6b11129e43a252aacc10c8ff21965696596ebd8b",
         "type": "github"
       },
       "original": {
@@ -547,11 +547,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789691124,
-        "narHash": "sha256-k+I+R6uwHX3VcJ7326qLV6vCahZUgsVl+i8sSU/Stxk=",
+        "lastModified": 1789815532,
+        "narHash": "sha256-/Ql9UE21iDwOU/JdPV20yZtaMpGf+iD2EhIA1aAi540=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "1e73e8f7176d65e1b55e324de099bbfff4b2c574",
+        "rev": "166fc0d3f4fcd0dfc9af102ba8e85fa5dd04e5f7",
         "type": "github"
       },
       "original": {
@@ -566,11 +566,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1789235170,
-        "narHash": "sha256-emeASQgRDb0ypZg0qmMtZM4WH1YeJlVY6PFwX15cZvU=",
+        "lastModified": 1789828809,
+        "narHash": "sha256-kvqVFLbr1EbEtoCs07iL5Z0zGJeURs7pr68BVqJTfDE=",
         "owner": "aome510",
         "repo": "spotify-player",
-        "rev": "566945580259056352692b3e39796d2ab7ec93ff",
+        "rev": "7dc9d17a7bf5671eb6129fdf9127729f659637fc",
         "type": "github"
       },
       "original": {
