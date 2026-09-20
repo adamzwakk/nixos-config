@@ -14,18 +14,30 @@
   ];
 
   lv426 = {
-    audio.enable = true;
-    desktop.hyprland.enable = true;
+    
+    desktop = {
+      niri.enable = true;
+      noctalia.enable = true;
+    };
     services = {
-      hyprlock.enable = true;
-
       greetd = {
         enable = true;
-        default = "start-hyprland";
+        default = "niri-session";
       };
-      
+
       docker.enable = true;
     };
+
+    system = {
+      audio.enable = true;
+      #secure_boot.enable = true;
+    };
+
+    # hoarding = {
+    #   usenet.enable = true;
+    #   #transmission.enable = true;
+    #   downloadBaseDir = "/srv/hoarding";
+    # };
   };
 
   networking.hostName = "TKF13";

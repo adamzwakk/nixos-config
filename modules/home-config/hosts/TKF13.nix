@@ -12,7 +12,6 @@ in
   imports = [
     ../config
     ../config/_bundles/wayland_tiling
-    ../config/desktop/bars/waybar
   ];
 
   lv426 = {
