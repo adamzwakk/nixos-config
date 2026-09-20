@@ -6,6 +6,12 @@ Start by doing the initial flake with
 
 then from then on you can just run `nr` to update the system config
 
+OR
+
+From the Live CD, just run `sudo nixos-install --root /mnt --flake .#your-hostname` after cloning and mounting the disks.
+
+`sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /tmp/disk-config.nix` will format/mount the disks for you.
+
 ## Structure
 
 Sort of stole ideas from TLATER's config (sorry not sorry):

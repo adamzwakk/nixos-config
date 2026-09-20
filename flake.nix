@@ -14,6 +14,11 @@
 
         nixos-hardware.url = "github:nixos/nixos-hardware";
 
+        disko = {
+            url = "github:nix-community/disko/latest";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         home-manager = {
             url = "github:nix-community/home-manager/master";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -76,7 +81,7 @@
         };
     };
 
-    outputs = { self, nixpkgs, sops-nix, nixos-hardware, ... }@inputs: let
+    outputs = { self, nixpkgs, sops-nix, nixos-hardware, disko, ... }@inputs: let
       system = "x86_64-linux";
       pkgs = import nixpkgs { 
         inherit system;
@@ -87,6 +92,7 @@
         TKF13 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            disko.nixosModules.disko
             ./modules/system
             ./modules/system/hosts/TKF13
           ];

@@ -55,6 +55,8 @@
   networking.hostName = "ZwakkTower";
   home-manager.users.adam = import "${flake-inputs.self}/modules/home-config/hosts/ZwakkTower.nix";
 
+  fileSystems."/boot".options = [ "fmask=0077" "dmask=0077" ];
+
   fileSystems = 
     let 
       smb_automount_opts = ["x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];

@@ -9,21 +9,21 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  fileSystems = {
-    "/boot" = { 
-      device = "/dev/disk/by-uuid/4846-7136";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
-    "/" = { 
-      device = "/dev/disk/by-uuid/de50c93c-1694-486b-a5f0-b01e39bb116d";
-      fsType = "ext4";
-    };
-  };
+  #fileSystems = {
+  #  "/boot" = { 
+  #    device = "/dev/disk/by-uuid/4846-7136";
+  #    fsType = "vfat";
+  #    options = [ "fmask=0077" "dmask=0077" ];
+  #  };
+  #  "/" = { 
+  #    device = "/dev/disk/by-uuid/de50c93c-1694-486b-a5f0-b01e39bb116d";
+  #    fsType = "ext4";
+  #  };
+  #};
 
-  swapDevices = [ 
-    { device = "/dev/disk/by-uuid/8b968203-fa95-49fd-a9bd-5b20a2562754"; } 
-  ];
+  #swapDevices = [ 
+  #  { device = "/dev/disk/by-uuid/8b968203-fa95-49fd-a9bd-5b20a2562754"; } 
+  #];
 
   hardware = {
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

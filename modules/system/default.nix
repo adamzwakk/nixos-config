@@ -127,8 +127,6 @@ with lib;
     man.cache.enable = true;
   };
 
-  fileSystems."/boot".options = [ "fmask=0077" "dmask=0077" ];
-
   fonts = {
     enableDefaultPackages = true;
     fontDir = {
