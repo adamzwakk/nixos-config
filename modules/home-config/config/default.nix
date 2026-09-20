@@ -28,7 +28,7 @@ in
     age = {
       generateKey = true;
       keyFile = "${c}/sops/age/keys.txt";
-      sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
+      #sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
     };
 
     secrets = {

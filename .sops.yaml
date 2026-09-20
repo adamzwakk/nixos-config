@@ -1,10 +1,10 @@
 keys:
-  - &users:
+  - users:
     - &adam age1ngkg3msxp8l39mz8vczwrk4qunedqls89dq6q7xqdt0xnxev236qddfgh7
     - &adamz age1ngkg3msxp8l39mz8vczwrk4qunedqls89dq6q7xqdt0xnxev236qddfgh7
-  - &hosts:
+  - hosts:
     - &ZwakkTower age1eg76zcp35leluz5e7vmnyaym32tdn7ltkmsfnkz8h3tsutqdmdls3qvvpg
-    - &TKF13 age15xzh7cgwqck4cmnxjv4fvdum239plm3wjfx645cnpr0nh6rgt9eqmd2h6z
+    - &TKF13 age18vklf42nqc86nvnsl64dfrgzf5ayzy70k485egnl86qfzqppf32s7tghaj
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:

@@ -41,8 +41,10 @@ in
 
   stylix = {
     enable = true;
-    image = wallpaper;
+    # image = wallpaper;
   };
+
+  wayland.windowManager.niri.settings.layout.default-column-width = { proportion = 0.7; };
 
   programs.waybar.style = lib.optionalString config.programs.waybar.enable ''
     * {
