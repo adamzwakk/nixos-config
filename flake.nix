@@ -72,7 +72,7 @@
         # swww.url = "github:LGFae/swww";
         spotify-player.url = "github:aome510/spotify-player";
 
-        noctalia.url = "github:noctalia-dev/noctalia";
+        # noctalia.url = "github:noctalia-dev/noctalia";
 
         vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
         nixarr = {

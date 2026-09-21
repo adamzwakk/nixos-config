@@ -45,6 +45,9 @@
   home-manager.users.adam = import "${flake-inputs.self}/modules/home-config/hosts/TKF13.nix";
   virtualisation.docker.storageDriver = lib.mkForce null;
 
+  time.timeZone = lib.mkForce null;
+  services.tzupdate.enable = true;
+
   fileSystems = {
     "/mnt/Projects" = {
       device = "10.100.1.12:/mnt/Hudson/Adam/Projects";

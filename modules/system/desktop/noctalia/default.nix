@@ -17,7 +17,7 @@ with lib;
   config = mkIf config.lv426.desktop.noctalia.enable {
 
     environment.systemPackages = with pkgs; [
-      flake-inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      noctalia
     ];
   };
 }

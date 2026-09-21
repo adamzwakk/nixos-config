@@ -80,7 +80,7 @@ with lib;
     };
   };
 
-  time.timeZone = lib.mkDefault "America/Toronto";
+  time.timeZone = "America/Toronto";
 
   i18n = {
     defaultLocale = "en_CA.UTF-8";
@@ -159,6 +159,7 @@ with lib;
     fwupd.enable = true;
     automatic-timezoned.enable = true;
     gnome.gnome-keyring.enable = true;
+    power-profiles-daemon.enable = true;
   };
 
   hardware.enableRedistributableFirmware = true;

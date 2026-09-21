@@ -10,10 +10,12 @@
 }:
 let  
 
+  noctaliaExe = (lib.getExe pkgs.noctalia);
+
   ## Startup programs
   startupPrograms = [
     "udiskie"
-    (lib.getExe flake-inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default)
+    noctaliaExe
   ]
   ++ lib.optionals nmEnabled [ ## Only include nm applet if we're actually using networkmanager
     "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
@@ -89,6 +91,10 @@ with lib;
           off = {};
         };
 
+        hotkey-overlay = {
+          hide-not-bound = {};
+        };
+
         binds = {
           "Mod+Shift+Slash".show-hotkey-overlay = {};
           "Mod+Return" = {
@@ -97,7 +103,11 @@ with lib;
           };
           "Mod+D" = {
             _props.hotkey-overlay-title = "Show Launcher";
-            spawn-sh = "${lib.getExe flake-inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default} msg panel-toggle launcher";
+            spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
+          };
+          "Mod+E" = {
+            _props.hotkey-overlay-title = "Open Thunar";
+            spawn-sh = lib.getExe pkgs.thunar;
           };
           "Mod+Shift+L" = {
             _props.hotkey-overlay-title = "Lock Session";
@@ -105,12 +115,12 @@ with lib;
           };
           "Mod+Shift+E".quit = {};
           "Mod+Shift+M" = {
-            _props.hotkey-overlay-title = "Open URL in MPV";
+            _props.hotkey-overlay-title = "Open clipboard URL in MPV";
             spawn-sh = "${config.home.homeDirectory}/.local/bin/mpv/open-url.sh";
           };
           "Mod+Shift+S" = {
             _props.hotkey-overlay-title = "Take Screenshot";
-            spawn-sh = "${lib.getExe flake-inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default} msg screenshot-region";
+            spawn-sh = "${noctaliaExe} msg screenshot-region";
           };
 
           ### WINDOW MANAGEMENT ##
