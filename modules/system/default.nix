@@ -157,7 +157,7 @@ with lib;
   services = {
     udisks2.enable = true;
     fwupd.enable = true;
-    automatic-timezoned.enable = true;
+    # automatic-timezoned.enable = true;
     gnome.gnome-keyring.enable = true;
     power-profiles-daemon.enable = true;
   };
