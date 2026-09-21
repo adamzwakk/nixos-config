@@ -81,6 +81,7 @@ with lib;
 
         layout = {
           always-center-single-column = true;
+          background-color = "transparent";
           gaps = 16;
           focus-ring = {
             width = 2;
@@ -93,6 +94,11 @@ with lib;
 
         hotkey-overlay = {
           hide-not-bound = {};
+        };
+
+        layer-rule = {
+            match._props.namespace = "^noctalia-wallpaper";
+            place-within-backdrop = true;
         };
 
         binds = {
