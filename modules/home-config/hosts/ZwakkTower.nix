@@ -45,7 +45,7 @@ in{
     hugin
     kdePackages.kdenlive
     # makemkv
-    handbrake
+    # handbrake
     transmission-remote-gtk
   ];
 

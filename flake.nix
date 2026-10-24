@@ -53,6 +53,10 @@
         #     url = "github:nix-community/nixvim";
         #     inputs.nixpkgs.follows = "nixpkgs";
         # };
+        nvf = {
+          url = "github:NotAShelf/nvf";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         # Helpful rust bundles
         # rust-overlay = {

@@ -16,7 +16,7 @@ with lib;
   config = mkIf config.lv426.apps.audacity.enable {
 
     home.packages = with pkgs; [
-      audacity
+      audacity_3
     ];
   };
 }

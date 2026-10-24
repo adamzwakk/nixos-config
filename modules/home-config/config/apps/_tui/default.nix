@@ -8,7 +8,7 @@
     #./eza
     ./yazi
     # ./spotify_player
-    #./nvim
+    ./nvim
     ./yt-dlp
   ];
 }
