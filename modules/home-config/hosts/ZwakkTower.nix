@@ -9,8 +9,8 @@ in{
     # ../config/gaming/heroic
     ../config/gaming/quake
     ../config/gaming/emulation
-    ../config/gaming/decomps/sm64
-    ../config/gaming/decomps/banjo
+    # ../config/gaming/decomps/sm64
+    # ../config/gaming/decomps/banjo
     # ../config/gaming/decomps/mariokartwii
   ];
 

@@ -23,7 +23,7 @@ with lib;
           support32Bit = true;
         };
 
-        jack.enable = true;
+        #jack.enable = true; evaluation warning: `services.pipewire.jack.enable` is deprecated, because it introduces global impurity via `LD_LIBRARY_PATH`. Use the `pw-jack` wrapper from `pipewire.jack` where necessary instead.
         pulse.enable = true;
         wireplumber.enable = true;
       };

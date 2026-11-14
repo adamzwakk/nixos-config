@@ -22,7 +22,7 @@ in stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://www.hamrick.com/files/vuex6498.tgz";
-    sha256 = "sha256-LftCmd45BD/qXubTiXT1qaKohDd+BXkyWhbDKOCJrPI=";
+    sha256 = "sha256-6jInXLD+Iv8B8qaAA2+2kqHmNq86ZjtBRbYdeQujAok=";
   };
 
   nativeBuildInputs = [ autoPatchelfHook gnutar wrapGAppsHook3 ];

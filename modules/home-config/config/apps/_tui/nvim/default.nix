@@ -8,7 +8,7 @@
   ...
 }:
 {
-  imports = [ flake-inputs.nvf.homeManagerModules.default ];
+  imports = [ flake-inputs.nvf.homeModules.default ];
     
   programs.nvf = {
       enable = true;
